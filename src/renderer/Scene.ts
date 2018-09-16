@@ -112,7 +112,14 @@ export default class Scene {
       const delta = vec3.create();
       vec3.subtract(delta, current, last);
       vec3.add(delta, this.cursor.position, delta);
-      this.renderer.onCursorPosition(delta[0], delta[1], delta[2]);
+      if (delta[0]<(-this.cursor.radius-0.5)) delta[0] = (-this.cursor.radius-0.5);
+      if (delta[0]>(this.cursor.radius+0.5)) delta[0] = (this.cursor.radius+0.5);
+      if (delta[1]<(-this.cursor.radius-5)) delta[1] = (-this.cursor.radius-5);
+      if (delta[1]>(this.cursor.radius+5)) delta[1] = (this.cursor.radius+5);
+      if (delta[2]<(-this.cursor.radius-0.5)) delta[2] = (-this.cursor.radius-0.5);
+      if (delta[2]>(this.cursor.radius+0.5)) delta[2] = (this.cursor.radius+0.5);
+      
+      this.renderer.onCursorPosition(delta[0], delta[1], delta[2]);     
     }
   }
 
