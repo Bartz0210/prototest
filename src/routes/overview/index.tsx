@@ -6,7 +6,8 @@ const theme = {
   root: css`
     label: Overview;
     margin: 20 20 20 20;
-    display: grid;grid-template-columns: auto auto auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
     grid-template-rows: auto auto;
     grid-gap: 20px;
     align-items: stretch;
