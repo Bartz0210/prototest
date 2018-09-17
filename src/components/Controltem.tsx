@@ -40,7 +40,7 @@ export default function ControlItem({
       <div className={theme.root}>
         <Icon name={icon} size="large" />
         <label htmlFor="control">{label}</label>
-        <IncrementalInput placeholder={placeholder} />    
+        <IncrementalInput onChange={value => console.log(value)} value={placeholder} />    
     </div>
     );
   }

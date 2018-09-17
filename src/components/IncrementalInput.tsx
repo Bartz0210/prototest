@@ -13,18 +13,26 @@ const theme = {
 };
 
 export interface Props {
-  placeholder: number;
+    value: number;
+    onChange(value: number): void;
   
 }
 
+export interface State {
+    rawValue?: string;
+}
+
+
 export default function IncrementalInput({
-  placeholder
+  value,
+  onChange
 }: Props) {
+    
   return (
         <div className={theme.root}>
-            <button>-</button>
-            <input id='field' type="number" value={placeholder}></input>
-            <button>+</button>
+            <button onClick={() => onChange(value-1) } >-</button>
+            <input type="number" onChange={event => onChange(Number(event.currentTarget.value))} value={String(value)}></input>
+            <button  onClick={() => onChange(value+1) }>+</button>
         </div>
   );
 }
