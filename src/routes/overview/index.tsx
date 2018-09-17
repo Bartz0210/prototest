@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { css } from 'emotion';
+import Widget from '../../components/widget';
 
 const theme = {
   root: css`
     label: Overview;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 20 20 20 20;
+    display: grid;grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    grid-gap: 20px;
+    align-items: stretch;
+    justify-content: stretch;
 
     position: absolute;
     top: 0;
@@ -20,29 +24,11 @@ const theme = {
 
 export default function Overview() {
   return <div className={theme.root}>
-    <div>
-      <ul>
-      <li>zeug</li>
-      <li>das</li>
-      <li>hier</li>
-      <li>stehen</li>
-      <li>könnte</li>
-      <li>ist</li>
-      <li>das</li>
-      <li>hier</li>
-      </ul>
-    </div>
-    <div>
-      <ul>
-      <li>zeug</li>
-      <li>das</li>
-      <li>hier</li>
-      <li>stehen</li>
-      <li>könnte</li>
-      <li>ist</li>
-      <li>das</li>
-      <li>hier</li>
-      </ul>
-    </div>
+    <Widget headline="Widget" />
+    <Widget headline="Widget" />
+    <Widget headline="Widget" />
+    <Widget headline="Widget" />
+    <Widget headline="Widget" />
+    <Widget headline="Widget" />
   </div>;
 }

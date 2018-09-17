@@ -6,7 +6,7 @@ const theme = {
     label: Footer;
     display: flex;
     flex-flow: row nowrap;
-    aligm-items: center;
+    align-items: center;
     justify-content: center;
 
     height: 85px;

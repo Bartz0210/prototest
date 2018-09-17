@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { css } from 'emotion';
 import Canvas from '../../components/Canvas';
+import Controlpanel from '../../components/Controlpanel';
+import ControlItem from '../../components/Controltem';
 
 const theme = {
   root: css`
@@ -22,6 +24,9 @@ const theme = {
 export default function Programm() {
   return (
     <div className={theme.root}>
+      <Controlpanel>
+        <ControlItem label="something" placeholder={17} icon="settings"/> 
+      </Controlpanel>
       <Canvas />
     </div>
   );
