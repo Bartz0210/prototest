@@ -112,12 +112,29 @@ export default class Scene {
       const delta = vec3.create();
       vec3.subtract(delta, current, last);
       vec3.add(delta, this.cursor.position, delta);
+
+      //orbiting around Capusle
+
+      //x-axis
       if (delta[0]<(-this.cursor.radius-0.5)) delta[0] = (-this.cursor.radius-0.5);
       if (delta[0]>(this.cursor.radius+0.5)) delta[0] = (this.cursor.radius+0.5);
+      //y-axis
       if (delta[1]<(-this.cursor.radius-5)) delta[1] = (-this.cursor.radius-5);
       if (delta[1]>(this.cursor.radius+5)) delta[1] = (this.cursor.radius+5);
+      //z-axis
       if (delta[2]<(-this.cursor.radius-0.5)) delta[2] = (-this.cursor.radius-0.5);
       if (delta[2]>(this.cursor.radius+0.5)) delta[2] = (this.cursor.radius+0.5);
+
+
+      //Orbit
+
+      let angle = Math.atan2(delta[2], delta[0]);
+      if(delta[0] < -this.cursor.radius || delta[0] > this.cursor.radius){
+        delta[0] = this.cursor.radius*Math.cos(angle);
+      }
+      if(delta[2] < -this.cursor.radius || delta[2] > this.cursor.radius){
+        delta[2] = this.cursor.radius*Math.sin(angle);
+      }
       
       this.renderer.onCursorPosition(delta[0], delta[1], delta[2]);     
     }
