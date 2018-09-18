@@ -4,38 +4,33 @@ import { css } from 'emotion';
 
 const theme = {
   root: css`
-    label: Widget;
+    label: WidgetPic;
     background-color: #333;
     border-width: 5px;
     border-color:#333;
-    
-    width: 314 px;
+    width: 314px;
 
     color: #2699FB;
     text-decoration: none;
   `,
-  hl: css`
-    font-size: 14px;
-    font-weight: 200;
-    width: 314px;
-`,
+  pic: css`
+    width: 314px;  
+  `,
+ 
 
 };
 
 export interface Props {
-  headline: string;
-  children?: React.ReactNode;
-}
+  picture: string;
+  }
 
-export default function Widget({
-    headline,
-    children
+export default function WidgetPic({
+    picture
     
   }: Props) {
     return (
       <div className={theme.root}>
-        <h2 className={theme.hl}>{headline}</h2>
-        <div>{children}</div>
+        <img className={theme.pic} src={picture} />
       </div>
     );
   }

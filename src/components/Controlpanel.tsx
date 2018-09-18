@@ -12,10 +12,10 @@ const theme = {
   `,
 };
 
-export interface Props {
-    children?: React.ReactNode;
-}
+ export interface Props {
+     children?: React.ReactNode;
+ }
 
-export default function Controlpanel({ children }: Props) {
-    return <div className={theme.root}>{children}</div>;
-}  
+ export default function Controlpanel({ children }: Props) {
+     return <div className={theme.root}>{children}</div>;
+ }  

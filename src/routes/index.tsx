@@ -9,6 +9,7 @@ import Header from '../components/Header';
 import Overview from './overview';
 import Programm from './programm';
 import Reports from './reports';
+import Sidebar from 'react-sidebar';
 
 injectGlobal`
   body {
@@ -42,6 +43,11 @@ const theme = {
   `,
 };
 
+interface State {
+  sidebarOpen: boolean
+}
+
+
 export default function Application() {
   return (
     <>
@@ -60,6 +66,7 @@ export default function Application() {
         <FooterItem caption="Reports" icon="assessment" to="/reports" />
         <FooterItem caption="Programmierung" icon="settings" to="/programm" />
       </Footer>
+      
     </>
   );
 }
