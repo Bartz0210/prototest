@@ -1,5 +1,5 @@
-import { AnyAction, Action } from 'redux';
-import { SceneData, SpotState } from '../renderer/Scene';
+import { AnyAction, Action } from "redux";
+import { SceneData, SpotState } from "../renderer/Scene";
 
 function createScene(): SceneData {
   const spots: Array<SpotState> = [];
@@ -12,29 +12,35 @@ function createScene(): SceneData {
       position: [
         Math.sin(angle) * distance,
         -5 + Math.random() * 10,
-        Math.cos(angle) * distance,
+        Math.cos(angle) * distance
       ],
-      radius: 2 + Math.random() * 3,
+      radius: 2 + Math.random() * 3
     });
   }
 
   return {
     cursor: {
       position: [0, 0, 0],
-      radius: 2,
+      radius: 2
     },
-    spots,
+    spots
   };
 }
 
-export interface UpdateCursorPosition extends Action<'updateCursorPosition'> {
+export interface UpdateCursorPosition extends Action<"updateCursorPosition"> {
   x: number;
   y: number;
   z: number;
 }
 
-export interface UpdateCursorRadius extends Action<'updateCursorRadius'> {
+export interface UpdateCursorRadius extends Action<"updateCursorRadius"> {
   radius: number;
+}
+
+export interface TransformCursor extends Action<"transformCursorRadius"> {
+  scaleX: number;
+  scaleY: number;
+  scaleZ: number;
 }
 
 export default function scene(
@@ -46,21 +52,21 @@ export default function scene(
   }
 
   switch (action.type) {
-    case 'updateCursorPosition':
+    case "updateCursorPosition":
       return {
         ...state,
         cursor: {
           ...state.cursor,
-          position: [action.x, action.y, action.z],
-        },
+          position: [action.x, action.y, action.z]
+        }
       };
-    case 'updateCursorRadius':
+    case "updateCursorRadius":
       return {
         ...state,
         cursor: {
           ...state.cursor,
-          radius: action.radius,
-        },
+          radius: action.radius
+        }
       };
   }
 

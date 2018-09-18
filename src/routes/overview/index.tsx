@@ -30,7 +30,7 @@ export default function Overview() {
       <WidgetPic picture="Profilepicture.png" />
     </Widget>
     <Widget headline="Widget">
-      <WidgetText name="Max Musttermann" id="123-456-789" birthday="23-11-1954" implantSince="11-06-2003" modelNo="DBS123-56" serialNo="234-56" firmware="V0.454545"/>
+      <WidgetText name="Max Mustermann" id="123-456-789" birthday="23-11-1954" implantSince="11-06-2003" modelNo="DBS123-56" serialNo="234-56" firmware="V0.454545"/>
     </Widget>
     <Widget headline="Widget" />
     <Widget headline="Lokalisation">

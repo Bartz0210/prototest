@@ -4,12 +4,13 @@ import { css } from 'emotion';
 
 const theme = {
   root: css`
-    label: WidgetPic;
+    label: WidgetText;
     background-color: #333;
     border-width: 5px;
     border-color:#333;
     width: 314px;
     height: 210px;
+    vertical-align: top;
 
     color: #2699FB;
     text-decoration: none;
@@ -17,17 +18,20 @@ const theme = {
   txt: css`
     padding-left: 8px;
     padding-right: 8px;
-    width: 157px;  
+    width: 298px;
   `,
   lbl: css`
     font-size: 14px;
     font-weight: 200;
-    text-align: left; 
+    float: left; 
   `,
   val: css`
     font-size: 14px;
-    text-align: right; 
+    float: right; 
     font-weight: 500; 
+`,
+  cont: css`
+  vertical-align: top;  
 `,
  
 
@@ -54,7 +58,7 @@ export default function WidgetText({
     
   }: Props) {
     return (
-    <div>
+      <div>
       <div className={theme.txt}>
         <span className={theme.lbl}>Patient </span><span className={theme.val}>{name}</span><br/>
         <span className={theme.lbl}>ID </span><span className={theme.val}>{id}</span><br/>
@@ -64,6 +68,6 @@ export default function WidgetText({
         <span className={theme.lbl}>Serial-Nr. </span><span className={theme.val}>{serialNo}</span><br/>
         <span className={theme.lbl}>Firmware </span><span className={theme.val}>{firmware}</span><br/>
       </div>
-    </div>  
+      </div>
     );
   }

@@ -23,16 +23,16 @@ export interface State {
 }
 
 
-export default function IncrementalInput({
-  value,
-  onChange
-}: Props) {
+ export default function IncrementalInput({
+   value,
+    onChange
+ }: Props) {
     
-  return (
-        <div className={theme.root}>
-            <button onClick={() => onChange(value-1) } >-</button>
-            <input type="number" onChange={event => onChange(Number(event.currentTarget.value))} value={String(value)}></input>
-            <button  onClick={() => onChange(value+1) }>+</button>
-        </div>
-  );
-}
+   return (
+         <div className={theme.root}>
+             <button onClick={() => onChange(value-1) } >-</button>
+             <input type="number" onChange={event => onChange(Number(event.currentTarget.value))} value={String(value)}></input>
+             <button  onClick={() => onChange(value+1) }>+</button>
+         </div>
+   );
+ }

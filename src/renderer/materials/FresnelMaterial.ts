@@ -1,8 +1,8 @@
-import Material from './Material';
+import Material from "./Material";
 
-import fragmentSource from './shaders/fresnel.fragment.glsl';
-import vertexSource from './shaders/fresnel.vertex.glsl';
-import { mat4 } from 'gl-matrix';
+import fragmentSource from "./shaders/fresnel.fragment.glsl";
+import vertexSource from "./shaders/fresnel.vertex.glsl";
+import { mat4 } from "gl-matrix";
 
 export default class FresnelMaterial extends Material {
   bias: number = 0;
@@ -37,10 +37,10 @@ export default class FresnelMaterial extends Material {
   ) {
     super.initializeAttributes(gl, program);
 
-    this.uBias = gl.getUniformLocation(program, 'uBias');
-    this.uColor = gl.getUniformLocation(program, 'uColor');
-    this.uScale = gl.getUniformLocation(program, 'uScale');
-    this.uPower = gl.getUniformLocation(program, 'uPower');
+    this.uBias = gl.getUniformLocation(program, "uBias");
+    this.uColor = gl.getUniformLocation(program, "uColor");
+    this.uScale = gl.getUniformLocation(program, "uScale");
+    this.uPower = gl.getUniformLocation(program, "uPower");
   }
 
   setColor(gl: WebGLRenderingContext, color: [number, number, number]) {
@@ -57,7 +57,7 @@ export default class FresnelMaterial extends Material {
     if (uTransformMatrix) {
       const transform = mat4.create();
       mat4.translate(transform, transform, position);
-      mat4.scale(transform, transform, [scale, scale, scale]);
+      mat4.scale(transform, transform, [scale, scale, scale]); //<-- Transformationmatrix for spheres
       gl.uniformMatrix4fv(uTransformMatrix, false, transform);
     }
   }

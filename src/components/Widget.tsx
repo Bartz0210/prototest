@@ -9,7 +9,7 @@ const theme = {
     border-width: 5px;
     border-color:#333;
     
-    width: 314 px;
+    width: 314px;
 
     color: #2699FB;
     text-decoration: none;

@@ -26,13 +26,18 @@ const theme = {
 
 export interface Props {
   label: string;
-  placeholder: number;
   icon: string;
+  value: number;
+
+}
+
+export interface State {
+  value: number;
 }
 
 export default function ControlItem({
     label,
-    placeholder,
+    value,
     icon,
     
   }: Props) {
@@ -40,7 +45,7 @@ export default function ControlItem({
       <div className={theme.root}>
         <Icon name={icon} size="large" />
         <label htmlFor="control">{label}</label>
-        <IncrementalInput onChange={value => console.log(value)} value={placeholder} />    
+        <IncrementalInput onChange={value => console.log(value)} value={value} />    
     </div>
     );
   }
