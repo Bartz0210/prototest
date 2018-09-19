@@ -33,6 +33,10 @@ export interface UpdateCursorPosition extends Action<"updateCursorPosition"> {
   z: number;
 }
 
+export interface updateCursorPositionY extends Action<"updateCursorPositionY"> {
+  y: number;
+}
+
 export interface UpdateCursorRadius extends Action<"updateCursorRadius"> {
   radius: number;
 }
@@ -45,7 +49,7 @@ export interface TransformCursor extends Action<"transformCursorRadius"> {
 
 export default function scene(
   state: SceneData = createScene(),
-  action?: UpdateCursorPosition | UpdateCursorRadius
+  action?: UpdateCursorPosition | UpdateCursorRadius | updateCursorPositionY
 ): SceneData {
   if (!action) {
     return state;
@@ -60,6 +64,20 @@ export default function scene(
           position: [action.x, action.y, action.z]
         }
       };
+
+    case "updateCursorPositionY":
+      return {
+        ...state,
+        cursor: {
+          ...state.cursor,
+          position: [
+            state.cursor.position[0],
+            action.y,
+            state.cursor.position[2]
+          ]
+        }
+      };
+
     case "updateCursorRadius":
       return {
         ...state,

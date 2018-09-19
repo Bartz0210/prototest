@@ -4,9 +4,14 @@ import Canvas from "../../components/Canvas";
 import Controlpanel from "../../components/Controlpanel";
 import ControlItem from "../../components/Controltem";
 import store, { RootState } from "../../store";
-import scene, { UpdateCursorRadius } from "../../store/scene";
+import scene, {
+  UpdateCursorRadius,
+  UpdateCursorPosition,
+  updateCursorPositionY
+} from "../../store/scene";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { CursorState } from "../../renderer/Scene";
+import { CursorRadiusCallback } from "../../renderer";
 
 const theme = {
   root: css`
@@ -32,17 +37,27 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  // updateRadius: UpdateCursorRadius
+  updateCursorRadius(radius: number): void;
+  updateCursorPositionY(y: number): void;
 }
 
 function Programm(props: OwnProps & StateProps & DispatchProps) {
   return (
     <div className={theme.root}>
       <Controlpanel>
+        {/*     Control Item: Radiu*/}
         <ControlItem
           label="Radius"
           value={props.cursor.radius}
           icon="settings"
+          onChange={props.updateCursorRadius}
+        />
+
+        <ControlItem
+          label="Position"
+          value={props.cursor.position["1"]}
+          icon="settings"
+          onChange={props.updateCursorPositionY}
         />
       </Controlpanel>
       <Canvas />
@@ -59,7 +74,19 @@ const mapStateToProps: MapStateToProps<StateProps, OwnProps, RootState> = (
   };
 };
 
-const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {};
+//Action creators
+function updateCursorRadius(radius: number): UpdateCursorRadius {
+  return { type: "updateCursorRadius", radius };
+}
+
+function updateCursorPositionY(y: number): updateCursorPositionY {
+  return { type: "updateCursorPositionY", y };
+}
+
+const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {
+  updateCursorRadius,
+  updateCursorPositionY
+};
 
 export default connect(
   mapStateToProps,

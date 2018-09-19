@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { css } from 'emotion';
-import Icon from './Icon';
-import IncrementalInput from './IncrementalInput';
+import * as React from "react";
+import { css } from "emotion";
+import Icon from "./Icon";
+import IncrementalInput from "./IncrementalInput";
 
 const theme = {
   root: css`
@@ -21,31 +21,26 @@ const theme = {
   `,
   caption: css`
     padding-top: 5px;
-  `,
+  `
 };
 
 export interface Props {
   label: string;
   icon: string;
   value: number;
-
+  onChange(value: number): void;
 }
 
 export interface State {
   value: number;
 }
 
-export default function ControlItem({
-    label,
-    value,
-    icon,
-    
-  }: Props) {
-    return (
-      <div className={theme.root}>
-        <Icon name={icon} size="large" />
-        <label htmlFor="control">{label}</label>
-        <IncrementalInput onChange={value => console.log(value)} value={value} />    
+export default function ControlItem({ label, value, icon, onChange }: Props) {
+  return (
+    <div className={theme.root}>
+      <Icon name={icon} size="large" />
+      <label htmlFor="control">{label}</label>
+      <IncrementalInput onChange={onChange} value={value} />
     </div>
-    );
-  }
+  );
+}
