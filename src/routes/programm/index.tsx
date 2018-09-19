@@ -45,14 +45,14 @@ function Programm(props: OwnProps & StateProps & DispatchProps) {
   return (
     <div className={theme.root}>
       <Controlpanel>
-        {/*     Control Item: Radiu*/}
+        {/*     Control Item: Radius*/}
         <ControlItem
           label="Radius"
           value={props.cursor.radius}
           icon="settings"
           onChange={props.updateCursorRadius}
         />
-
+        {/*     Control Item: Yposition*/}
         <ControlItem
           label="Position"
           value={props.cursor.position["1"]}
