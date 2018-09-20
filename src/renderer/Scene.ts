@@ -1,10 +1,10 @@
-import SphereMesh from './meshes/SphereMesh';
-import CapsuleMesh from './meshes/CapsuleMesh';
-import FresnelMaterial from './materials/FresnelMaterial';
-import Renderer, { Ray } from '.';
-import TextureMaterial from './materials/TextureMaterial';
-import { vec3 } from 'gl-matrix';
-import { Pointer } from './Events';
+import SphereMesh from "./meshes/SphereMesh";
+import CapsuleMesh from "./meshes/CapsuleMesh";
+import FresnelMaterial from "./materials/FresnelMaterial";
+import Renderer, { Ray } from ".";
+import TextureMaterial from "./materials/TextureMaterial";
+import { vec3 } from "gl-matrix";
+import { Pointer } from "./Events";
 
 export type Color = [number, number, number];
 export type Position = [number, number, number];
@@ -14,6 +14,22 @@ const cursorColor: Color = [0, 0.5, 1];
 export interface CursorState {
   position: Position;
   radius: number;
+  scaleX: number;
+  scaleY: number;
+  scaleZ: number;
+
+  isOn: boolean;
+
+  //ring1
+  isAtLead0: boolean;
+  //ring2
+  isAtLead1: boolean;
+  isAtLead2: boolean;
+  //ring3
+  isAtLead3: boolean;
+  isAtLead4: boolean;
+  //ring4
+  isAtLead5: boolean;
 }
 
 export interface SpotState extends CursorState {
@@ -35,6 +51,18 @@ export default class Scene {
   cursor: CursorState = {
     position: [0, 0, 0],
     radius: 0,
+    scaleX: 1,
+    scaleY: 1,
+    scaleZ: 1,
+
+    isOn: true,
+
+    isAtLead0: false,
+    isAtLead1: false,
+    isAtLead2: false,
+    isAtLead3: false,
+    isAtLead4: false,
+    isAtLead5: false
   };
 
   readonly capsule: CapsuleMesh = new CapsuleMesh(this);
@@ -70,13 +98,29 @@ export default class Scene {
     capsule.render(gl, texture);
 
     fresnel.begin(gl);
-    fresnel.setColor(gl, cursorColor);
-    fresnel.setTransform(gl, data.cursor.position, data.cursor.radius);
-    sphere.render(gl, fresnel);
+
+    //render cursor only, when toggled on
+    if (data.cursor.isOn) {
+      fresnel.setColor(gl, cursorColor);
+      fresnel.setTransform(
+        gl,
+        data.cursor.position,
+        data.cursor.radius * data.cursor.scaleX,
+        data.cursor.radius * data.cursor.scaleY,
+        data.cursor.radius * data.cursor.scaleZ
+      );
+      sphere.render(gl, fresnel);
+    }
 
     for (const spot of data.spots) {
       fresnel.setColor(gl, spot.color);
-      fresnel.setTransform(gl, spot.position, spot.radius);
+      fresnel.setTransform(
+        gl,
+        spot.position,
+        spot.radius,
+        spot.radius,
+        spot.radius
+      );
       sphere.render(gl, fresnel);
     }
   }
@@ -90,7 +134,7 @@ export default class Scene {
 
     return {
       position,
-      normal,
+      normal
     };
   }
 
@@ -116,27 +160,31 @@ export default class Scene {
       //orbiting around Capusle
 
       //x-axis
-      if (delta[0]<(-this.cursor.radius-0.5)) delta[0] = (-this.cursor.radius-0.5);
-      if (delta[0]>(this.cursor.radius+0.5)) delta[0] = (this.cursor.radius+0.5);
+      if (delta[0] < -this.cursor.radius * this.cursor.scaleX - 0.5)
+        delta[0] = -this.cursor.radius * this.cursor.scaleX - 0.5;
+      if (delta[0] > this.cursor.radius * this.cursor.scaleX + 0.5)
+        delta[0] = this.cursor.radius * this.cursor.scaleX + 0.5;
       //y-axis
-      if (delta[1]<(-this.cursor.radius-5)) delta[1] = (-this.cursor.radius-5);
-      if (delta[1]>(this.cursor.radius+5)) delta[1] = (this.cursor.radius+5);
+      if (delta[1] < -this.cursor.radius - 5)
+        delta[1] = -this.cursor.radius - 5;
+      if (delta[1] > this.cursor.radius + 5) delta[1] = this.cursor.radius + 5;
       //z-axis
-      if (delta[2]<(-this.cursor.radius-0.5)) delta[2] = (-this.cursor.radius-0.5);
-      if (delta[2]>(this.cursor.radius+0.5)) delta[2] = (this.cursor.radius+0.5);
-
+      if (delta[2] < -this.cursor.radius - 0.5)
+        delta[2] = -this.cursor.radius - 0.5;
+      if (delta[2] > this.cursor.radius + 0.5)
+        delta[2] = this.cursor.radius + 0.5;
 
       //Orbit
 
       let angle = Math.atan2(delta[2], delta[0]);
-      if(delta[0] < -this.cursor.radius || delta[0] > this.cursor.radius){
-        delta[0] = this.cursor.radius*Math.cos(angle);
+      if (delta[0] < -this.cursor.radius || delta[0] > this.cursor.radius) {
+        delta[0] = this.cursor.radius * Math.cos(angle);
       }
-      if(delta[2] < -this.cursor.radius || delta[2] > this.cursor.radius){
-        delta[2] = this.cursor.radius*Math.sin(angle);
+      if (delta[2] < -this.cursor.radius || delta[2] > this.cursor.radius) {
+        delta[2] = this.cursor.radius * Math.sin(angle);
       }
-      
-      this.renderer.onCursorPosition(delta[0], delta[1], delta[2]);     
+
+      this.renderer.onCursorPosition(delta[0], delta[1], delta[2]);
     }
   }
 

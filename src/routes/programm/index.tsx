@@ -3,11 +3,14 @@ import { css } from "emotion";
 import Canvas from "../../components/Canvas";
 import Controlpanel from "../../components/Controlpanel";
 import ControlItem from "../../components/Controltem";
+import ControlItemCheck from "../../components/ControlItemCheck";
 import store, { RootState } from "../../store";
 import scene, {
   UpdateCursorRadius,
   UpdateCursorPosition,
-  updateCursorPositionY
+  UpdateCursorPositionY,
+  TransformCursorX,
+  ToggleElectrode
 } from "../../store/scene";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { CursorState } from "../../renderer/Scene";
@@ -39,6 +42,8 @@ interface StateProps {
 interface DispatchProps {
   updateCursorRadius(radius: number): void;
   updateCursorPositionY(y: number): void;
+  transformCursorX(scaleX: number): void;
+  toggleElectrode(isOn: boolean): void;
 }
 
 function Programm(props: OwnProps & StateProps & DispatchProps) {
@@ -58,6 +63,21 @@ function Programm(props: OwnProps & StateProps & DispatchProps) {
           value={props.cursor.position["1"]}
           icon="settings"
           onChange={props.updateCursorPositionY}
+        />
+
+        {/*     Control Item: transform x*/}
+        <ControlItem
+          label="xtransform"
+          value={props.cursor.scaleX}
+          icon="settings"
+          onChange={props.transformCursorX}
+        />
+
+        <ControlItemCheck
+          label="ON/OFF"
+          checked={props.cursor.isOn}
+          icon="settings"
+          onChange={props.toggleElectrode}
         />
       </Controlpanel>
       <Canvas />
@@ -79,13 +99,23 @@ function updateCursorRadius(radius: number): UpdateCursorRadius {
   return { type: "updateCursorRadius", radius };
 }
 
-function updateCursorPositionY(y: number): updateCursorPositionY {
+function updateCursorPositionY(y: number): UpdateCursorPositionY {
   return { type: "updateCursorPositionY", y };
+}
+
+function transformCursorX(scaleX: number): TransformCursorX {
+  return { type: "transformCursorX", scaleX };
+}
+
+function toggleElectrode(isOn: boolean): ToggleElectrode {
+  return { type: "toggleElectrode", isOn };
 }
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {
   updateCursorRadius,
-  updateCursorPositionY
+  updateCursorPositionY,
+  transformCursorX,
+  toggleElectrode
 };
 
 export default connect(

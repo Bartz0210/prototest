@@ -14,14 +14,36 @@ function createScene(): SceneData {
         -5 + Math.random() * 10,
         Math.cos(angle) * distance
       ],
-      radius: 2 + Math.random() * 3
+      radius: 2 + Math.random() * 3,
+      scaleX: 1,
+      scaleY: 1,
+      scaleZ: 1,
+      isOn: true,
+      isAtLead0: false,
+      isAtLead1: false,
+      isAtLead2: false,
+      isAtLead3: false,
+      isAtLead4: false,
+      isAtLead5: false
     });
   }
 
   return {
     cursor: {
       position: [0, 0, 0],
-      radius: 2
+      radius: 2,
+      scaleX: 1,
+      scaleY: 1,
+      scaleZ: 1,
+
+      isOn: true,
+
+      isAtLead0: false,
+      isAtLead1: false,
+      isAtLead2: false,
+      isAtLead3: false,
+      isAtLead4: false,
+      isAtLead5: false
     },
     spots
   };
@@ -33,7 +55,7 @@ export interface UpdateCursorPosition extends Action<"updateCursorPosition"> {
   z: number;
 }
 
-export interface updateCursorPositionY extends Action<"updateCursorPositionY"> {
+export interface UpdateCursorPositionY extends Action<"updateCursorPositionY"> {
   y: number;
 }
 
@@ -41,15 +63,22 @@ export interface UpdateCursorRadius extends Action<"updateCursorRadius"> {
   radius: number;
 }
 
-export interface TransformCursor extends Action<"transformCursorRadius"> {
+export interface TransformCursorX extends Action<"transformCursorX"> {
   scaleX: number;
-  scaleY: number;
-  scaleZ: number;
+}
+
+export interface ToggleElectrode extends Action<"toggleElectrode"> {
+  isOn: boolean;
 }
 
 export default function scene(
   state: SceneData = createScene(),
-  action?: UpdateCursorPosition | UpdateCursorRadius | updateCursorPositionY
+  action?:
+    | UpdateCursorPosition
+    | UpdateCursorRadius
+    | UpdateCursorPositionY
+    | TransformCursorX
+    | ToggleElectrode
 ): SceneData {
   if (!action) {
     return state;
@@ -84,6 +113,23 @@ export default function scene(
         cursor: {
           ...state.cursor,
           radius: action.radius
+        }
+      };
+    case "transformCursorX":
+      return {
+        ...state,
+        cursor: {
+          ...state.cursor,
+          scaleX: action.scaleX
+        }
+      };
+
+    case "toggleElectrode":
+      return {
+        ...state,
+        cursor: {
+          ...state.cursor,
+          isOn: action.isOn
         }
       };
   }

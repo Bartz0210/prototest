@@ -15,10 +15,6 @@ export interface Props {
   onChange(value: number): void;
 }
 
-export interface State {
-  rawValue?: string;
-}
-
 export default function IncrementalInput({ value, onChange }: Props) {
   return (
     <div className={theme.root}>

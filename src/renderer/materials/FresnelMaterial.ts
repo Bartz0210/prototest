@@ -50,14 +50,16 @@ export default class FresnelMaterial extends Material {
   setTransform(
     gl: WebGLRenderingContext,
     position: [number, number, number],
-    scale: number
+    scaleX: number,
+    scaleY: number,
+    scaleZ: number
   ) {
     const { uTransformMatrix } = this;
 
     if (uTransformMatrix) {
       const transform = mat4.create();
       mat4.translate(transform, transform, position);
-      mat4.scale(transform, transform, [scale, scale, scale]); //<-- Transformationmatrix for spheres
+      mat4.scale(transform, transform, [scaleX, scaleY, scaleZ]); //<-- Transformationmatrix for spheres
       gl.uniformMatrix4fv(uTransformMatrix, false, transform);
     }
   }

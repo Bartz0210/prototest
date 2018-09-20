@@ -1,7 +1,7 @@
-import { mat4, vec3, vec4 } from 'gl-matrix';
-import Camera from './Camera';
-import Scene, { SceneData } from './Scene';
-import Events from './Events';
+import { mat4, vec3, vec4 } from "gl-matrix";
+import Camera from "./Camera";
+import Scene, { SceneData } from "./Scene";
+import Events from "./Events";
 
 const fov = 0.75;
 
@@ -55,9 +55,9 @@ export default class Renderer {
   }
 
   createContext(canvas: HTMLCanvasElement): WebGLRenderingContext {
-    const gl = canvas.getContext('webgl', { antialias: true });
+    const gl = canvas.getContext("webgl", { antialias: true });
     if (!gl) {
-      throw new Error('Could not create WebGL context');
+      throw new Error("Could not create WebGL context");
     }
 
     gl.enable(gl.CULL_FACE);
@@ -95,7 +95,7 @@ export default class Renderer {
 
     return {
       origin: camera.position,
-      direction,
+      direction
     };
   }
 
