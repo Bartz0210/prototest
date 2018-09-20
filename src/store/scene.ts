@@ -55,8 +55,16 @@ export interface UpdateCursorPosition extends Action<"updateCursorPosition"> {
   z: number;
 }
 
+export interface UpdateCursorPositionX extends Action<"updateCursorPositionX"> {
+  x: number;
+}
+
 export interface UpdateCursorPositionY extends Action<"updateCursorPositionY"> {
   y: number;
+}
+
+export interface UpdateCursorPositionZ extends Action<"updateCursorPositionZ"> {
+  z: number;
 }
 
 export interface UpdateCursorRadius extends Action<"updateCursorRadius"> {
@@ -66,19 +74,54 @@ export interface UpdateCursorRadius extends Action<"updateCursorRadius"> {
 export interface TransformCursorX extends Action<"transformCursorX"> {
   scaleX: number;
 }
+export interface TransformCursorY extends Action<"transformCursorY"> {
+  scaleY: number;
+}
+export interface TransformCursorZ extends Action<"transformCursorZ"> {
+  scaleZ: number;
+}
 
 export interface ToggleElectrode extends Action<"toggleElectrode"> {
   isOn: boolean;
 }
+export interface ToggleLead5 extends Action<"toggleLead5"> {
+  isAtLead5: boolean;
+}
+export interface ToggleLead4 extends Action<"toggleLead4"> {
+  isAtLead4: boolean;
+}
+export interface ToggleLead3 extends Action<"toggleLead3"> {
+  isAtLead3: boolean;
+}
+export interface ToggleLead2 extends Action<"toggleLead2"> {
+  isAtLead2: boolean;
+}
+export interface ToggleLead1 extends Action<"toggleLead1"> {
+  isAtLead1: boolean;
+}
+export interface ToggleLead0 extends Action<"toggleLead0"> {
+  isAtLead0: boolean;
+}
+
 
 export default function scene(
   state: SceneData = createScene(),
   action?:
     | UpdateCursorPosition
     | UpdateCursorRadius
+    | UpdateCursorPositionX
     | UpdateCursorPositionY
+    | UpdateCursorPositionZ
     | TransformCursorX
+    | TransformCursorY
+    | TransformCursorZ
     | ToggleElectrode
+    | ToggleLead5
+    | ToggleLead4
+    | ToggleLead3
+    | ToggleLead2
+    | ToggleLead1
+    | ToggleLead0
 ): SceneData {
   if (!action) {
     return state;
@@ -94,6 +137,19 @@ export default function scene(
         }
       };
 
+    case "updateCursorPositionX":
+    return {
+      ...state,
+      cursor: {
+        ...state.cursor,
+        position: [
+          action.x,
+          state.cursor.position[1],
+          state.cursor.position[2]
+        ]
+      }
+    };
+
     case "updateCursorPositionY":
       return {
         ...state,
@@ -103,6 +159,19 @@ export default function scene(
             state.cursor.position[0],
             action.y,
             state.cursor.position[2]
+          ]
+        }
+      };
+    
+      case "updateCursorPositionZ":
+      return {
+        ...state,
+        cursor: {
+          ...state.cursor,
+          position: [
+            state.cursor.position[0],
+            state.cursor.position[1],
+            action.z
           ]
         }
       };
@@ -123,6 +192,22 @@ export default function scene(
           scaleX: action.scaleX
         }
       };
+    case "transformCursorY":
+      return {
+        ...state,
+        cursor: {
+          ...state.cursor,
+          scaleY: action.scaleY
+        }
+      };
+    case "transformCursorZ":
+      return {
+        ...state,
+        cursor: {
+          ...state.cursor,
+          scaleZ: action.scaleZ
+        }
+      };
 
     case "toggleElectrode":
       return {
@@ -130,6 +215,54 @@ export default function scene(
         cursor: {
           ...state.cursor,
           isOn: action.isOn
+        }
+      };
+    case "toggleLead5":
+      return {
+        ...state,
+        cursor: {
+          ...state.cursor,
+          isAtLead5: action.isAtLead5
+        }
+      };
+    case "toggleLead4":
+      return {
+        ...state,
+        cursor: {
+          ...state.cursor,
+          isAtLead4: action.isAtLead4
+        }
+      };
+    case "toggleLead3":
+      return {
+        ...state,
+        cursor: {
+          ...state.cursor,
+          isAtLead3: action.isAtLead3
+        }
+      };
+    case "toggleLead2":
+      return {
+        ...state,
+        cursor: {
+          ...state.cursor,
+          isAtLead2: action.isAtLead2
+        }
+      };
+    case "toggleLead1":
+      return {
+        ...state,
+        cursor: {
+          ...state.cursor,
+          isAtLead1: action.isAtLead1
+        }
+      };
+    case "toggleLead0":
+      return {
+        ...state,
+        cursor: {
+          ...state.cursor,
+          isAtLead0: action.isAtLead0
         }
       };
   }

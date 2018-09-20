@@ -94,6 +94,96 @@ export default class Scene {
 
     this.cursor = data.cursor;
 
+    //1,2,3,4
+    if (data.cursor.isAtLead1 && data.cursor.isAtLead2 && data.cursor.isAtLead3 && data.cursor.isAtLead4) {
+      data.cursor.position = [0,0.625,data.cursor.position["2"]]
+    }
+   
+    //0,1,2
+    if (data.cursor.isAtLead0 && data.cursor.isAtLead1 && data.cursor.isAtLead2) {
+      data.cursor.position = [0,3.125,data.cursor.position["2"]]
+    }
+    //5,3,4
+    if (data.cursor.isAtLead5 && data.cursor.isAtLead3 && data.cursor.isAtLead4) {
+      data.cursor.position = [0,-4.625,data.cursor.position["2"]]
+    }
+    //1,2,4
+    if (data.cursor.isAtLead1 && data.cursor.isAtLead2 && data.cursor.isAtLead4) {
+      data.cursor.position = [0.25, 1.25, data.cursor.position["2"]]
+    }
+    //2,3,4
+    if (data.cursor.isAtLead2 && data.cursor.isAtLead3 && data.cursor.isAtLead4) {
+      data.cursor.position = [0.25, 0, data.cursor.position["2"]]
+    }
+    //1,3,4
+    if (data.cursor.isAtLead1 && data.cursor.isAtLead3 && data.cursor.isAtLead4) {
+      data.cursor.position = [-0.25, 0, data.cursor.position["2"]]
+    }
+    //1,2,3
+    if (data.cursor.isAtLead1 && data.cursor.isAtLead2 && data.cursor.isAtLead3) {
+      data.cursor.position = [-0.25, 1.25, data.cursor.position["2"]]
+    }
+    
+    //1,2
+    if (data.cursor.isAtLead1 && data.cursor.isAtLead2 ) {
+      data.cursor.position = [0, 1.875, data.cursor.position["2"]]
+    }
+    //3,4
+    if (data.cursor.isAtLead1 && data.cursor.isAtLead2 ) {
+      data.cursor.position = [0, -1.875, data.cursor.position["2"]]
+    }
+    //0,1
+    if (data.cursor.isAtLead0 && data.cursor.isAtLead1 ) {
+      data.cursor.position = [-0.25, 3.125, data.cursor.position["2"]]
+    }
+    //0,2
+    if (data.cursor.isAtLead0 && data.cursor.isAtLead2 ) {
+      data.cursor.position = [0.25, 3.125, data.cursor.position["2"]]
+    }
+    //5,3
+    if (data.cursor.isAtLead3 && data.cursor.isAtLead5 ) {
+      data.cursor.position = [-0.25, -1.875, data.cursor.position["2"]]
+    }
+    //5,4
+    if (data.cursor.isAtLead4 && data.cursor.isAtLead5 ) {
+      data.cursor.position = [0.25, -1.875, data.cursor.position["2"]]
+    }
+    //1,3
+    if (data.cursor.isAtLead1 && data.cursor.isAtLead3 ) {
+      data.cursor.position = [0.5, 0.625, data.cursor.position["2"]]
+    }
+    //1,4
+    if (data.cursor.isAtLead1 && data.cursor.isAtLead4 ) {
+      data.cursor.position = [-0.5, 0.625, data.cursor.position["2"]]
+    }
+    
+    //0
+    if (data.cursor.isAtLead0) {
+      data.cursor.position = [0, 4.625, data.cursor.position["2"]]
+    }
+    //1
+    if (data.cursor.isAtLead1) {
+      data.cursor.position = [-0.5, 1.125, data.cursor.position["2"]]
+    }
+    //2
+    if (data.cursor.isAtLead2) {
+      data.cursor.position = [0.5, 1.125, data.cursor.position["2"]]
+    }
+    //3
+    if (data.cursor.isAtLead3) {
+      data.cursor.position = [-0.5, -0.625, data.cursor.position["2"]]
+    }
+    //4
+    if (data.cursor.isAtLead4) {
+      data.cursor.position = [0.5, -0.625, data.cursor.position["2"]]
+    }
+    //5
+    if (data.cursor.isAtLead5) {
+      data.cursor.position = [0, -3.125, data.cursor.position["2"]]
+    }
+    
+
+
     texture.begin(gl);
     capsule.render(gl, texture);
 

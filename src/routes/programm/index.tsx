@@ -8,9 +8,19 @@ import store, { RootState } from "../../store";
 import scene, {
   UpdateCursorRadius,
   UpdateCursorPosition,
+  UpdateCursorPositionX,
   UpdateCursorPositionY,
+  UpdateCursorPositionZ,
   TransformCursorX,
-  ToggleElectrode
+  ToggleElectrode,
+  ToggleLead0,
+  ToggleLead1,
+  ToggleLead2,
+  ToggleLead3,
+  ToggleLead4,
+  ToggleLead5,
+  TransformCursorY,
+  TransformCursorZ
 } from "../../store/scene";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { CursorState } from "../../renderer/Scene";
@@ -41,15 +51,74 @@ interface StateProps {
 
 interface DispatchProps {
   updateCursorRadius(radius: number): void;
+  updateCursorPositionX(x: number): void;
   updateCursorPositionY(y: number): void;
+  updateCursorPositionZ(z: number): void;
   transformCursorX(scaleX: number): void;
+  transformCursorY(scaleY: number): void;
+  transformCursorZ(scaleZ: number): void;
   toggleElectrode(isOn: boolean): void;
+  toggleLead0(isAtLead0: boolean): void;
+  toggleLead1(isAtLead1: boolean): void;
+  toggleLead2(isAtLead2: boolean): void;
+  toggleLead3(isAtLead3: boolean): void;
+  toggleLead4(isAtLead4: boolean): void;
+  toggleLead5(isAtLead5: boolean): void;
 }
 
 function Programm(props: OwnProps & StateProps & DispatchProps) {
   return (
     <div className={theme.root}>
       <Controlpanel>
+        {/*ON OFF!*/}
+        <ControlItemCheck
+          label="ON/OFF"
+          checked={props.cursor.isOn}
+          icon="settings"
+          onChange={props.toggleElectrode}
+        />
+        {/*5*/}
+        <ControlItemCheck
+          label="Lead5"
+          checked={props.cursor.isAtLead5}
+          icon="settings"
+          onChange={props.toggleLead5}
+        />
+        {/*4*/}
+        <ControlItemCheck
+          label="Lead4"
+          checked={props.cursor.isAtLead4}
+          icon="settings"
+          onChange={props.toggleLead4}
+        />
+        {/*3*/}
+        <ControlItemCheck
+          label="Lead3"
+          checked={props.cursor.isAtLead3}
+          icon="settings"
+          onChange={props.toggleLead3}
+        />
+        {/*2*/}
+        <ControlItemCheck
+          label="Lead2"
+          checked={props.cursor.isAtLead2}
+          icon="settings"
+          onChange={props.toggleLead2}
+        />
+        {/*1*/}
+        <ControlItemCheck
+          label="Lead1"
+          checked={props.cursor.isAtLead1}
+          icon="settings"
+          onChange={props.toggleLead1}
+        />
+        {/*0*/}
+        <ControlItemCheck
+          label="Lead0"
+          checked={props.cursor.isAtLead0}
+          icon="settings"
+          onChange={props.toggleLead0}
+        />
         {/*     Control Item: Radius*/}
         <ControlItem
           label="Radius"
@@ -57,12 +126,26 @@ function Programm(props: OwnProps & StateProps & DispatchProps) {
           icon="settings"
           onChange={props.updateCursorRadius}
         />
+        {/*     Control Item: Xposition*/}
+        <ControlItem
+          label="XPosition"
+          value={props.cursor.position["0"]}
+          icon="settings"
+          onChange={props.updateCursorPositionX}
+        />
         {/*     Control Item: Yposition*/}
         <ControlItem
-          label="Position"
+          label="YPosition"
           value={props.cursor.position["1"]}
           icon="settings"
           onChange={props.updateCursorPositionY}
+        />
+        {/*     Control Item: Zposition*/}
+        <ControlItem
+          label="ZPosition"
+          value={props.cursor.position["2"]}
+          icon="settings"
+          onChange={props.updateCursorPositionZ}
         />
 
         {/*     Control Item: transform x*/}
@@ -72,13 +155,21 @@ function Programm(props: OwnProps & StateProps & DispatchProps) {
           icon="settings"
           onChange={props.transformCursorX}
         />
-
-        <ControlItemCheck
-          label="ON/OFF"
-          checked={props.cursor.isOn}
+        {/*     Control Item: transform y*/}
+        <ControlItem
+          label="Ytransform"
+          value={props.cursor.scaleY}
           icon="settings"
-          onChange={props.toggleElectrode}
+          onChange={props.transformCursorY}
         />
+        {/*     Control Item: transform z*/}
+        <ControlItem
+          label="Ztransform"
+          value={props.cursor.scaleZ}
+          icon="settings"
+          onChange={props.transformCursorZ}
+        />
+
       </Controlpanel>
       <Canvas />
     </div>
@@ -99,23 +190,63 @@ function updateCursorRadius(radius: number): UpdateCursorRadius {
   return { type: "updateCursorRadius", radius };
 }
 
+function updateCursorPositionX(x: number): UpdateCursorPositionX {
+  return { type: "updateCursorPositionX", x };
+}
 function updateCursorPositionY(y: number): UpdateCursorPositionY {
   return { type: "updateCursorPositionY", y };
+}
+function updateCursorPositionZ(z: number): UpdateCursorPositionZ {
+  return { type: "updateCursorPositionZ", z };
 }
 
 function transformCursorX(scaleX: number): TransformCursorX {
   return { type: "transformCursorX", scaleX };
 }
+function transformCursorY(scaleY: number): TransformCursorY {
+  return { type: "transformCursorY", scaleY };
+}
+function transformCursorZ(scaleZ: number): TransformCursorZ {
+  return { type: "transformCursorZ", scaleZ };
+}
 
 function toggleElectrode(isOn: boolean): ToggleElectrode {
   return { type: "toggleElectrode", isOn };
 }
+function toggleLead0(isAtLead0: boolean): ToggleLead0 {
+  return { type: "toggleLead0", isAtLead0 };
+}
+function toggleLead1(isAtLead1: boolean): ToggleLead1 {
+  return { type: "toggleLead1", isAtLead1 };
+}
+function toggleLead2(isAtLead2: boolean): ToggleLead2 {
+  return { type: "toggleLead2", isAtLead2 };
+}
+function toggleLead3(isAtLead3: boolean): ToggleLead3 {
+  return { type: "toggleLead3", isAtLead3 };
+}
+function toggleLead4(isAtLead4: boolean): ToggleLead4 {
+  return { type: "toggleLead4", isAtLead4 };
+}
+function toggleLead5(isAtLead5: boolean): ToggleLead5 {
+  return { type: "toggleLead5", isAtLead5 };
+}
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {
   updateCursorRadius,
+  updateCursorPositionX,
   updateCursorPositionY,
+  updateCursorPositionZ,
   transformCursorX,
-  toggleElectrode
+  transformCursorY,
+  transformCursorZ,
+  toggleElectrode,
+  toggleLead0,
+  toggleLead1,
+  toggleLead2,
+  toggleLead3,
+  toggleLead4,
+  toggleLead5
 };
 
 export default connect(
