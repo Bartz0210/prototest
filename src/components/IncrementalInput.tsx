@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as numeral from "numeral";
 import { css } from "emotion";
 
 const theme = {
@@ -8,6 +9,14 @@ const theme = {
     flex-flow: row;
     align-items: center;
     width: auto;
+  `,
+  button: css`
+    width: 36px;
+    height: 36px;
+  `,
+  input: css`
+    width: 108px;
+    height: 36px;
   `
 };
 
@@ -24,13 +33,26 @@ export default function IncrementalInput({
 }: Props) {
   return (
     <div className={theme.root}>
-      <button onClick={() => onChange(value - increment)}>-</button>
+      <button
+        className={theme.button}
+        onClick={() => onChange(value - increment)}
+      >
+        -
+      </button>
       <input
+        className={theme.input}
         type="number"
-        onChange={event => onChange(Number(event.currentTarget.value))}
+        onChange={event =>
+          onChange(Number(numeral(event.currentTarget.value).format("0.0")))
+        }
         value={String(value)}
       />
-      <button onClick={() => onChange(value + increment)}>+</button>
+      <button
+        className={theme.button}
+        onClick={() => onChange(value + increment)}
+      >
+        +
+      </button>
     </div>
   );
 }

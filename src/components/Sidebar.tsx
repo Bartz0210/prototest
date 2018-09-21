@@ -56,7 +56,7 @@ export function Sidebar(props: Props) {
         className={theme.menu}
         style={{
           transform: props.visible ? "translateX(0)" : "translateX(-105%)",
-          transition: "300ms"
+          transition: "300ms ease-in"
         }}
       >
         <div className={theme.menu_header}>
