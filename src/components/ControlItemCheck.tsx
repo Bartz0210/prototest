@@ -8,19 +8,16 @@ const theme = {
     label: ControlItem;
     display: flex;
     flex-flow: row;
-    align-items: center;
-    justify-content: center;
-
+    align-items: left;
+    justify-content: stretch;
+    height: 40px;
     width: auto;
 
-    color: #333;
+    border-bottom: 1px solid #333;
     text-decoration: none;
   `,
-  active: css`
-    background: rgba(0, 0, 0, 0.1);
-  `,
-  caption: css`
-    padding-top: 5px;
+  children: css`
+    margin: auto 0 auto 16;
   `
 };
 
@@ -38,9 +35,11 @@ export interface State {
 export default function ControlItem({ label, checked, icon, onChange }: Props) {
   return (
     <div className={theme.root}>
-      <Icon name={icon} size="large" />
-      <label htmlFor="control">{label}</label>
-      <Toggle onChange={onChange} isOn={checked} />
+      <Icon className={theme.children} name={icon} size="large" />
+      <Toggle className={theme.children} onChange={onChange} isOn={checked} />
+      <label className={theme.children} htmlFor="control">
+        {label}
+      </label>
     </div>
   );
 }

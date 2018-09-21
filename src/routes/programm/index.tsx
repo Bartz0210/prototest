@@ -24,7 +24,8 @@ import scene, {
 } from "../../store/scene";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { CursorState } from "../../renderer/Scene";
-import { CursorRadiusCallback } from "../../renderer";
+import { Sidebar } from "../../components/Sidebar";
+import SidebarItem from "../../components/SidebarItem";
 
 const theme = {
   root: css`
@@ -66,114 +67,156 @@ interface DispatchProps {
   toggleLead5(isAtLead5: boolean): void;
 }
 
-function Programm(props: OwnProps & StateProps & DispatchProps) {
-  return (
-    <div className={theme.root}>
-      <Controlpanel>
-        {/*ON OFF!*/}
-        <ControlItemCheck
-          label="ON/OFF"
-          checked={props.cursor.isOn}
-          icon="settings"
-          onChange={props.toggleElectrode}
-        />
-        {/*5*/}
-        <ControlItemCheck
-          label="Lead5"
-          checked={props.cursor.isAtLead5}
-          icon="settings"
-          onChange={props.toggleLead5}
-        />
-        {/*4*/}
-        <ControlItemCheck
-          label="Lead4"
-          checked={props.cursor.isAtLead4}
-          icon="settings"
-          onChange={props.toggleLead4}
-        />
-        {/*3*/}
-        <ControlItemCheck
-          label="Lead3"
-          checked={props.cursor.isAtLead3}
-          icon="settings"
-          onChange={props.toggleLead3}
-        />
-        {/*2*/}
-        <ControlItemCheck
-          label="Lead2"
-          checked={props.cursor.isAtLead2}
-          icon="settings"
-          onChange={props.toggleLead2}
-        />
-        {/*1*/}
-        <ControlItemCheck
-          label="Lead1"
-          checked={props.cursor.isAtLead1}
-          icon="settings"
-          onChange={props.toggleLead1}
-        />
-        {/*0*/}
-        <ControlItemCheck
-          label="Lead0"
-          checked={props.cursor.isAtLead0}
-          icon="settings"
-          onChange={props.toggleLead0}
-        />
-        {/*     Control Item: Radius*/}
-        <ControlItem
-          label="Radius"
-          value={props.cursor.radius}
-          icon="settings"
-          onChange={props.updateCursorRadius}
-        />
-        {/*     Control Item: Xposition*/}
-        <ControlItem
-          label="XPosition"
-          value={props.cursor.position["0"]}
-          icon="settings"
-          onChange={props.updateCursorPositionX}
-        />
-        {/*     Control Item: Yposition*/}
-        <ControlItem
-          label="YPosition"
-          value={props.cursor.position["1"]}
-          icon="settings"
-          onChange={props.updateCursorPositionY}
-        />
-        {/*     Control Item: Zposition*/}
-        <ControlItem
-          label="ZPosition"
-          value={props.cursor.position["2"]}
-          icon="settings"
-          onChange={props.updateCursorPositionZ}
-        />
+interface State {
+  menuVisible: boolean;
+}
 
-        {/*     Control Item: transform x*/}
-        <ControlItem
-          label="xtransform"
-          value={props.cursor.scaleX}
-          icon="settings"
-          onChange={props.transformCursorX}
-        />
-        {/*     Control Item: transform y*/}
-        <ControlItem
-          label="Ytransform"
-          value={props.cursor.scaleY}
-          icon="settings"
-          onChange={props.transformCursorY}
-        />
-        {/*     Control Item: transform z*/}
-        <ControlItem
-          label="Ztransform"
-          value={props.cursor.scaleZ}
-          icon="settings"
-          onChange={props.transformCursorZ}
-        />
+class Programm extends React.Component<
+  OwnProps & StateProps & DispatchProps,
+  State
+> {
+  state: State = {
+    menuVisible: false
+  };
 
-      </Controlpanel>
-      <Canvas />
-    </div>
-  );
+  handleMenuToggle = () => {
+    this.setState({ menuVisible: !this.state.menuVisible });
+  };
+
+  render() {
+    const props = this.props;
+
+    return (
+      <div className={theme.root}>
+        <Sidebar visible={this.state.menuVisible}>
+          <SidebarItem label="Programm" />
+          <SidebarItem label="Programm" />
+          <SidebarItem label="Programm" />
+          <SidebarItem label="Programm" />
+          <SidebarItem label="Programm" />
+          <SidebarItem label="Programm" />
+          <SidebarItem label="Programm" />
+          <SidebarItem label="Programm" />
+          <SidebarItem label="Programm" />
+          <SidebarItem label="Programm" />
+          <SidebarItem label="Programm" />
+
+          <button onClick={this.handleMenuToggle}>Close</button>
+        </Sidebar>
+
+        <Controlpanel>
+          {/*ON OFF!*/}
+          <ControlItemCheck
+            label="ON/OFF"
+            checked={props.cursor.isOn}
+            icon="settings"
+            onChange={props.toggleElectrode}
+          />
+          {/*5*/}
+          <ControlItemCheck
+            label="Lead5"
+            checked={props.cursor.isAtLead5}
+            icon="settings"
+            onChange={props.toggleLead5}
+          />
+          {/*4*/}
+          <ControlItemCheck
+            label="Lead4"
+            checked={props.cursor.isAtLead4}
+            icon="settings"
+            onChange={props.toggleLead4}
+          />
+          {/*3*/}
+          <ControlItemCheck
+            label="Lead3"
+            checked={props.cursor.isAtLead3}
+            icon="settings"
+            onChange={props.toggleLead3}
+          />
+          {/*2*/}
+          <ControlItemCheck
+            label="Lead2"
+            checked={props.cursor.isAtLead2}
+            icon="settings"
+            onChange={props.toggleLead2}
+          />
+          {/*1*/}
+          <ControlItemCheck
+            label="Lead1"
+            checked={props.cursor.isAtLead1}
+            icon="settings"
+            onChange={props.toggleLead1}
+          />
+          {/*0*/}
+          <ControlItemCheck
+            label="Lead0"
+            checked={props.cursor.isAtLead0}
+            icon="settings"
+            onChange={props.toggleLead0}
+          />
+          {/*     Control Item: Radius*/}
+          <ControlItem
+            label="Amplitude"
+            value={props.cursor.radius}
+            increment={0.2}
+            icon="settings"
+            onChange={props.updateCursorRadius}
+          />
+          {/*     Control Item: Xposition*/}
+          <ControlItem
+            label="XPosition"
+            value={props.cursor.position["0"]}
+            increment={0.2}
+            icon="settings"
+            onChange={props.updateCursorPositionX}
+          />
+          {/*     Control Item: Yposition*/}
+          <ControlItem
+            label="YPosition"
+            value={props.cursor.position["1"]}
+            increment={0.2}
+            icon="settings"
+            onChange={props.updateCursorPositionY}
+          />
+          {/*     Control Item: Zposition*/}
+          <ControlItem
+            label="ZPosition"
+            value={props.cursor.position["2"]}
+            increment={0.2}
+            icon="settings"
+            onChange={props.updateCursorPositionZ}
+          />
+
+          {/*     Control Item: transform x*/}
+          <ControlItem
+            label="xtransform"
+            value={props.cursor.scaleX}
+            increment={0.2}
+            icon="settings"
+            onChange={props.transformCursorX}
+          />
+          {/*     Control Item: transform y*/}
+          <ControlItem
+            label="Ytransform"
+            value={props.cursor.scaleY}
+            increment={0.2}
+            icon="settings"
+            onChange={props.transformCursorY}
+          />
+          {/*     Control Item: transform z*/}
+          <ControlItem
+            label="Ztransform"
+            value={props.cursor.scaleZ}
+            increment={0.2}
+            icon="settings"
+            onChange={props.transformCursorZ}
+          />
+          <button onClick={this.handleMenuToggle}>Toggle</button>
+        </Controlpanel>
+        <Canvas />
+      </div>
+    );
+  }
 }
 
 const mapStateToProps: MapStateToProps<StateProps, OwnProps, RootState> = (

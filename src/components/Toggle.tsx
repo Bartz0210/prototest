@@ -17,13 +17,15 @@ const theme = {
 };
 
 export interface Props {
+  className?: string;
   isOn: boolean;
   onChange(isOn: boolean): void;
 }
 
-export default function Toggle({ isOn, onChange }: Props) {
+export default function Toggle({ className, isOn, onChange }: Props) {
   return (
     <input
+      className={className}
       type="checkbox"
       onClick={event => onChange(Boolean(event.currentTarget.checked))}
       checked={isOn}
