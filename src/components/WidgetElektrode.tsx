@@ -4,7 +4,7 @@ import Elektrode from "./Elektrode";
 
 const theme = {
   root: css`
-    label: WidgetText;
+    label: something;
          
 
     position: relative;
@@ -79,7 +79,7 @@ export default function WidgetText({
   }: Props) {
     return (
       <div className={theme.root}>
-        <Elektrode className={theme.illu}/>
+       {/* <Elektrode className={theme.illu}/>*/}
         <div className={theme.txt}>
             <span className={theme.lbl}>Total Amplitude </span><span className={theme.val}>{id}</span><br/>
             <span className={theme.lbl}>Pulsweite(μs) </span><span className={theme.val}>{birthday}</span><br/>

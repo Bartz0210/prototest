@@ -8,12 +8,12 @@ const theme = {
     position: relative;
     top: 30;
     left: 30;
-    margin-right: 26px; 
     width: 33px;
     height: 224px;
     border: 1px solid #3D3D3D;
     border-radius: 16px;
-
+    margin-right: 26px; 
+    
    `,
 };
 
@@ -29,7 +29,6 @@ export default function WidgetPic({
   }: Props) {
     return (
       <div className={theme.root}>
-      
       </div>
     );
   }
