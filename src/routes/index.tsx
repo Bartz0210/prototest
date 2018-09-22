@@ -16,7 +16,7 @@ injectGlobal`
     margin: 0;
     padding: 0;
 
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     text-rendering: optimizeLegibility;
     font-feature-settings: 'liga';    
     -moz-osx-font-smoothing: grayscale;
@@ -40,12 +40,10 @@ const theme = {
     label: Content;
     flex: 1;
     position: relative;
+    background: #DADADA;
   `,
 };
 
-interface State {
-  sidebarOpen: boolean
-}
 
 
 export default function Application() {

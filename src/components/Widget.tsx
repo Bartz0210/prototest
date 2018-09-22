@@ -4,18 +4,38 @@ import { css } from "emotion";
 const theme = {
   root: css`
     label: Widget;
-    background-color: #eee;
-    outline: 1px solid red;
+    
 
-    width: 314px;
+    width: 320px;
+    height: 300px;
+
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
 
     color: #2699fb;
     text-decoration: none;
   `,
   hl: css`
-    font-size: 14px;
-    font-weight: 200;
-    width: 314px;
+  /* Patient */
+
+  position: relative;
+  width: 244px;
+  z-index: 1;
+  
+  left: 20px;
+  top: 0;
+
+  text-align: left; 
+  
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 15px;
+  
+  color: #3D3D3D;
+  opacity: 0.6;
+  
   `
 };
 

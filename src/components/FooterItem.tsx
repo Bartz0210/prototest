@@ -7,20 +7,33 @@ const theme = {
   root: css`
     label: FooterItem;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
+    
+    background: #8CD2BD;
 
-    width: 150px;
+    width: auto;
+
+    margin: 16 16 0 16;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 
     color: #fff;
     text-decoration: none;
   `,
   active: css`
-    background: rgba(0, 0, 0, 0.1);
+    background: #58AA92;
+    transition: 200ms ease-in-out;
   `,
   caption: css`
-    padding-top: 5px;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0 16 0 0;
+  `,
+
+  icn: css`
+    margin: 0 16 0 16;
   `,
 };
 
@@ -47,7 +60,7 @@ export default function FooterItem({
       strict={strict}
       to={to}
     >
-      <Icon name={icon} size="large" />
+      <Icon className={theme.icn} name={icon} size="large" />
       <div className={theme.caption}>{caption}</div>
     </NavLink>
   );

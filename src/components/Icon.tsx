@@ -26,6 +26,12 @@ const theme = {
       font-size: 18px;
     }
 
+    &.medium {
+      width: 24px;
+      height: 24px;
+      font-size: 24px;
+    }
+
     &.large {
       width: 36px;
       height: 36px;
@@ -44,7 +50,7 @@ export interface Props {
   className?: string;
   name: string;
   onClick?: () => void;
-  size?: 'small' | 'large' | 'huge';
+  size?: 'small' | 'medium' | 'large' | 'huge';
 }
 
 export default function Icon({ className, name, onClick, size }: Props) {

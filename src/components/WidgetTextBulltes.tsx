@@ -59,7 +59,7 @@ const theme = {
   font-size: 15px;
   text-align: right;
   
-  float: right;
+  
   color: #3d3d3d;
   `,
   cont: css`
@@ -70,16 +70,16 @@ const theme = {
 };
 
 export interface Props {
-  name: string;
-  id: string;
-  birthday: string;
-  implantSince: string;
-  modelNo: string;
-  serialNo: string;
-  firmware: string;
+  name?: string;
+  id?: string;
+  birthday?: string;
+  implantSince?: string;
+  modelNo?: string;
+  serialNo?: string;
+  firmware?: string;
   }
 
-export default function WidgetText({
+export default function WidgetTextBulltes({
   name,
   id,
   birthday,
@@ -94,12 +94,12 @@ export default function WidgetText({
       <div className={theme.root}>
         <span className={theme.patient}>{name}</span><br/>
         <div className={theme.txt}>
-        <span className={theme.lbl}>ID </span><span className={theme.val}>{id}</span><br/>
-        <span className={theme.lbl}>Geburtstag </span><span className={theme.val}>{birthday}</span><br/>
-        <span className={theme.lbl}>Implantat seit </span><span className={theme.val}>{implantSince}</span><br/>
-        <span className={theme.lbl}>Model-Nr. </span><span className={theme.val}>{modelNo}</span><br/>
-        <span className={theme.lbl}>Serial-Nr. </span><span className={theme.val}>{serialNo}</span><br/>
-        <span className={theme.lbl}>Firmware </span><span className={theme.val}>{firmware}</span><br/>
+        <span className={theme.val}>{id}</span><br/>
+        <span className={theme.val}>{birthday}</span><br/>
+        <span className={theme.val}>{implantSince}</span><br/>
+        <span className={theme.val}>{modelNo}</span><br/>
+        <span className={theme.val}>{serialNo}</span><br/>
+        <span className={theme.val}>{firmware}</span><br/>
         </div>
       </div>
       </div>

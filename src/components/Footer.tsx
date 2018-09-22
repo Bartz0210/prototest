@@ -6,12 +6,12 @@ const theme = {
     label: Footer;
     display: flex;
     flex-flow: row nowrap;
-    align-items: center;
+    align-items: bottom;
     justify-content: center;
 
-    height: 85px;
+    height: 72px;
 
-    background: rgb(93, 153, 249);
+    background: #72C0A8;
   `,
 };
 

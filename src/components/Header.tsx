@@ -10,10 +10,10 @@ const theme = {
     align-items: center;
     justify-content: center;
 
-    height: 75px;
-    padding: 25px 10px 0 10px;
+    height: 56px;
+    padding: auto 16px 0 16px;
 
-    background: rgb(93, 153, 249);
+    background: #72C0A8;;
 
     color: #fff;
     font-weight: bold;
@@ -21,12 +21,32 @@ const theme = {
   caption: css`
     flex: 1;
     text-align: center;
-    text-transform: uppercase;
+    
+    font-weight: normal; 
+    font-size: 18px;
   `,
-  percent: css``,
+  percent: css`
+    margin-right: 8px;
+    display: inline;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;   
+  `,
   back: css`
     cursor: pointer;
+    padding-left: 16px;
+    display: row
+    align-items: center;
   `,
+  battery: css`
+  cursor: pointer;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  margin-right: 16px;
+  display: row
+  align-items: center;
+  transform: rotateZ(-90deg);
+`,
 };
 
 export interface Props {
@@ -39,12 +59,13 @@ export default function Header({ children }: Props) {
       <Icon
         className={theme.back}
         name="arrow_back"
-        size="large"
+        size="medium"
         onClick={() => window.history.back()}
       />
       <div className={theme.caption}>{children}</div>
-      <div className={theme.percent}>97%</div>
-      <Icon name="battery_charging_full" size="large" />
+      <div className={theme.percent}> 97% 
+      </div>
+      <Icon className={theme.battery} name="battery_charging_full" size="medium" />    
     </div>
   );
 }
