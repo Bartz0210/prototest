@@ -3,7 +3,7 @@ import CapsuleMesh from "./meshes/CapsuleMesh";
 import FresnelMaterial from "./materials/FresnelMaterial";
 import Renderer, { Ray } from ".";
 import TextureMaterial from "./materials/TextureMaterial";
-import { vec3 } from "gl-matrix";
+import { vec3, mat4 } from "gl-matrix";
 import { Pointer } from "./Events";
 
 export type Color = [number, number, number];
@@ -93,127 +93,124 @@ export default class Scene {
     if (!isReady) return;
 
     this.cursor = data.cursor;
-
-    // TODO: Add Scaling on Y-Axis
+    const { isAtLead0 , isAtLead1, isAtLead2, isAtLead3, isAtLead4, isAtLead5, position, radius, scaleX, scaleY } = this.cursor;
 
     //1,2,3,4
-    if (
-      data.cursor.isAtLead1 &&
-      data.cursor.isAtLead2 &&
-      data.cursor.isAtLead3 &&
-      data.cursor.isAtLead4
-    ) {
-      data.cursor.position = [0, 0.625, data.cursor.position["2"]];
+    if ( !isAtLead0 && isAtLead1 && isAtLead2 && isAtLead3 && isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [0, 0.625, position["2"]];
+      data.cursor.radius = 2;
     }
 
     //0,1,2
-    if (
-      data.cursor.isAtLead0 &&
-      data.cursor.isAtLead1 &&
-      data.cursor.isAtLead2
-    ) {
-      data.cursor.position = [0, 3.125, data.cursor.position["2"]];
+    if ( isAtLead0 && isAtLead1 && isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [0, 3.125, position["2"]];
+      data.cursor.radius = 2;
     }
     //5,3,4
-    if (
-      data.cursor.isAtLead5 &&
-      data.cursor.isAtLead3 &&
-      data.cursor.isAtLead4
-    ) {
+    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && isAtLead3 && isAtLead4 && isAtLead5 ) {
       data.cursor.position = [
-        data.cursor.position["0"],
+        0,
         -4.625,
-        data.cursor.position["2"]
+        position["2"]
       ];
+      data.cursor.radius = 2;
     }
     //1,2,4
-    if (
-      data.cursor.isAtLead1 &&
-      data.cursor.isAtLead2 &&
-      data.cursor.isAtLead4
-    ) {
-      data.cursor.position = [0.25, 1.25, data.cursor.position["2"]];
+    if ( !isAtLead0 && isAtLead1 && isAtLead2 && !isAtLead3 && isAtLead4 && !isAtLead5  ) {
+      data.cursor.position = [0.25+(radius*scaleX), 1.25, position["2"]];
+      data.cursor.radius=1;
+      data.cursor.scaleY=2;
     }
     //2,3,4
-    if (
-      data.cursor.isAtLead2 &&
-      data.cursor.isAtLead3 &&
-      data.cursor.isAtLead4
-    ) {
-      data.cursor.position = [0.25, 0, data.cursor.position["2"]];
+    if ( !isAtLead0 && !isAtLead1 && isAtLead2 && isAtLead3 && isAtLead4 && !isAtLead5  ) {
+      data.cursor.position = [0.25+(radius*scaleX), 0, position["2"]];
+      data.cursor.radius=1;
+      data.cursor.scaleY=2;
     }
     //1,3,4
-    if (
-      data.cursor.isAtLead1 &&
-      data.cursor.isAtLead3 &&
-      data.cursor.isAtLead4
-    ) {
-      data.cursor.position = [-0.25, 0, data.cursor.position["2"]];
+    if ( !isAtLead0 && isAtLead1 && !isAtLead2 && isAtLead3 && isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [-0.25-(radius*scaleX), 0, position["2"]];
+      data.cursor.radius=1;
+      data.cursor.scaleY=2;
     }
     //1,2,3
-    if (
-      data.cursor.isAtLead1 &&
-      data.cursor.isAtLead2 &&
-      data.cursor.isAtLead3
-    ) {
-      data.cursor.position = [-0.25, 1.25, data.cursor.position["2"]];
+    if ( !isAtLead0 && isAtLead1 && isAtLead2 && isAtLead3 && !isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [-0.25-(radius*scaleX), 1.25, position["2"]];
+      data.cursor.radius=1;
+      data.cursor.scaleY=2;
     }
 
     //1,2
-    if (data.cursor.isAtLead1 && data.cursor.isAtLead2) {
-      data.cursor.position = [0, 1.875, data.cursor.position["2"]];
+    if ( !isAtLead0 && isAtLead1 && isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [0, 1.875, position["2"]];
+      data.cursor.radius=1;
+      data.cursor.scaleX=2;
     }
     //3,4
-    if (data.cursor.isAtLead1 && data.cursor.isAtLead2) {
-      data.cursor.position = [0, -1.875, data.cursor.position["2"]];
+    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && isAtLead3 && isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [0, -1.875, position["2"]];
+      data.cursor.radius=1;
+      data.cursor.scaleX=2;
     }
     //0,1
-    if (data.cursor.isAtLead0 && data.cursor.isAtLead1) {
-      data.cursor.position = [-0.25, 3.125, data.cursor.position["2"]];
+    if ( isAtLead0 && isAtLead1 && !isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [-0.25-(radius*scaleX), 3.125, position["2"]];
+      data.cursor.radius=1;
+      data.cursor.scaleY=2;
     }
     //0,2
-    if (data.cursor.isAtLead0 && data.cursor.isAtLead2) {
-      data.cursor.position = [0.25, 3.125, data.cursor.position["2"]];
+    if ( isAtLead0 && !isAtLead1 && isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [0.25+(radius*scaleX), 3.125, position["2"]];
+      data.cursor.radius=1;
+      data.cursor.scaleY=2;
     }
     //5,3
-    if (data.cursor.isAtLead3 && data.cursor.isAtLead5) {
-      data.cursor.position = [-0.25, -1.875, data.cursor.position["2"]];
+    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && isAtLead3 && !isAtLead4 && isAtLead5 ) {
+      data.cursor.position = [-0.25-(radius*scaleX), -1.875, position["2"]];
+      data.cursor.radius=1;
+      data.cursor.scaleY=2;
     }
     //5,4
-    if (data.cursor.isAtLead4 && data.cursor.isAtLead5) {
-      data.cursor.position = [0.25, -1.875, data.cursor.position["2"]];
+    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && !isAtLead3 && isAtLead4 && isAtLead5 ) {
+      data.cursor.position = [0.25+(radius*scaleX), -1.875, position["2"]];
+      data.cursor.radius=1;
+      data.cursor.scaleY=2;
     }
     //1,3
-    if (data.cursor.isAtLead1 && data.cursor.isAtLead3) {
-      data.cursor.position = [0.5, 0.625, data.cursor.position["2"]];
+    if ( !isAtLead0 && isAtLead1 && !isAtLead2 && isAtLead3 && !isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [0.5+(radius*scaleX), 0.625, position["2"]];
+      data.cursor.radius=1;
+      data.cursor.scaleY=2;
     }
     //1,4
-    if (data.cursor.isAtLead1 && data.cursor.isAtLead4) {
-      data.cursor.position = [-0.5, 0.625, data.cursor.position["2"]];
+    if ( !isAtLead0 && isAtLead1 && !isAtLead2 && !isAtLead3 && isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [-0.5-(radius*scaleX), 0.625, position["2"]];
+      data.cursor.radius=1;
+      data.cursor.scaleY=2;
     }
 
     //0
-    if (data.cursor.isAtLead0) {
+    if ( isAtLead0 && !isAtLead1 && !isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
       data.cursor.position = [0, 4.625, 0];
     }
     //1
-    if (data.cursor.isAtLead1) {
-      data.cursor.position = [-0.5, 1.125, data.cursor.position["2"]];
+    if ( !isAtLead0 && isAtLead1 && !isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [-0.5-(radius*scaleX), 1.125, position["2"]];
     }
     //2
-    if (data.cursor.isAtLead2) {
-      data.cursor.position = [0.5, 1.125, data.cursor.position["2"]];
+    if ( !isAtLead0 && !isAtLead1 && isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [0.5+(radius*scaleX), 1.125, position["2"]];
     }
     //3
-    if (data.cursor.isAtLead3) {
-      data.cursor.position = [-0.5, -0.625, data.cursor.position["2"]];
+    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && isAtLead3 && !isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [-0.5-(radius*scaleX), -0.625, position["2"]];
     }
     //4
-    if (data.cursor.isAtLead4) {
-      data.cursor.position = [0.5, -0.625, data.cursor.position["2"]];
+    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && !isAtLead3 && isAtLead4 && !isAtLead5 ) {
+      data.cursor.position = [0.5+(radius*scaleX), -0.625, position["2"]];
     }
     //5
-    if (data.cursor.isAtLead5) {
+    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && !isAtLead3 && !isAtLead4 && isAtLead5 ) {
       data.cursor.position = [0, -3.125, 0];
     }
 
@@ -221,7 +218,6 @@ export default class Scene {
     capsule.render(gl, texture);
 
     fresnel.begin(gl);
-
     //render cursor only, when toggled on
     if (data.cursor.isOn) {
       fresnel.setColor(gl, cursorColor);
