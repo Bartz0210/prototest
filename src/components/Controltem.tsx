@@ -11,14 +11,16 @@ const theme = {
     align-items: center;
     justify-content: space-between;  
     height: 52px;
-    width: 390px;
+    width: 337px;
+
+    padding: 0 12 0 41;
     
    
    
   `,
   children: css`
     
-    margin-left: 40px;
+    
     float: left;
 
 
@@ -29,7 +31,6 @@ const theme = {
   `,
   inp: css`
     
-    margin-left: auto;
     float: right;  
   `
 

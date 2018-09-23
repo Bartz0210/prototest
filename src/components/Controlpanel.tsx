@@ -4,11 +4,13 @@ import { css } from "emotion";
 const theme = {
   root: css`
     label: Controlpanel;
+    left: 0;
     display: grid;
+    grid-gap: 0;
     align-items: left;
     font-size: 16px;
-    flex: 1 auto;
-    padding: 8 8 8 8;
+   
+    
     background: #f0f0f0;
     width: 390;
     height: 641;

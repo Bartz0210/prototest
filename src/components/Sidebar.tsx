@@ -24,8 +24,8 @@ const theme = {
     flex-direction: column;
 
     background: #fff;
-    outline: 1px solid #f3f3f3;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    
+    
   `,
 
   menu_header: css`
@@ -55,7 +55,8 @@ export function Sidebar(props: Props) {
       <div
         className={theme.menu}
         style={{
-          transform: props.visible ? "translateX(0)" : "translateX(-105%)",
+          transform: props.visible ? "translateX(0)" : "translateX(-100%)",
+          boxShadow: props.visible ? "2px 2px 2px 1px rgba(0, 0, 0, 0.2)" : "none",
           transition: "300ms ease-in"
         }}
       >
