@@ -26,6 +26,7 @@ import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { CursorState } from "../../renderer/Scene";
 import { Sidebar } from "../../components/Sidebar";
 import SidebarItem from "../../components/SidebarItem";
+import { ControlElectrode } from '../../components/ControlElectrode';
 
 const theme = {
   root: css`
@@ -41,7 +42,36 @@ const theme = {
     left: 0;
 
     font-size: 32px;
+  `,
+  grid: css`
+    label: ControlItem;
+    display: grid;
+    grid-template-columns: 177 37 176;
+    grid-template-rows: 36 36 36 36 36 36 36 36;
+    grid-gap: 0;
+    
+    align-items: left;
+   
+    height: 288px;
+    width: 390px;
+
+    text-decoration: none;
+  `,
+  electr: css`
+    grid-column-start:2;
+    grid-row: 0 / span 8;
+    z-index:1;
+    
+  `,
+  electr_fill: css`
+    fill: none;
+        
+  `,
+
+  empty: css`
+   background:none;
   `
+
 };
 
 interface OwnProps {}
@@ -103,59 +133,65 @@ class Programm extends React.Component<
           <SidebarItem label="Programm" />
           <SidebarItem label="Programm" />
 
-          <button onClick={this.handleMenuToggle}>Close</button>
         </Sidebar>
+          <button 
+          style={{
+          zIndex: 3,
+          borderTopRightRadius: "4px",
+          borderBottomRightRadius: "4px",
+          border: "none",
+          background: "#72C0A8",
+          width: "32px",
+          height:"112px",
+          position: "fixed",
+          left:0,
+          boxShadow:"2px 2px 2px 1px rgba(0, 0, 0, 0.2)",
+          transform: this.state.menuVisible? "translateX(300px)" : "translateX(0)",
+          transition: "300ms ease-in"
+
+          }} onClick={this.handleMenuToggle}>I I</button>
 
         <Controlpanel>
           {/*ON OFF!*/}
-          <ControlItemCheck
+          <div style={{margin: "10 0 0 20"}}><ControlItemCheck
             label="ON/OFF"
             checked={props.cursor.isOn}
-            icon="settings"
+            
             onChange={props.toggleElectrode}
           />
-          {/*5*/}
-          <ControlItemCheck
-            label="Lead5"
-            checked={props.cursor.isAtLead5}
-            icon="settings"
-            onChange={props.toggleLead5}
-          />
-          {/*4*/}
-          <ControlItemCheck
-            label="Lead4"
-            checked={props.cursor.isAtLead4}
-            icon="settings"
-            onChange={props.toggleLead4}
-          />
-          {/*3*/}
-          <ControlItemCheck
-            label="Lead3"
-            checked={props.cursor.isAtLead3}
-            icon="settings"
-            onChange={props.toggleLead3}
-          />
-          {/*2*/}
-          <ControlItemCheck
-            label="Lead2"
-            checked={props.cursor.isAtLead2}
-            icon="settings"
-            onChange={props.toggleLead2}
-          />
-          {/*1*/}
-          <ControlItemCheck
-            label="Lead1"
-            checked={props.cursor.isAtLead1}
-            icon="settings"
-            onChange={props.toggleLead1}
-          />
-          {/*0*/}
-          <ControlItemCheck
-            label="Lead0"
-            checked={props.cursor.isAtLead0}
-            icon="settings"
-            onChange={props.toggleLead0}
-          />
+          </div>
+         <div className={theme.grid}>
+            <div className={theme.electr}>
+             <svg className={theme.electr} id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.94 289.06">
+                <title>Elektroooden-Illus</title>
+                <path className={theme.electr_fill} d="M35.94,18.56v252a17.5,17.5,0,0,1-35,0v-252a17.5,17.5,0,1,1,35,0Z"/>
+                <path  d="M18.44.06A18.52,18.52,0,0,0-.06,18.56v252a18.5,18.5,0,0,0,37,0v-252A18.52,18.52,0,0,0,18.44.06Zm17.5,270.5a17.5,17.5,0,0,1-35,0v-252a17.5,17.5,0,1,1,35,0Z"/>
+                <rect  x="-0.06" y="36.62" width="37" height="36"/>
+                <rect  x="-0.06" y="108.63" width="12.5" height="36"/>
+                <rect  x="24.43" y="108.63" width="12.5" height="36"/>
+                <rect  x="-0.06" y="180.63" width="12.5" height="36"/>
+                <rect  x="24.43" y="180.63" width="12.5" height="36"/>
+                <path  d="M.4,252.63h36a.47.47,0,0,1,.47.47v17.5A18.47,18.47,0,0,1,18.4,289.06h0A18.47,18.47,0,0,1-.06,270.6v-17.5a.47.47,0,0,1,.47-.47Z"/>
+             </svg>
+             </div>
+              <div style={{gridColumn: "1", gridRow:"1"}}></div>
+              <div style={{gridColumn: "3", gridRow:"1"}}></div>
+              <div style={{gridColumn: "1", gridRow:"2", background: "#dadada"}}><div style={{float: "right", marginRight: 30}}><ControlItemCheck label="Lead 5" checked={props.cursor.isAtLead5} onChange={props.toggleLead5}/></div></div>
+              <div style={{gridColumn: "3", gridRow:"2", background: "#dadada"}}></div>
+              <div style={{gridColumn: "1", gridRow:"3"}}></div>
+              <div style={{gridColumn: "3", gridRow:"3"}}></div>
+              <div style={{gridColumn: "1", gridRow:"4", background: "#dadada"}}><div style={{float: "right", marginRight: 30}}><ControlItemCheck label="Lead 3" checked={props.cursor.isAtLead3} onChange={props.toggleLead3}/></div></div>
+              <div style={{gridColumn: "3", gridRow:"4", background: "#dadada"}}><div style={{float: "left", marginLeft: 30}}><ControlItemCheck label="Lead 4" checked={props.cursor.isAtLead4} onChange={props.toggleLead4}/></div></div>
+              <div style={{gridColumn: "1", gridRow:"5"}}></div>
+              <div style={{gridColumn: "3", gridRow:"5"}}></div>
+              <div style={{gridColumn: "1", gridRow:"6", background: "#dadada"}}><div style={{float: "right", marginRight: 30}}><ControlItemCheck label="Lead 1" checked={props.cursor.isAtLead1} onChange={props.toggleLead1}/></div></div>
+              <div style={{gridColumn: "3", gridRow:"6", background: "#dadada"}}><div style={{float: "left", marginLeft: 30}}><ControlItemCheck label="Lead 2" checked={props.cursor.isAtLead2} onChange={props.toggleLead2}/></div></div>
+              <div style={{gridColumn: "1", gridRow:"7"}}></div>
+              <div style={{gridColumn: "3", gridRow:"7"}}></div>
+              <div style={{gridColumn: "1", gridRow:"8", background: "#dadada"}}><div style={{float: "right", marginRight: 30}}><ControlItemCheck label="Lead 0" checked={props.cursor.isAtLead0} onChange={props.toggleLead0}/></div></div>
+              <div style={{gridColumn: "2", gridRow:"8", background: "#dadada"}}></div>
+              <div style={{gridColumn: "3", gridRow:"8", background: "#dadada"}}></div>
+    </div>
           {/*     Control Item: Radius*/}
           <ControlItem
             label="Amplitude"
@@ -181,7 +217,7 @@ class Programm extends React.Component<
             onChange={props.updateCursorPositionY}
           />
          
-          <button onClick={this.handleMenuToggle}>Toggle</button>
+          
         </Controlpanel>
         <Canvas />
       </div>

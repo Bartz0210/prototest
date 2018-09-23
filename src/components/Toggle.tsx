@@ -7,13 +7,9 @@ import { bool } from "prop-types";
 const theme = {
   root: css`
     label: Toggle;
+    border: none;
   `,
-  active: css`
-    background: rgba(0, 0, 0, 0.1);
-  `,
-  caption: css`
-    padding-top: 5px;
-  `
+ 
 };
 
 export interface Props {
@@ -24,11 +20,23 @@ export interface Props {
 
 export default function Toggle({ className, isOn, onChange }: Props) {
   return (
-    <input
+   <div style = {{
+     height : 24,
+     width: 24,
+     border: "2px solid #3d3d3d",
+     borderRadius:4,
+     background: isOn? "#58AA92" : "#fff",
+     transition: "100ms ease-in"
+   }}>
+      <input
       className={className}
+      style={{
+        opacity: 0
+      }}
       type="checkbox"
       onClick={event => onChange(Boolean(event.currentTarget.checked))}
       checked={isOn}
     />
+    </div>
   );
 }

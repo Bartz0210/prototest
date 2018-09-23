@@ -7,7 +7,7 @@ const theme = {
     top: 0;
     left: 0;
     bottom: 0;
-
+    z-index:3;
     width: 300px;
 
     //outline: 1px solid red;

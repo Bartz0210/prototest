@@ -2,6 +2,7 @@ import * as React from 'react';
 import { css } from 'emotion';
 import Widget from '../../components/widget';
 import WidgetPic from '../../components/WidegtPic';
+import WidgetProfile from '../../components/WidgetProfile';
 import WidgetText from '../../components/WidgetText';
 import WidgetTextBulltes from '../../components/WidgetTextBulltes';
 import WidgetElektrode from '../../components/WidgetElektrode';
@@ -28,8 +29,8 @@ const theme = {
 
 export default function Overview() {
   return <div className={theme.root}>
-    <Widget headline="Widget">
-      <WidgetPic picture="Profilepicture.png" />
+    <Widget headline=" ">
+      <WidgetProfile picture="Profilepicture.png" />
     </Widget>
     <Widget headline="Patient">
       <WidgetText name="Max Mustermann" id="123-456-789" birthday="23-11-1954" implantSince="11-06-2003" modelNo="DBS123-56" serialNo="234-56" firmware="V0.454545"/>
