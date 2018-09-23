@@ -71,9 +71,9 @@ export default function IncrementalInput({
         className={theme.input}
         type="number"
         onChange={event =>
-          onChange(Number(numeral(event.currentTarget.value).format("0.0")))
+          onChange(Number(event.currentTarget.value))
         }
-        value={String(value)}
+        value={String(Math.round(value*100)/100)}
       />
       <button
         className={theme.buttonrght}
