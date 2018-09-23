@@ -9,7 +9,9 @@ const theme = {
     font-size: 16px;
     flex: 1 auto;
     padding: 8 8 8 8;
-    background: #f6f6f6;
+    background: #f0f0f0;
+    width: 390;
+    height: 641;
   `
 };
 

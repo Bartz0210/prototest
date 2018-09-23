@@ -7,24 +7,38 @@ const theme = {
   root: css`
     label: ControlItem;
     display: flex;
-    flex-flow: row;
-    align-items: left;
-    justify-content: stretch;
-    height: 40px;
-    width: auto;
-
-    border-bottom: 1px solid #333;
-    text-decoration: none;
+    flex-direction: row no-wrap;
+    align-items: center;
+    justify-content: space-between;  
+    height: 52px;
+    width: 390px;
+    
+   
+   
   `,
   children: css`
-    margin: auto 0 auto 16;
+    
+    margin-left: 40px;
+    float: left;
+
+
+    font-weight: bold;
+    
+    font-size: 15px;
+    color: #3D3D3D;
+  `,
+  inp: css`
+    
+    margin-left: auto;
+    float: right;  
   `
+
 };
 
 export interface Props {
   className?: string;
   label: string;
-  icon: string;
+  
   value: number;
   increment: number;
   onChange(value: number): void;
@@ -39,16 +53,16 @@ export default function ControlItem({
   label,
   value,
   increment,
-  icon,
   onChange
 }: Props) {
   return (
     <div className={theme.root}>
-      <Icon className={theme.children} name={icon} size="large" />
-      <label className={theme.children} htmlFor="control">
+      
+      <p className={theme.children} >
         {label}
-      </label>
+      </p>
       <IncrementalInput
+        className={theme.inp}
         onChange={onChange}
         value={value}
         increment={increment}

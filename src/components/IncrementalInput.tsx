@@ -8,25 +8,53 @@ const theme = {
     display: flex;
     flex-flow: row;
     align-items: center;
-    width: auto;
+    width: 160px;
   `,
-  button: css`
-    width: 36px;
-    height: 36px;
+  buttonlft: css`
+    width: 40px;
+    height: 40px;
+    background:#72C0A8;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border: none;
+    color: #fff;
+    font-size: 32px;
+    font-weight: normal;
+  `,
+  buttonrght: css`
+  width: 40px;
+  height: 40px;
+  background:#72C0A8;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border: none;
+  color: #fff;
+  font-size: 32px;
+  font-weight: normal;
   `,
   input: css`
-    width: 108px;
-    height: 36px;
+    width: 80px;
+    height: 40px;
+
+    font-style: normal;
+    font-weight: 600;
+
+    font-size: 15px;
+    text-align: center;
+    border: none;
+    color:#3d3d3d;
   `
 };
 
 export interface Props {
+  className?: string;
   value: number;
   increment: number;
   onChange(value: number): void;
 }
 
 export default function IncrementalInput({
+  className,
   value,
   increment,
   onChange
@@ -34,7 +62,7 @@ export default function IncrementalInput({
   return (
     <div className={theme.root}>
       <button
-        className={theme.button}
+        className={theme.buttonlft}
         onClick={() => onChange(value - increment)}
       >
         -
@@ -48,7 +76,7 @@ export default function IncrementalInput({
         value={String(value)}
       />
       <button
-        className={theme.button}
+        className={theme.buttonrght}
         onClick={() => onChange(value + increment)}
       >
         +

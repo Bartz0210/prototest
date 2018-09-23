@@ -161,7 +161,7 @@ class Programm extends React.Component<
             label="Amplitude"
             value={props.cursor.radius}
             increment={0.2}
-            icon="settings"
+            
             onChange={props.updateCursorRadius}
           />
           {/*     Control Item: Xposition*/}
@@ -169,7 +169,7 @@ class Programm extends React.Component<
             label="XPosition"
             value={props.cursor.position["0"]}
             increment={0.2}
-            icon="settings"
+            
             onChange={props.updateCursorPositionX}
           />
           {/*     Control Item: Yposition*/}
@@ -177,42 +177,10 @@ class Programm extends React.Component<
             label="YPosition"
             value={props.cursor.position["1"]}
             increment={0.2}
-            icon="settings"
+            
             onChange={props.updateCursorPositionY}
           />
-          {/*     Control Item: Zposition*/}
-          <ControlItem
-            label="ZPosition"
-            value={props.cursor.position["2"]}
-            increment={0.2}
-            icon="settings"
-            onChange={props.updateCursorPositionZ}
-          />
-
-          {/*     Control Item: transform x*/}
-          <ControlItem
-            label="xtransform"
-            value={props.cursor.scaleX}
-            increment={0.2}
-            icon="settings"
-            onChange={props.transformCursorX}
-          />
-          {/*     Control Item: transform y*/}
-          <ControlItem
-            label="Ytransform"
-            value={props.cursor.scaleY}
-            increment={0.2}
-            icon="settings"
-            onChange={props.transformCursorY}
-          />
-          {/*     Control Item: transform z*/}
-          <ControlItem
-            label="Ztransform"
-            value={props.cursor.scaleZ}
-            increment={0.2}
-            icon="settings"
-            onChange={props.transformCursorZ}
-          />
+         
           <button onClick={this.handleMenuToggle}>Toggle</button>
         </Controlpanel>
         <Canvas />

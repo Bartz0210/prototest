@@ -41,8 +41,10 @@ export default function Overview() {
       <WidgetPic picture="Bild1.jpg" />
     </Widget>
     <Widget headline="Linke Elektrode">
-      <WidgetElektrode />
+      <WidgetElektrode id="1.5" birthday="60" implantSince="130" to="/programm" />
     </Widget>
-    <Widget headline="Rechte Elektrode" />
+    <Widget headline="Rechte Elektrode">
+      <WidgetElektrode id="1.5" birthday="60" implantSince="130" to="/programm" />
+    </Widget>
   </div>;
 }
