@@ -4,7 +4,7 @@ import { css } from "emotion";
 const theme = {
   container: css`
     position: fixed;
-    top: 0;
+    top: 56;
     left: 0;
     bottom: 0;
     z-index: 4;

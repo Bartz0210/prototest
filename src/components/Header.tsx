@@ -56,12 +56,7 @@ export interface Props {
 export default function Header({ children }: Props) {
   return (
     <div className={theme.root}>
-      <Icon
-        className={theme.back}
-        name="arrow_back"
-        size="medium"
-        onClick={() => window.history.back()}
-      />
+      {/* <Icon className={theme.back} name="menu" size="medium" /> */}
       <div className={theme.caption}>{children}</div>
       <div className={theme.percent}> 97%</div>
       <Icon

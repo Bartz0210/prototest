@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { css } from 'emotion';
-import { NavLink } from 'react-router-dom';
-import Icon from './Icon';
+import * as React from "react";
+import { css } from "emotion";
+import { NavLink } from "react-router-dom";
+import Icon from "./Icon";
 
 const theme = {
   root: css`
@@ -10,8 +10,8 @@ const theme = {
     flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
-    
-    background: #8CD2BD;
+
+    background: #8cd2bd;
 
     width: auto;
 
@@ -23,8 +23,8 @@ const theme = {
     text-decoration: none;
   `,
   active: css`
-    background: #58AA92;
-    transition: 200ms ease-in-out;
+    background: #58aa92;
+    transition: 150ms ease-in-out;
   `,
   caption: css`
     font-size: 15px;
@@ -34,7 +34,7 @@ const theme = {
 
   icn: css`
     margin: 0 16 0 16;
-  `,
+  `
 };
 
 export interface Props {
@@ -50,7 +50,7 @@ export default function FooterItem({
   exact,
   icon,
   strict,
-  to,
+  to
 }: Props) {
   return (
     <NavLink
