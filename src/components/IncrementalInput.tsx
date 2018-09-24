@@ -13,7 +13,7 @@ const theme = {
   buttonlft: css`
     width: 40px;
     height: 40px;
-    background:#72C0A8;
+    background: linear-gradient(to bottom, #72c0a8, #5b9986);
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     border: none;
@@ -22,15 +22,15 @@ const theme = {
     font-weight: normal;
   `,
   buttonrght: css`
-  width: 40px;
-  height: 40px;
-  background:#72C0A8;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border: none;
-  color: #fff;
-  font-size: 32px;
-  font-weight: normal;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(to bottom, #72c0a8, #5b9986);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border: none;
+    color: #fff;
+    font-size: 32px;
+    font-weight: normal;
   `,
   input: css`
     width: 80px;
@@ -42,7 +42,7 @@ const theme = {
     font-size: 15px;
     text-align: center;
     border: none;
-    color:#3d3d3d;
+    color: #3d3d3d;
   `
 };
 
@@ -70,10 +70,8 @@ export default function IncrementalInput({
       <input
         className={theme.input}
         type="number"
-        onChange={event =>
-          onChange(Number(event.currentTarget.value))
-        }
-        value={String(Math.round(value*100)/100)}
+        onChange={event => onChange(Number(event.currentTarget.value))}
+        value={String(Math.round(value * 100) / 100)}
       />
       <button
         className={theme.buttonrght}

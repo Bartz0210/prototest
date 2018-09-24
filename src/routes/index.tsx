@@ -1,15 +1,14 @@
-import * as React from 'react';
-import { css, injectGlobal } from 'emotion';
-import { Route } from 'react-router';
+import * as React from "react";
+import { css, injectGlobal } from "emotion";
+import { Route } from "react-router";
 
-import Footer from '../components/Footer';
-import FooterItem from '../components/FooterItem';
-import Header from '../components/Header';
+import Footer from "../components/Footer";
+import FooterItem from "../components/FooterItem";
+import Header from "../components/Header";
 
-import Overview from './overview';
-import Programm from './programm';
-import Reports from './reports';
-
+import Overview from "./overview";
+import Programm from "./programm";
+import Reports from "./reports";
 
 injectGlobal`
   body {
@@ -40,19 +39,17 @@ const theme = {
     label: Content;
     flex: 1;
     position: relative;
-    background: #DADADA;
-  `,
+    background: #dadada;
+  `
 };
-
-
 
 export default function Application() {
   return (
     <>
       <Header>
-        <Route path="" exact render={() => 'Übersicht'} />
-        <Route path="/reports" render={() => 'Reports'} />
-        <Route path="/programm" render={() => 'Programmierung'} />
+        <Route path="" exact render={() => "Übersicht"} />
+        <Route path="/reports" render={() => "Reports"} />
+        <Route path="/programm" render={() => "Programmierung"} />
       </Header>
       <div className={theme.root}>
         <Route component={Overview} path="" exact />
@@ -60,11 +57,10 @@ export default function Application() {
         <Route component={Programm} path="/programm" />
       </div>
       <Footer>
-        <FooterItem caption="Übersicht" exact icon="dashboard" to="" />
-        <FooterItem caption="Reports" icon="assessment" to="/reports" />
-        <FooterItem caption="Programmierung" icon="settings" to="/programm" />
+        <FooterItem caption="Übersicht" exact icon="view_module" to="" />
+        <FooterItem caption="Reports" icon="notes" to="/reports" />
+        <FooterItem caption="Programmierung" icon="tune" to="/programm" />
       </Footer>
-      
     </>
   );
 }

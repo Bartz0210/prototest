@@ -93,124 +93,284 @@ export default class Scene {
     if (!isReady) return;
 
     this.cursor = data.cursor;
-    const { isAtLead0 , isAtLead1, isAtLead2, isAtLead3, isAtLead4, isAtLead5, position, radius, scaleX, scaleY } = this.cursor;
+    const {
+      isAtLead0,
+      isAtLead1,
+      isAtLead2,
+      isAtLead3,
+      isAtLead4,
+      isAtLead5,
+      position,
+      radius,
+      scaleX,
+      scaleY
+    } = this.cursor;
 
     //1,2,3,4
-    if ( !isAtLead0 && isAtLead1 && isAtLead2 && isAtLead3 && isAtLead4 && !isAtLead5 ) {
-      data.cursor.position = [0, 0.625, position["2"]];
-      //data.cursor.radius = 2;
+    if (
+      !isAtLead0 &&
+      isAtLead1 &&
+      isAtLead2 &&
+      isAtLead3 &&
+      isAtLead4 &&
+      !isAtLead5
+    ) {
+      //data.cursor.position = [0, 0.625, position["2"]];
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [0, 0.625, position["2"]]),
+        (this.cursor.scaleX = 2),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 1)
+      );
     }
 
     //0,1,2
-    if ( isAtLead0 && isAtLead1 && isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
+    if (
+      isAtLead0 &&
+      isAtLead1 &&
+      isAtLead2 &&
+      !isAtLead3 &&
+      !isAtLead4 &&
+      !isAtLead5
+    ) {
       data.cursor.position = [0, 3.125, position["2"]];
-     // data.cursor.radius = 2;
+      // data.cursor.radius = 2;
     }
     //5,3,4
-    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && isAtLead3 && isAtLead4 && isAtLead5 ) {
-      data.cursor.position = [
-        0,
-        -4.625,
-        position["2"]
-      ];
-     // data.cursor.radius = 2;
+    if (
+      !isAtLead0 &&
+      !isAtLead1 &&
+      !isAtLead2 &&
+      isAtLead3 &&
+      isAtLead4 &&
+      isAtLead5
+    ) {
+      data.cursor.position = [0, -4.625, position["2"]];
+      // data.cursor.radius = 2;
     }
     //1,2,4
-    if ( !isAtLead0 && isAtLead1 && isAtLead2 && !isAtLead3 && isAtLead4 && !isAtLead5  ) {
-      data.cursor.position = [0.25+(radius*scaleX), 1.25, position["2"]];
-     // data.cursor.radius=1;
+    if (
+      !isAtLead0 &&
+      isAtLead1 &&
+      isAtLead2 &&
+      !isAtLead3 &&
+      isAtLead4 &&
+      !isAtLead5
+    ) {
+      data.cursor.position = [0.25 + radius * scaleX, 1.25, position["2"]];
+      // data.cursor.radius=1;
       //data.cursor.scaleY=2;
     }
     //2,3,4
-    if ( !isAtLead0 && !isAtLead1 && isAtLead2 && isAtLead3 && isAtLead4 && !isAtLead5  ) {
-      data.cursor.position = [0.25+(radius*scaleX), 0, position["2"]];
+    if (
+      !isAtLead0 &&
+      !isAtLead1 &&
+      isAtLead2 &&
+      isAtLead3 &&
+      isAtLead4 &&
+      !isAtLead5
+    ) {
+      data.cursor.position = [0.25 + radius * scaleX, 0, position["2"]];
       //data.cursor.radius=1;
       //data.cursor.scaleY=2;
     }
     //1,3,4
-    if ( !isAtLead0 && isAtLead1 && !isAtLead2 && isAtLead3 && isAtLead4 && !isAtLead5 ) {
-      data.cursor.position = [-0.25-(radius*scaleX), 0, position["2"]];
+    if (
+      !isAtLead0 &&
+      isAtLead1 &&
+      !isAtLead2 &&
+      isAtLead3 &&
+      isAtLead4 &&
+      !isAtLead5
+    ) {
+      data.cursor.position = [-0.25 - radius * scaleX, 0, position["2"]];
       //data.cursor.radius=1;
-     // data.cursor.scaleY=2;
+      // data.cursor.scaleY=2;
     }
     //1,2,3
-    if ( !isAtLead0 && isAtLead1 && isAtLead2 && isAtLead3 && !isAtLead4 && !isAtLead5 ) {
-      data.cursor.position = [-0.25-(radius*scaleX), 1.25, position["2"]];
+    if (
+      !isAtLead0 &&
+      isAtLead1 &&
+      isAtLead2 &&
+      isAtLead3 &&
+      !isAtLead4 &&
+      !isAtLead5
+    ) {
+      data.cursor.position = [-0.25 - radius * scaleX, 1.25, position["2"]];
       //data.cursor.radius=1;
       //data.cursor.scaleY=2;
     }
 
     //1,2
-    if ( !isAtLead0 && isAtLead1 && isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
+    if (
+      !isAtLead0 &&
+      isAtLead1 &&
+      isAtLead2 &&
+      !isAtLead3 &&
+      !isAtLead4 &&
+      !isAtLead5
+    ) {
       data.cursor.position = [0, 1.875, position["2"]];
-     // data.cursor.radius=1;
+      // data.cursor.radius=1;
       //7data.cursor.scaleX=2;
     }
     //3,4
-    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && isAtLead3 && isAtLead4 && !isAtLead5 ) {
+    if (
+      !isAtLead0 &&
+      !isAtLead1 &&
+      !isAtLead2 &&
+      isAtLead3 &&
+      isAtLead4 &&
+      !isAtLead5
+    ) {
       data.cursor.position = [0, -1.875, position["2"]];
       //data.cursor.radius=1;
       //data.cursor.scaleX=2;
     }
     //0,1
-    if ( isAtLead0 && isAtLead1 && !isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
-      data.cursor.position = [-0.25-(radius*scaleX), 3.125, position["2"]];
+    if (
+      isAtLead0 &&
+      isAtLead1 &&
+      !isAtLead2 &&
+      !isAtLead3 &&
+      !isAtLead4 &&
+      !isAtLead5
+    ) {
+      data.cursor.position = [-0.25 - radius * scaleX, 3.125, position["2"]];
       //data.cursor.radius=1;
       //data.cursor.scaleY=2;
     }
     //0,2
-    if ( isAtLead0 && !isAtLead1 && isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
-      data.cursor.position = [0.25+(radius*scaleX), 3.125, position["2"]];
+    if (
+      isAtLead0 &&
+      !isAtLead1 &&
+      isAtLead2 &&
+      !isAtLead3 &&
+      !isAtLead4 &&
+      !isAtLead5
+    ) {
+      data.cursor.position = [0.25 + radius * scaleX, 3.125, position["2"]];
       //data.cursor.radius=1;
       //data.cursor.scaleY=2;
     }
     //5,3
-    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && isAtLead3 && !isAtLead4 && isAtLead5 ) {
-      data.cursor.position = [-0.25-(radius*scaleX), -1.875, position["2"]];
-    //  data.cursor.radius=1;
-     // data.cursor.scaleY=2;
+    if (
+      !isAtLead0 &&
+      !isAtLead1 &&
+      !isAtLead2 &&
+      isAtLead3 &&
+      !isAtLead4 &&
+      isAtLead5
+    ) {
+      data.cursor.position = [-0.25 - radius * scaleX, -1.875, position["2"]];
+      //  data.cursor.radius=1;
+      // data.cursor.scaleY=2;
     }
     //5,4
-    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && !isAtLead3 && isAtLead4 && isAtLead5 ) {
-      data.cursor.position = [0.25+(radius*scaleX), -1.875, position["2"]];
+    if (
+      !isAtLead0 &&
+      !isAtLead1 &&
+      !isAtLead2 &&
+      !isAtLead3 &&
+      isAtLead4 &&
+      isAtLead5
+    ) {
+      data.cursor.position = [0.25 + radius * scaleX, -1.875, position["2"]];
       //data.cursor.radius=1;
-     // data.cursor.scaleY=2;
+      // data.cursor.scaleY=2;
     }
     //1,3
-    if ( !isAtLead0 && isAtLead1 && !isAtLead2 && isAtLead3 && !isAtLead4 && !isAtLead5 ) {
-      data.cursor.position = [0.5+(radius*scaleX), 0.625, position["2"]];
+    if (
+      !isAtLead0 &&
+      isAtLead1 &&
+      !isAtLead2 &&
+      isAtLead3 &&
+      !isAtLead4 &&
+      !isAtLead5
+    ) {
+      data.cursor.position = [0.5 + radius * scaleX, 0.625, position["2"]];
       //data.cursor.radius=1;
-     // data.cursor.scaleY=2;
+      // data.cursor.scaleY=2;
     }
     //1,4
-    if ( !isAtLead0 && isAtLead1 && !isAtLead2 && !isAtLead3 && isAtLead4 && !isAtLead5 ) {
-      data.cursor.position = [-0.5-(radius*scaleX), 0.625, position["2"]];
-     // data.cursor.radius=1;
-    //  data.cursor.scaleY=2;
+    if (
+      !isAtLead0 &&
+      isAtLead1 &&
+      !isAtLead2 &&
+      !isAtLead3 &&
+      isAtLead4 &&
+      !isAtLead5
+    ) {
+      data.cursor.position = [-0.5 - radius * scaleX, 0.625, position["2"]];
+      // data.cursor.radius=1;
+      //  data.cursor.scaleY=2;
     }
 
     //0
-    if ( isAtLead0 && !isAtLead1 && !isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
+    if (
+      isAtLead0 &&
+      !isAtLead1 &&
+      !isAtLead2 &&
+      !isAtLead3 &&
+      !isAtLead4 &&
+      !isAtLead5
+    ) {
       data.cursor.position = [0, 4.625, 0];
     }
     //1
-    if ( !isAtLead0 && isAtLead1 && !isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
-      data.cursor.position = [-0.5-(radius*scaleX), 1.125, position["2"]];
+    if (
+      !isAtLead0 &&
+      isAtLead1 &&
+      !isAtLead2 &&
+      !isAtLead3 &&
+      !isAtLead4 &&
+      !isAtLead5
+    ) {
+      data.cursor.position = [-0.5 - radius * scaleX, 1.125, position["2"]];
     }
     //2
-    if ( !isAtLead0 && !isAtLead1 && isAtLead2 && !isAtLead3 && !isAtLead4 && !isAtLead5 ) {
-      data.cursor.position = [0.5+(radius*scaleX), 1.125, position["2"]];
+    if (
+      !isAtLead0 &&
+      !isAtLead1 &&
+      isAtLead2 &&
+      !isAtLead3 &&
+      !isAtLead4 &&
+      !isAtLead5
+    ) {
+      data.cursor.position = [0.5 + radius * scaleX, 1.125, position["2"]];
     }
     //3
-    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && isAtLead3 && !isAtLead4 && !isAtLead5 ) {
-      data.cursor.position = [-0.5-(radius*scaleX), -0.625, position["2"]];
+    if (
+      !isAtLead0 &&
+      !isAtLead1 &&
+      !isAtLead2 &&
+      isAtLead3 &&
+      !isAtLead4 &&
+      !isAtLead5
+    ) {
+      data.cursor.position = [-0.5 - radius * scaleX, -0.625, position["2"]];
     }
     //4
-    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && !isAtLead3 && isAtLead4 && !isAtLead5 ) {
-      data.cursor.position = [0.5+(radius*scaleX), -0.625, position["2"]];
+    if (
+      !isAtLead0 &&
+      !isAtLead1 &&
+      !isAtLead2 &&
+      !isAtLead3 &&
+      isAtLead4 &&
+      !isAtLead5
+    ) {
+      data.cursor.position = [0.5 + radius * scaleX, -0.625, position["2"]];
     }
     //5
-    if ( !isAtLead0 && !isAtLead1 && !isAtLead2 && !isAtLead3 && !isAtLead4 && isAtLead5 ) {
+    if (
+      !isAtLead0 &&
+      !isAtLead1 &&
+      !isAtLead2 &&
+      !isAtLead3 &&
+      !isAtLead4 &&
+      isAtLead5
+    ) {
       data.cursor.position = [0, -3.125, 0];
     }
 
@@ -345,12 +505,32 @@ export default class Scene {
     const tmp = vec3.create();
     vec3.subtract(tmp, cursor.position, ray.origin);
 
-    const length = vec3.dot(ray.direction, tmp);
+    //get Tranformationmatrix Scale from sphere
+    const scale = mat4.create();
+    mat4.fromScaling(scale, [cursor.scaleX, cursor.scaleY, cursor.scaleZ]);
+    //get Transformationmatrix Translate sphere
+    const translate = mat4.create();
+    mat4.fromTranslation(translate, cursor.position);
+    //multiply scale x translation
+    const multi = mat4.create();
+    mat4.multiply(multi, scale, translate);
+    //calculate inverse
+    const inv = mat4.create();
+    mat4.invert(inv, multi);
+    //apply inverse to ray.origin and ray.direction
+    const transformedOrigin = vec3.create();
+    const transformedDirection = vec3.create();
+
+    vec3.transformMat4(transformedOrigin, ray.origin, inv);
+    vec3.transformMat4(transformedDirection, ray.direction, inv);
+    //von hier aus geht es dann mit dem normalen Hittest weiter
+
+    const length = vec3.dot(transformedDirection, tmp);
     if (length < 0) {
       return null;
     }
 
-    vec3.scaleAndAdd(tmp, ray.origin, ray.direction, length);
+    vec3.scaleAndAdd(tmp, transformedOrigin, transformedDirection, length);
     const dSq = vec3.squaredDistance(cursor.position, tmp);
     const rSq = cursor.radius * cursor.radius;
     if (dSq > rSq) {
@@ -358,7 +538,7 @@ export default class Scene {
     }
 
     const result = vec3.create();
-    vec3.scale(result, ray.direction, length - Math.sqrt(rSq - dSq));
+    vec3.scale(result, transformedDirection, length - Math.sqrt(rSq - dSq));
     vec3.add(result, result, ray.origin);
     return result;
   }

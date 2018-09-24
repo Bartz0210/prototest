@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { css } from 'emotion';
-import Icon from './Icon';
+import * as React from "react";
+import { css } from "emotion";
+import Icon from "./Icon";
 
 const theme = {
   root: css`
@@ -13,7 +13,7 @@ const theme = {
     height: 56px;
     padding: auto 16px 0 16px;
 
-    background: #72C0A8;;
+    background: #72c0a8;
 
     color: #fff;
     font-weight: bold;
@@ -21,8 +21,8 @@ const theme = {
   caption: css`
     flex: 1;
     text-align: center;
-    
-    font-weight: normal; 
+
+    font-weight: normal;
     font-size: 18px;
   `,
   percent: css`
@@ -30,7 +30,7 @@ const theme = {
     display: inline;
     align-items: center;
     font-size: 15px;
-    font-weight: 600;   
+    font-weight: 600;
   `,
   back: css`
     cursor: pointer;
@@ -46,7 +46,7 @@ const theme = {
   display: row
   align-items: center;
   transform: rotateZ(-90deg);
-`,
+`
 };
 
 export interface Props {
@@ -63,9 +63,12 @@ export default function Header({ children }: Props) {
         onClick={() => window.history.back()}
       />
       <div className={theme.caption}>{children}</div>
-      <div className={theme.percent}> 97% 
-      </div>
-      <Icon className={theme.battery} name="battery_charging_full" size="medium" />    
+      <div className={theme.percent}> 97%</div>
+      <Icon
+        className={theme.battery}
+        name="battery_charging_full"
+        size="medium"
+      />
     </div>
   );
 }
