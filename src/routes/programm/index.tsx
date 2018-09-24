@@ -176,42 +176,42 @@ class Programm extends React.Component<
                 />
                 <path d="M18.44.06A18.52,18.52,0,0,0-.06,18.56v252a18.5,18.5,0,0,0,37,0v-252A18.52,18.52,0,0,0,18.44.06Zm17.5,270.5a17.5,17.5,0,0,1-35,0v-252a17.5,17.5,0,1,1,35,0Z" />
                 <rect
-                  fill={props.cursor.isAtLead5 ? "#72C0A8" : "#3d3d3d"}
+                  fill={props.leads.leads["5"] ? "#72C0A8" : "#3d3d3d"}
                   x="-0.06"
                   y="36.62"
                   width="37"
                   height="36"
                 />
                 <rect
-                  fill={props.cursor.isAtLead3 ? "#72C0A8" : "#3d3d3d"}
+                  fill={props.leads.leads["3"] ? "#72C0A8" : "#3d3d3d"}
                   x="-0.06"
                   y="108.63"
                   width="12.5"
                   height="36"
                 />
                 <rect
-                  fill={props.cursor.isAtLead4 ? "#72C0A8" : "#3d3d3d"}
+                  fill={props.leads.leads["4"] ? "#72C0A8" : "#3d3d3d"}
                   x="24.43"
                   y="108.63"
                   width="12.5"
                   height="36"
                 />
                 <rect
-                  fill={props.cursor.isAtLead1 ? "#72C0A8" : "#3d3d3d"}
+                  fill={props.leads.leads["1"] ? "#72C0A8" : "#3d3d3d"}
                   x="-0.06"
                   y="180.63"
                   width="12.5"
                   height="36"
                 />
                 <rect
-                  fill={props.cursor.isAtLead2 ? "#72C0A8" : "#3d3d3d"}
+                  fill={props.leads.leads["2"] ? "#72C0A8" : "#3d3d3d"}
                   x="24.43"
                   y="180.63"
                   width="12.5"
                   height="36"
                 />
                 <path
-                  fill={props.cursor.isAtLead0 ? "#72C0A8" : "#3d3d3d"}
+                  fill={props.leads.leads["0"] ? "#72C0A8" : "#3d3d3d"}
                   d="M.4,252.63h36a.47.47,0,0,1,.47.47v17.5A18.47,18.47,0,0,1,18.4,289.06h0A18.47,18.47,0,0,1-.06,270.6v-17.5a.47.47,0,0,1,.47-.47Z"
                 />
               </svg>
@@ -224,7 +224,7 @@ class Programm extends React.Component<
               <div style={{ float: "right", marginRight: 30 }}>
                 <ControlItemCheck
                   label="Lead 5"
-                  checked={props.cursor.isAtLead5}
+                  checked={props.leads.leads["5"]}
                   onChange={props.toggleLead5}
                 />
               </div>
@@ -240,7 +240,7 @@ class Programm extends React.Component<
               <div style={{ float: "right", marginRight: 30 }}>
                 <ControlItemCheck
                   label="Lead 3"
-                  checked={props.cursor.isAtLead3}
+                  checked={props.leads.leads["3"]}
                   onChange={props.toggleLead3}
                 />
               </div>
@@ -251,7 +251,7 @@ class Programm extends React.Component<
               <div style={{ float: "left", marginLeft: 30 }}>
                 <ControlItemCheck
                   label="Lead 4"
-                  checked={props.cursor.isAtLead4}
+                  checked={props.leads.leads["4"]}
                   onChange={props.toggleLead4}
                 />
               </div>
@@ -264,7 +264,7 @@ class Programm extends React.Component<
               <div style={{ float: "right", marginRight: 30 }}>
                 <ControlItemCheck
                   label="Lead 1"
-                  checked={props.cursor.isAtLead1}
+                  checked={props.leads.leads["1"]}
                   onChange={props.toggleLead1}
                 />
               </div>
@@ -275,7 +275,7 @@ class Programm extends React.Component<
               <div style={{ float: "left", marginLeft: 30 }}>
                 <ControlItemCheck
                   label="Lead 2"
-                  checked={props.cursor.isAtLead2}
+                  checked={props.leads.leads["2"]}
                   onChange={props.toggleLead2}
                 />
               </div>
@@ -288,7 +288,7 @@ class Programm extends React.Component<
               <div style={{ float: "right", marginRight: 30 }}>
                 <ControlItemCheck
                   label="Lead 0"
-                  checked={props.cursor.isAtLead0}
+                  checked={props.leads.leads["0"]}
                   onChange={props.toggleLead0}
                 />
               </div>
