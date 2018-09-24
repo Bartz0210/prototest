@@ -23,7 +23,7 @@ import scene, {
   TransformCursorZ
 } from "../../store/scene";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
-import { CursorState } from "../../renderer/Scene";
+import { CursorState, LeadState } from "../../renderer/Scene";
 import { Sidebar } from "../../components/Sidebar";
 import SidebarItem from "../../components/SidebarItem";
 import { ControlElectrode } from "../../components/ControlElectrode";
@@ -75,6 +75,7 @@ interface OwnProps {}
 
 interface StateProps {
   cursor: CursorState;
+  leads: LeadState;
 }
 
 interface DispatchProps {
@@ -332,7 +333,8 @@ const mapStateToProps: MapStateToProps<StateProps, OwnProps, RootState> = (
   props
 ) => {
   return {
-    cursor: state.scene.cursor
+    cursor: state.scene.cursor,
+    leads: state.scene.leads
   };
 };
 

@@ -20,16 +20,20 @@ export interface CursorState {
 
   isOn: boolean;
 
-  //ring1
-  isAtLead0: boolean;
-  //ring2
-  isAtLead1: boolean;
-  isAtLead2: boolean;
-  //ring3
-  isAtLead3: boolean;
-  isAtLead4: boolean;
-  //ring4
-  isAtLead5: boolean;
+  // //ring1
+  // isAtLead0: boolean;
+  // //ring2
+  // isAtLead1: boolean;
+  // isAtLead2: boolean;
+  // //ring3
+  // isAtLead3: boolean;
+  // isAtLead4: boolean;
+  // //ring4
+  // isAtLead5: boolean;
+}
+
+export interface LeadState {
+  leads: [boolean, boolean, boolean, boolean, boolean, boolean];
 }
 
 export interface SpotState extends CursorState {
@@ -39,6 +43,7 @@ export interface SpotState extends CursorState {
 export interface SceneData {
   cursor: CursorState;
   spots: Array<SpotState>;
+  leads: LeadState;
 }
 
 export interface Plane {
@@ -55,14 +60,18 @@ export default class Scene {
     scaleY: 1,
     scaleZ: 1,
 
-    isOn: true,
+    isOn: true
 
-    isAtLead0: false,
-    isAtLead1: false,
-    isAtLead2: false,
-    isAtLead3: false,
-    isAtLead4: false,
-    isAtLead5: false
+    // isAtLead0: false,
+    // isAtLead1: false,
+    // isAtLead2: false,
+    // isAtLead3: false,
+    // isAtLead4: false,
+    // isAtLead5: false
+  };
+
+  leads: LeadState = {
+    leads: [false, false, false, false, false, false]
   };
 
   readonly capsule: CapsuleMesh = new CapsuleMesh(this);
@@ -93,286 +102,286 @@ export default class Scene {
     if (!isReady) return;
 
     this.cursor = data.cursor;
-    const {
-      isAtLead0,
-      isAtLead1,
-      isAtLead2,
-      isAtLead3,
-      isAtLead4,
-      isAtLead5,
-      position,
-      radius,
-      scaleX,
-      scaleY
-    } = this.cursor;
+    // const {
+    //   // isAtLead0,
+    //   // isAtLead1,
+    //   // isAtLead2,
+    //   // isAtLead3,
+    //   // isAtLead4,
+    //   // isAtLead5,
+    //   position,
+    //   radius,
+    //   scaleX,
+    //   scaleY
+    // } = this.cursor;
 
-    //1,2,3,4
-    if (
-      !isAtLead0 &&
-      isAtLead1 &&
-      isAtLead2 &&
-      isAtLead3 &&
-      isAtLead4 &&
-      !isAtLead5
-    ) {
-      //data.cursor.position = [0, 0.625, position["2"]];
-      fresnel.setTransform(
-        gl,
-        (this.cursor.position = [0, 0.625, position["2"]]),
-        (this.cursor.scaleX = 2),
-        (this.cursor.scaleY = 2),
-        (this.cursor.scaleZ = 1)
-      );
-    }
+    // //1,2,3,4
+    // if (
+    //   !isAtLead0 &&
+    //   isAtLead1 &&
+    //   isAtLead2 &&
+    //   isAtLead3 &&
+    //   isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   //data.cursor.position = [0, 0.625, position["2"]];
+    //   fresnel.setTransform(
+    //     gl,
+    //     (this.cursor.position = [0, 0.625, position["2"]]),
+    //     (this.cursor.scaleX = 2),
+    //     (this.cursor.scaleY = 2),
+    //     (this.cursor.scaleZ = 1)
+    //   );
+    // }
 
-    //0,1,2
-    if (
-      isAtLead0 &&
-      isAtLead1 &&
-      isAtLead2 &&
-      !isAtLead3 &&
-      !isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [0, 3.125, position["2"]];
-      // data.cursor.radius = 2;
-    }
-    //5,3,4
-    if (
-      !isAtLead0 &&
-      !isAtLead1 &&
-      !isAtLead2 &&
-      isAtLead3 &&
-      isAtLead4 &&
-      isAtLead5
-    ) {
-      data.cursor.position = [0, -4.625, position["2"]];
-      // data.cursor.radius = 2;
-    }
-    //1,2,4
-    if (
-      !isAtLead0 &&
-      isAtLead1 &&
-      isAtLead2 &&
-      !isAtLead3 &&
-      isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [0.25 + radius * scaleX, 1.25, position["2"]];
-      // data.cursor.radius=1;
-      //data.cursor.scaleY=2;
-    }
-    //2,3,4
-    if (
-      !isAtLead0 &&
-      !isAtLead1 &&
-      isAtLead2 &&
-      isAtLead3 &&
-      isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [0.25 + radius * scaleX, 0, position["2"]];
-      //data.cursor.radius=1;
-      //data.cursor.scaleY=2;
-    }
-    //1,3,4
-    if (
-      !isAtLead0 &&
-      isAtLead1 &&
-      !isAtLead2 &&
-      isAtLead3 &&
-      isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [-0.25 - radius * scaleX, 0, position["2"]];
-      //data.cursor.radius=1;
-      // data.cursor.scaleY=2;
-    }
-    //1,2,3
-    if (
-      !isAtLead0 &&
-      isAtLead1 &&
-      isAtLead2 &&
-      isAtLead3 &&
-      !isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [-0.25 - radius * scaleX, 1.25, position["2"]];
-      //data.cursor.radius=1;
-      //data.cursor.scaleY=2;
-    }
+    // //0,1,2
+    // if (
+    //   isAtLead0 &&
+    //   isAtLead1 &&
+    //   isAtLead2 &&
+    //   !isAtLead3 &&
+    //   !isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [0, 3.125, position["2"]];
+    //   // data.cursor.radius = 2;
+    // }
+    // //5,3,4
+    // if (
+    //   !isAtLead0 &&
+    //   !isAtLead1 &&
+    //   !isAtLead2 &&
+    //   isAtLead3 &&
+    //   isAtLead4 &&
+    //   isAtLead5
+    // ) {
+    //   data.cursor.position = [0, -4.625, position["2"]];
+    //   // data.cursor.radius = 2;
+    // }
+    // //1,2,4
+    // if (
+    //   !isAtLead0 &&
+    //   isAtLead1 &&
+    //   isAtLead2 &&
+    //   !isAtLead3 &&
+    //   isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [0.25 + radius * scaleX, 1.25, position["2"]];
+    //   // data.cursor.radius=1;
+    //   //data.cursor.scaleY=2;
+    // }
+    // //2,3,4
+    // if (
+    //   !isAtLead0 &&
+    //   !isAtLead1 &&
+    //   isAtLead2 &&
+    //   isAtLead3 &&
+    //   isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [0.25 + radius * scaleX, 0, position["2"]];
+    //   //data.cursor.radius=1;
+    //   //data.cursor.scaleY=2;
+    // }
+    // //1,3,4
+    // if (
+    //   !isAtLead0 &&
+    //   isAtLead1 &&
+    //   !isAtLead2 &&
+    //   isAtLead3 &&
+    //   isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [-0.25 - radius * scaleX, 0, position["2"]];
+    //   //data.cursor.radius=1;
+    //   // data.cursor.scaleY=2;
+    // }
+    // //1,2,3
+    // if (
+    //   !isAtLead0 &&
+    //   isAtLead1 &&
+    //   isAtLead2 &&
+    //   isAtLead3 &&
+    //   !isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [-0.25 - radius * scaleX, 1.25, position["2"]];
+    //   //data.cursor.radius=1;
+    //   //data.cursor.scaleY=2;
+    // }
 
-    //1,2
-    if (
-      !isAtLead0 &&
-      isAtLead1 &&
-      isAtLead2 &&
-      !isAtLead3 &&
-      !isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [0, 1.875, position["2"]];
-      // data.cursor.radius=1;
-      //7data.cursor.scaleX=2;
-    }
-    //3,4
-    if (
-      !isAtLead0 &&
-      !isAtLead1 &&
-      !isAtLead2 &&
-      isAtLead3 &&
-      isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [0, -1.875, position["2"]];
-      //data.cursor.radius=1;
-      //data.cursor.scaleX=2;
-    }
-    //0,1
-    if (
-      isAtLead0 &&
-      isAtLead1 &&
-      !isAtLead2 &&
-      !isAtLead3 &&
-      !isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [-0.25 - radius * scaleX, 3.125, position["2"]];
-      //data.cursor.radius=1;
-      //data.cursor.scaleY=2;
-    }
-    //0,2
-    if (
-      isAtLead0 &&
-      !isAtLead1 &&
-      isAtLead2 &&
-      !isAtLead3 &&
-      !isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [0.25 + radius * scaleX, 3.125, position["2"]];
-      //data.cursor.radius=1;
-      //data.cursor.scaleY=2;
-    }
-    //5,3
-    if (
-      !isAtLead0 &&
-      !isAtLead1 &&
-      !isAtLead2 &&
-      isAtLead3 &&
-      !isAtLead4 &&
-      isAtLead5
-    ) {
-      data.cursor.position = [-0.25 - radius * scaleX, -1.875, position["2"]];
-      //  data.cursor.radius=1;
-      // data.cursor.scaleY=2;
-    }
-    //5,4
-    if (
-      !isAtLead0 &&
-      !isAtLead1 &&
-      !isAtLead2 &&
-      !isAtLead3 &&
-      isAtLead4 &&
-      isAtLead5
-    ) {
-      data.cursor.position = [0.25 + radius * scaleX, -1.875, position["2"]];
-      //data.cursor.radius=1;
-      // data.cursor.scaleY=2;
-    }
-    //1,3
-    if (
-      !isAtLead0 &&
-      isAtLead1 &&
-      !isAtLead2 &&
-      isAtLead3 &&
-      !isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [0.5 + radius * scaleX, 0.625, position["2"]];
-      //data.cursor.radius=1;
-      // data.cursor.scaleY=2;
-    }
-    //1,4
-    if (
-      !isAtLead0 &&
-      isAtLead1 &&
-      !isAtLead2 &&
-      !isAtLead3 &&
-      isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [-0.5 - radius * scaleX, 0.625, position["2"]];
-      // data.cursor.radius=1;
-      //  data.cursor.scaleY=2;
-    }
+    // //1,2
+    // if (
+    //   !isAtLead0 &&
+    //   isAtLead1 &&
+    //   isAtLead2 &&
+    //   !isAtLead3 &&
+    //   !isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [0, 1.875, position["2"]];
+    //   // data.cursor.radius=1;
+    //   //7data.cursor.scaleX=2;
+    // }
+    // //3,4
+    // if (
+    //   !isAtLead0 &&
+    //   !isAtLead1 &&
+    //   !isAtLead2 &&
+    //   isAtLead3 &&
+    //   isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [0, -1.875, position["2"]];
+    //   //data.cursor.radius=1;
+    //   //data.cursor.scaleX=2;
+    // }
+    // //0,1
+    // if (
+    //   isAtLead0 &&
+    //   isAtLead1 &&
+    //   !isAtLead2 &&
+    //   !isAtLead3 &&
+    //   !isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [-0.25 - radius * scaleX, 3.125, position["2"]];
+    //   //data.cursor.radius=1;
+    //   //data.cursor.scaleY=2;
+    // }
+    // //0,2
+    // if (
+    //   isAtLead0 &&
+    //   !isAtLead1 &&
+    //   isAtLead2 &&
+    //   !isAtLead3 &&
+    //   !isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [0.25 + radius * scaleX, 3.125, position["2"]];
+    //   //data.cursor.radius=1;
+    //   //data.cursor.scaleY=2;
+    // }
+    // //5,3
+    // if (
+    //   !isAtLead0 &&
+    //   !isAtLead1 &&
+    //   !isAtLead2 &&
+    //   isAtLead3 &&
+    //   !isAtLead4 &&
+    //   isAtLead5
+    // ) {
+    //   data.cursor.position = [-0.25 - radius * scaleX, -1.875, position["2"]];
+    //   //  data.cursor.radius=1;
+    //   // data.cursor.scaleY=2;
+    // }
+    // //5,4
+    // if (
+    //   !isAtLead0 &&
+    //   !isAtLead1 &&
+    //   !isAtLead2 &&
+    //   !isAtLead3 &&
+    //   isAtLead4 &&
+    //   isAtLead5
+    // ) {
+    //   data.cursor.position = [0.25 + radius * scaleX, -1.875, position["2"]];
+    //   //data.cursor.radius=1;
+    //   // data.cursor.scaleY=2;
+    // }
+    // //1,3
+    // if (
+    //   !isAtLead0 &&
+    //   isAtLead1 &&
+    //   !isAtLead2 &&
+    //   isAtLead3 &&
+    //   !isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [0.5 + radius * scaleX, 0.625, position["2"]];
+    //   //data.cursor.radius=1;
+    //   // data.cursor.scaleY=2;
+    // }
+    // //1,4
+    // if (
+    //   !isAtLead0 &&
+    //   isAtLead1 &&
+    //   !isAtLead2 &&
+    //   !isAtLead3 &&
+    //   isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [-0.5 - radius * scaleX, 0.625, position["2"]];
+    //   // data.cursor.radius=1;
+    //   //  data.cursor.scaleY=2;
+    // }
 
-    //0
-    if (
-      isAtLead0 &&
-      !isAtLead1 &&
-      !isAtLead2 &&
-      !isAtLead3 &&
-      !isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [0, 4.625, 0];
-    }
-    //1
-    if (
-      !isAtLead0 &&
-      isAtLead1 &&
-      !isAtLead2 &&
-      !isAtLead3 &&
-      !isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [-0.5 - radius * scaleX, 1.125, position["2"]];
-    }
-    //2
-    if (
-      !isAtLead0 &&
-      !isAtLead1 &&
-      isAtLead2 &&
-      !isAtLead3 &&
-      !isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [0.5 + radius * scaleX, 1.125, position["2"]];
-    }
-    //3
-    if (
-      !isAtLead0 &&
-      !isAtLead1 &&
-      !isAtLead2 &&
-      isAtLead3 &&
-      !isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [-0.5 - radius * scaleX, -0.625, position["2"]];
-    }
-    //4
-    if (
-      !isAtLead0 &&
-      !isAtLead1 &&
-      !isAtLead2 &&
-      !isAtLead3 &&
-      isAtLead4 &&
-      !isAtLead5
-    ) {
-      data.cursor.position = [0.5 + radius * scaleX, -0.625, position["2"]];
-    }
-    //5
-    if (
-      !isAtLead0 &&
-      !isAtLead1 &&
-      !isAtLead2 &&
-      !isAtLead3 &&
-      !isAtLead4 &&
-      isAtLead5
-    ) {
-      data.cursor.position = [0, -3.125, 0];
-    }
+    // //0
+    // if (
+    //   isAtLead0 &&
+    //   !isAtLead1 &&
+    //   !isAtLead2 &&
+    //   !isAtLead3 &&
+    //   !isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [0, 4.625, 0];
+    // }
+    // //1
+    // if (
+    //   !isAtLead0 &&
+    //   isAtLead1 &&
+    //   !isAtLead2 &&
+    //   !isAtLead3 &&
+    //   !isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [-0.5 - radius * scaleX, 1.125, position["2"]];
+    // }
+    // //2
+    // if (
+    //   !isAtLead0 &&
+    //   !isAtLead1 &&
+    //   isAtLead2 &&
+    //   !isAtLead3 &&
+    //   !isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [0.5 + radius * scaleX, 1.125, position["2"]];
+    // }
+    // //3
+    // if (
+    //   !isAtLead0 &&
+    //   !isAtLead1 &&
+    //   !isAtLead2 &&
+    //   isAtLead3 &&
+    //   !isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [-0.5 - radius * scaleX, -0.625, position["2"]];
+    // }
+    // //4
+    // if (
+    //   !isAtLead0 &&
+    //   !isAtLead1 &&
+    //   !isAtLead2 &&
+    //   !isAtLead3 &&
+    //   isAtLead4 &&
+    //   !isAtLead5
+    // ) {
+    //   data.cursor.position = [0.5 + radius * scaleX, -0.625, position["2"]];
+    // }
+    // //5
+    // if (
+    //   !isAtLead0 &&
+    //   !isAtLead1 &&
+    //   !isAtLead2 &&
+    //   !isAtLead3 &&
+    //   !isAtLead4 &&
+    //   isAtLead5
+    // ) {
+    //   data.cursor.position = [0, -3.125, 0];
+    // }
 
     texture.begin(gl);
     capsule.render(gl, texture);
