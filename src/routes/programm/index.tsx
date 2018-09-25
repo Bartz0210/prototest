@@ -4,6 +4,7 @@ import Canvas from "../../components/Canvas";
 import Controlpanel from "../../components/Controlpanel";
 import ControlItem from "../../components/Controltem";
 import ControlItemCheck from "../../components/ControlItemCheck";
+import ControlItemSwitch from "../../components/ControlItemSwitch";
 import store, { RootState } from "../../store";
 import scene, {
   UpdateCursorRadius,
@@ -157,8 +158,8 @@ class Programm extends React.Component<
         <Controlpanel>
           {/*ON OFF!*/}
           <div style={{ margin: "10 0 0 20" }}>
-            <ControlItemCheck
-              label="ON/OFF"
+            <ControlItemSwitch
+              
               checked={props.cursor.isOn}
               onChange={props.toggleElectrode}
             />
