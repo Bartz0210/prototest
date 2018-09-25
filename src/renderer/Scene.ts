@@ -316,8 +316,6 @@ export default class Scene {
     //   //  data.cursor.scaleY=2;
     // }
 
-    
-
     texture.begin(gl);
     capsule.render(gl, texture);
 
@@ -388,23 +386,30 @@ export default class Scene {
       if (delta[0] > this.cursor.radius * this.cursor.scaleX + 0.5)
         delta[0] = this.cursor.radius * this.cursor.scaleX + 0.5;
       //y-axis
-      if (delta[1] < -this.cursor.radius - 5)
-        delta[1] = -this.cursor.radius - 5;
-      if (delta[1] > this.cursor.radius + 5) delta[1] = this.cursor.radius + 5;
+      if (delta[1] < -this.cursor.radius * this.cursor.scaleY - 3.75)
+        delta[1] = -this.cursor.radius * this.cursor.scaleY - 3.75;
+      if (delta[1] > this.cursor.radius * this.cursor.scaleY + 5)
+        delta[1] = this.cursor.radius * this.cursor.scaleY + 5;
       //z-axis
-      if (delta[2] < -this.cursor.radius - 0.5)
-        delta[2] = -this.cursor.radius - 0.5;
-      if (delta[2] > this.cursor.radius + 0.5)
-        delta[2] = this.cursor.radius + 0.5;
+      if (delta[2] < -this.cursor.radius * this.cursor.scaleZ - 0.5)
+        delta[2] = -this.cursor.radius * this.cursor.scaleZ - 0.5;
+      if (delta[2] > this.cursor.radius * this.cursor.scaleZ + 0.5)
+        delta[2] = this.cursor.radius * this.cursor.scaleZ + 0.5;
 
       //Orbit
 
       let angle = Math.atan2(delta[2], delta[0]);
-      if (delta[0] < -this.cursor.radius || delta[0] > this.cursor.radius) {
-        delta[0] = this.cursor.radius * Math.cos(angle);
+      if (
+        delta[0] < -this.cursor.radius * this.cursor.scaleX ||
+        delta[0] > this.cursor.radius * this.cursor.scaleX
+      ) {
+        delta[0] = this.cursor.radius * this.cursor.scaleX * Math.cos(angle);
       }
-      if (delta[2] < -this.cursor.radius || delta[2] > this.cursor.radius) {
-        delta[2] = this.cursor.radius * Math.sin(angle);
+      if (
+        delta[2] < -this.cursor.radius * this.cursor.scaleZ ||
+        delta[2] > this.cursor.radius * this.cursor.scaleZ
+      ) {
+        delta[2] = this.cursor.radius * this.cursor.scaleZ * Math.sin(angle);
       }
 
       this.renderer.onCursorPosition(delta[0], delta[1], delta[2]);
@@ -445,18 +450,57 @@ export default class Scene {
     return null;
   }
 
+  // intersectsSphere(ray: Ray, cursor: CursorState): vec3 | null {
+  //   const tmp = vec3.create();
+  //   vec3.subtract(tmp, cursor.position, ray.origin);
+
+  //   const length = vec3.dot(ray.direction, tmp);
+  //   if (length < 0) {
+  //     return null;
+  //   }
+
+  //   vec3.scaleAndAdd(tmp, ray.origin, ray.direction, length);
+  //   const dSq = vec3.squaredDistance(cursor.position, tmp);
+  //   const rSq = cursor.radius * cursor.radius;
+  //   if (dSq > rSq) {
+  //     return null;
+  //   }
+
+  //   const result = vec3.create();
+  //   vec3.scale(result, ray.direction, length - Math.sqrt(rSq - dSq));
+  //   vec3.add(result, result, ray.origin);
+  //   return result;
+  // }
+
   intersectsSphere(ray: Ray, cursor: CursorState): vec3 | null {
+    const transform = mat4.create();
+    mat4.scale(transform, transform, [
+      cursor.scaleX,
+      cursor.scaleY,
+      cursor.scaleZ
+    ]);
+
+    const transformI = mat4.create();
+    mat4.invert(transformI, transform);
+
+    //apply inverse to ray.origin and ray.direction
+    const rayOrigin = vec3.create();
+    const rayDirection = vec3.create();
+
+    vec3.transformMat4(rayOrigin, ray.origin, transformI);
+    vec3.transformMat4(rayDirection, ray.direction, transformI);
+    vec3.normalize(rayDirection, rayDirection);
+    //von hier aus geht es dann mit dem normalen Hittest weiter
+
     const tmp = vec3.create();
-    vec3.subtract(tmp, cursor.position, ray.origin);
+    vec3.subtract(tmp, cursor.position, rayOrigin);
 
- 
-
-    const length = vec3.dot(ray.direction, tmp);
+    const length = vec3.dot(rayDirection, tmp);
     if (length < 0) {
       return null;
     }
 
-    vec3.scaleAndAdd(tmp, ray.origin, ray.direction, length);
+    vec3.scaleAndAdd(tmp, rayOrigin, rayDirection, length);
     const dSq = vec3.squaredDistance(cursor.position, tmp);
     const rSq = cursor.radius * cursor.radius;
     if (dSq > rSq) {
@@ -464,7 +508,7 @@ export default class Scene {
     }
 
     const result = vec3.create();
-    vec3.scale(result, ray.direction, length - Math.sqrt(rSq - dSq));
+    vec3.scale(result, rayDirection, length - Math.sqrt(rSq - dSq));
     vec3.add(result, result, ray.origin);
     return result;
   }

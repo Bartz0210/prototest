@@ -57,15 +57,17 @@ export default class Reports extends React.Component<State> {
             borderBottomRightRadius: "4px",
             border: "none",
             background: "#72C0A8",
-            width: "32px",
-            height: "112px",
+            width: "56px",
+            height: "56px",
             position: "fixed",
+            top: 0,
             left: 0,
-            boxShadow: "0px 2px 2px 1px rgba(0, 0, 0, 0.2)",
-            transform: this.state.menuVisible
-              ? "translateX(300px)"
-              : "translateX(0)",
-            transition: "300ms ease-in"
+            // boxShadow: "0px 2px 2px 1px rgba(0, 0, 0, 0.2)",
+            // transform: this.state.menuVisible
+            //   ? "translateX(300px)"
+            //   : "translateX(0)",
+            // transition: "300ms ease-in"
+            color: "#fff"
           }}
           onClick={this.handleMenuToggle}
         >

@@ -23,7 +23,7 @@ const theme = {
     display: flex;
     flex-direction: column;
 
-    background: #fff;
+    background: #dadada;
   `,
 
   menu_header: css`

@@ -27,6 +27,7 @@ import { CursorState, LeadState } from "../../renderer/Scene";
 import { Sidebar } from "../../components/Sidebar";
 import SidebarItem from "../../components/SidebarItem";
 import { ControlElectrode } from "../../components/ControlElectrode";
+import Icon from "../../components/Icon";
 
 const theme = {
   root: css`
@@ -79,6 +80,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
+  updateCursorPosition(x: number, y: number, z: number): void;
   updateCursorRadius(radius: number): void;
   updateCursorPositionX(x: number): void;
   updateCursorPositionY(y: number): void;
@@ -136,19 +138,20 @@ class Programm extends React.Component<
             borderBottomRightRadius: "4px",
             border: "none",
             background: "#72C0A8",
-            width: "32px",
-            height: "112px",
+            width: "56",
+            height: "56px",
             position: "fixed",
+            top: 0,
             left: 0,
-            boxShadow: "0px 2px 2px 1px rgba(0, 0, 0, 0.2)",
-            transform: this.state.menuVisible
-              ? "translateX(300px)"
-              : "translateX(0)",
-            transition: "300ms ease-in"
+
+            color: "#fff"
           }}
           onClick={this.handleMenuToggle}
         >
-          I I
+          <Icon
+            name={this.state.menuVisible ? "close" : "menu"}
+            size={"medium"}
+          />
         </button>
 
         <Controlpanel>
@@ -339,6 +342,13 @@ const mapStateToProps: MapStateToProps<StateProps, OwnProps, RootState> = (
 };
 
 //Action creators
+function updateCursorPosition(
+  x: number,
+  y: number,
+  z: number
+): UpdateCursorPosition {
+  return { type: "updateCursorPosition", x, y, z };
+}
 function updateCursorRadius(radius: number): UpdateCursorRadius {
   return { type: "updateCursorRadius", radius };
 }
@@ -386,6 +396,7 @@ function toggleLead5(isAtLead5: boolean): ToggleLead5 {
 }
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {
+  updateCursorPosition,
   updateCursorRadius,
   updateCursorPositionX,
   updateCursorPositionY,

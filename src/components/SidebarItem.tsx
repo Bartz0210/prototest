@@ -11,11 +11,11 @@ const theme = {
     flex-flow: row;
     align-items: left;
     justify-content: stretch;
-    height: 40px;
+    height: 36px;
     width: auto;
 
-    background: #f1f9ff;
-    border-bottom: 1px solid #2699fb;
+    background: #fff;
+    border-bottom: 1px solid #58aa92;
 
     text-decoration: none;
   `,
@@ -26,7 +26,7 @@ const theme = {
   item_text: css`
     font-size: 16px;
     font-weight: 200;
-    color: #2699fb;
+    color: #58aa92;
   `
 };
 

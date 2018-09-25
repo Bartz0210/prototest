@@ -13,7 +13,6 @@ const theme = {
     height: 36px;
     width: auto;
 
-    
     text-decoration: none;
   `,
   children: css`
@@ -25,6 +24,7 @@ export interface Props {
   label: string;
   style?: string;
   checked: boolean;
+
   onChange(checked: boolean): void;
 }
 
@@ -35,7 +35,6 @@ export interface State {
 export default function ControlItem({ label, checked, onChange }: Props) {
   return (
     <div className={theme.root}>
-      
       <Toggle className={theme.children} onChange={onChange} isOn={checked} />
       <label className={theme.children} htmlFor="control">
         {label}
