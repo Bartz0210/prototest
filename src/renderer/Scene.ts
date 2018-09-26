@@ -5,6 +5,7 @@ import Renderer, { Ray } from ".";
 import TextureMaterial from "./materials/TextureMaterial";
 import { vec3, mat4 } from "gl-matrix";
 import { Pointer } from "./Events";
+import _ from "underscore";
 
 export type Color = [number, number, number];
 export type Position = [number, number, number];
@@ -102,219 +103,291 @@ export default class Scene {
     if (!isReady) return;
 
     this.cursor = data.cursor;
-    // const {
-    //   // isAtLead0,
-    //   // isAtLead1,
-    //   // isAtLead2,
-    //   // isAtLead3,
-    //   // isAtLead4,
-    //   // isAtLead5,
-    //   position,
-    //   radius,
-    //   scaleX,
-    //   scaleY
-    // } = this.cursor;
+    this.leads = data.leads;
 
-    // //1,2,3,4
-    // if (
-    //   !isAtLead0 &&
-    //   isAtLead1 &&
-    //   isAtLead2 &&
-    //   isAtLead3 &&
-    //   isAtLead4 &&
-    //   !isAtLead5
-    // ) {
-    //   //data.cursor.position = [0, 0.625, position["2"]];
-    //   fresnel.setTransform(
-    //     gl,
-    //     (this.cursor.position = [0, 0.625, position["2"]]),
-    //     (this.cursor.scaleX = 2),
-    //     (this.cursor.scaleY = 2),
-    //     (this.cursor.scaleZ = 1)
-    //   );
-    // }
+    const { leads } = this.leads;
 
-    // //0,1,2
-    // if (
-    //   isAtLead0 &&
-    //   isAtLead1 &&
-    //   isAtLead2 &&
-    //   !isAtLead3 &&
-    //   !isAtLead4 &&
-    //   !isAtLead5
-    // ) {
-    //   data.cursor.position = [0, 3.125, position["2"]];
-    //   // data.cursor.radius = 2;
-    // }
-    // //5,3,4
-    // if (
-    //   !isAtLead0 &&
-    //   !isAtLead1 &&
-    //   !isAtLead2 &&
-    //   isAtLead3 &&
-    //   isAtLead4 &&
-    //   isAtLead5
-    // ) {
-    //   data.cursor.position = [0, -4.625, position["2"]];
-    //   // data.cursor.radius = 2;
-    // }
-    // //1,2,4
-    // if (
-    //   !isAtLead0 &&
-    //   isAtLead1 &&
-    //   isAtLead2 &&
-    //   !isAtLead3 &&
-    //   isAtLead4 &&
-    //   !isAtLead5
-    // ) {
-    //   data.cursor.position = [0.25 + radius * scaleX, 1.25, position["2"]];
-    //   // data.cursor.radius=1;
-    //   //data.cursor.scaleY=2;
-    // }
-    // //2,3,4
-    // if (
-    //   !isAtLead0 &&
-    //   !isAtLead1 &&
-    //   isAtLead2 &&
-    //   isAtLead3 &&
-    //   isAtLead4 &&
-    //   !isAtLead5
-    // ) {
-    //   data.cursor.position = [0.25 + radius * scaleX, 0, position["2"]];
-    //   //data.cursor.radius=1;
-    //   //data.cursor.scaleY=2;
-    // }
-    // //1,3,4
-    // if (
-    //   !isAtLead0 &&
-    //   isAtLead1 &&
-    //   !isAtLead2 &&
-    //   isAtLead3 &&
-    //   isAtLead4 &&
-    //   !isAtLead5
-    // ) {
-    //   data.cursor.position = [-0.25 - radius * scaleX, 0, position["2"]];
-    //   //data.cursor.radius=1;
-    //   // data.cursor.scaleY=2;
-    // }
-    // //1,2,3
-    // if (
-    //   !isAtLead0 &&
-    //   isAtLead1 &&
-    //   isAtLead2 &&
-    //   isAtLead3 &&
-    //   !isAtLead4 &&
-    //   !isAtLead5
-    // ) {
-    //   data.cursor.position = [-0.25 - radius * scaleX, 1.25, position["2"]];
-    //   //data.cursor.radius=1;
-    //   //data.cursor.scaleY=2;
-    // }
+    //1,2,3,4
+    if (_.isEqual(leads, [false, true, true, true, true, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [0, 0.625, this.cursor.position["2"]]),
+        (this.cursor.scaleX = 2),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 1)
+      );
+    }
 
-    // //1,2
-    // if (
-    //   !isAtLead0 &&
-    //   isAtLead1 &&
-    //   isAtLead2 &&
-    //   !isAtLead3 &&
-    //   !isAtLead4 &&
-    //   !isAtLead5
-    // ) {
-    //   data.cursor.position = [0, 1.875, position["2"]];
-    //   // data.cursor.radius=1;
-    //   //7data.cursor.scaleX=2;
-    // }
-    // //3,4
-    // if (
-    //   !isAtLead0 &&
-    //   !isAtLead1 &&
-    //   !isAtLead2 &&
-    //   isAtLead3 &&
-    //   isAtLead4 &&
-    //   !isAtLead5
-    // ) {
-    //   data.cursor.position = [0, -1.875, position["2"]];
-    //   //data.cursor.radius=1;
-    //   //data.cursor.scaleX=2;
-    // }
-    // //0,1
-    // if (
-    //   isAtLead0 &&
-    //   isAtLead1 &&
-    //   !isAtLead2 &&
-    //   !isAtLead3 &&
-    //   !isAtLead4 &&
-    //   !isAtLead5
-    // ) {
-    //   data.cursor.position = [-0.25 - radius * scaleX, 3.125, position["2"]];
-    //   //data.cursor.radius=1;
-    //   //data.cursor.scaleY=2;
-    // }
-    // //0,2
-    // if (
-    //   isAtLead0 &&
-    //   !isAtLead1 &&
-    //   isAtLead2 &&
-    //   !isAtLead3 &&
-    //   !isAtLead4 &&
-    //   !isAtLead5
-    // ) {
-    //   data.cursor.position = [0.25 + radius * scaleX, 3.125, position["2"]];
-    //   //data.cursor.radius=1;
-    //   //data.cursor.scaleY=2;
-    // }
-    // //5,3
-    // if (
-    //   !isAtLead0 &&
-    //   !isAtLead1 &&
-    //   !isAtLead2 &&
-    //   isAtLead3 &&
-    //   !isAtLead4 &&
-    //   isAtLead5
-    // ) {
-    //   data.cursor.position = [-0.25 - radius * scaleX, -1.875, position["2"]];
-    //   //  data.cursor.radius=1;
-    //   // data.cursor.scaleY=2;
-    // }
-    // //5,4
-    // if (
-    //   !isAtLead0 &&
-    //   !isAtLead1 &&
-    //   !isAtLead2 &&
-    //   !isAtLead3 &&
-    //   isAtLead4 &&
-    //   isAtLead5
-    // ) {
-    //   data.cursor.position = [0.25 + radius * scaleX, -1.875, position["2"]];
-    //   //data.cursor.radius=1;
-    //   // data.cursor.scaleY=2;
-    // }
-    // //1,3
-    // if (
-    //   !isAtLead0 &&
-    //   isAtLead1 &&
-    //   !isAtLead2 &&
-    //   isAtLead3 &&
-    //   !isAtLead4 &&
-    //   !isAtLead5
-    // ) {
-    //   data.cursor.position = [0.5 + radius * scaleX, 0.625, position["2"]];
-    //   //data.cursor.radius=1;
-    //   // data.cursor.scaleY=2;
-    // }
-    // //1,4
-    // if (
-    //   !isAtLead0 &&
-    //   isAtLead1 &&
-    //   !isAtLead2 &&
-    //   !isAtLead3 &&
-    //   isAtLead4 &&
-    //   !isAtLead5
-    // ) {
-    //   data.cursor.position = [-0.5 - radius * scaleX, 0.625, position["2"]];
-    //   // data.cursor.radius=1;
-    //   //  data.cursor.scaleY=2;
-    // }
+    //0,1,2
+    if (_.isEqual(leads, [true, true, true, false, false, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [0, 3.125, this.cursor.position["2"]]),
+        (this.cursor.scaleX = 2),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 2)
+      );
+    }
+
+    //3,4,5
+    if (_.isEqual(leads, [false, false, false, true, true, true])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [0, -4.625, this.cursor.position["2"]]),
+        (this.cursor.scaleX = 2),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 2)
+      );
+    }
+
+    //1,2,4
+    if (_.isEqual(leads, [false, true, true, false, true, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          0.25 + this.cursor.radius * this.cursor.scaleX,
+          1.25,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+
+    //2,3,4
+    if (_.isEqual(leads, [false, false, true, true, true, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          0.25 + this.cursor.radius * this.cursor.scaleX,
+          0,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+
+    //1,3,4
+    if (_.isEqual(leads, [false, true, false, true, true, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          -0.25 - this.cursor.radius * this.cursor.scaleX,
+          0,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+
+    //1,2,3
+    if (_.isEqual(leads, [false, true, true, true, false, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          -0.25 - this.cursor.radius * this.cursor.scaleX,
+          1.25,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+
+    //1,2
+    if (_.isEqual(leads, [false, true, true, false, false, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [0, 1.875, this.cursor.position["2"]]),
+        (this.cursor.scaleX = 2),
+        (this.cursor.scaleY = 1),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+
+    //3,4
+    if (_.isEqual(leads, [false, false, false, true, true, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [0, -1.875, this.cursor.position["2"]]),
+        (this.cursor.scaleX = 2),
+        (this.cursor.scaleY = 1),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+
+    //0,1
+    if (_.isEqual(leads, [true, true, false, false, false, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          -0.25 - this.cursor.radius * this.cursor.scaleX,
+          3.125,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+
+    //0,2
+    if (_.isEqual(leads, [true, false, true, false, false, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          0.25 + this.cursor.radius * this.cursor.scaleX,
+          3.125,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+
+    //3,5
+    if (_.isEqual(leads, [false, false, false, true, false, true])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          -0.25 - this.cursor.radius * this.cursor.scaleX,
+          -1.875,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+
+    //4,5
+    if (_.isEqual(leads, [false, false, false, false, true, true])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          0.25 + this.cursor.radius * this.cursor.scaleX,
+          -1.875,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+
+    //1,3
+    if (_.isEqual(leads, [false, true, false, true, false, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          0.5 + this.cursor.radius * this.cursor.scaleX,
+          0.625,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+
+    //1,4
+    if (_.isEqual(leads, [false, true, false, false, true, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          -0.5 - this.cursor.radius * this.cursor.scaleX,
+          0.625,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 2),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+
+    //0
+    if (_.isEqual(leads, [true, false, false, false, false, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [0, 4.625, 0]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 1),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+    //1
+    if (_.isEqual(leads, [false, true, false, false, false, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          -0.5 - this.cursor.radius * this.cursor.scaleX,
+          1.125,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 1),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+    //2
+    if (_.isEqual(leads, [false, false, true, false, false, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          0.5 + this.cursor.radius * this.cursor.scaleX,
+          1.125,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 1),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+    //3
+    if (_.isEqual(leads, [false, false, false, true, false, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          -0.5 - this.cursor.radius * this.cursor.scaleX,
+          -0.625,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 1),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+    //4
+    if (_.isEqual(leads, [false, false, false, false, true, false])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [
+          0.5 + this.cursor.radius * this.cursor.scaleX,
+          -0.625,
+          this.cursor.position["2"]
+        ]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 1),
+        (this.cursor.scaleZ = 1)
+      );
+    }
+    //5
+    if (_.isEqual(leads, [false, false, false, false, false, true])) {
+      fresnel.setTransform(
+        gl,
+        (this.cursor.position = [0, -3.125, 0]),
+        (this.cursor.scaleX = 1),
+        (this.cursor.scaleY = 1),
+        (this.cursor.scaleZ = 1)
+      );
+    }
 
     texture.begin(gl);
     capsule.render(gl, texture);
