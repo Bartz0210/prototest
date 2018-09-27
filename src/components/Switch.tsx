@@ -21,7 +21,7 @@ export default function Switch({ className, isOn, onChange }: Props) {
   return (
     <div
       style={{
-        height: 30,
+        height: 31,
         width: 56,
         borderRadius: 30,
         background: isOn ? "#72C0A8" : "#fff",
@@ -32,8 +32,8 @@ export default function Switch({ className, isOn, onChange }: Props) {
       <div
         style={{
           position: "relative",
-          top: -1,
-          left: isOn ? 26 : -1,
+          top: 0,
+          left: isOn ? 26 : 0,
           height: 27,
           width: 27,
           border: isOn ? "2px solid #72c0a8" : "2px solid #fff",
