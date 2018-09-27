@@ -1,8 +1,5 @@
 import * as React from "react";
 import { css } from "emotion";
-import { NavLink } from "react-router-dom";
-import Icon from "./Icon";
-import { bool } from "prop-types";
 
 const theme = {
   root: css`
