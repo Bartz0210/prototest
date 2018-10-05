@@ -18,7 +18,8 @@ function createScene(): SceneData {
       scaleX: 1,
       scaleY: 1,
       scaleZ: 1,
-      isOn: true
+      isOn: true,
+      frequency: 0
     });
   }
 
@@ -29,8 +30,9 @@ function createScene(): SceneData {
       scaleX: 2,
       scaleY: 2,
       scaleZ: 1,
-
-      isOn: true
+      color: [0, 0.5, 1.0],
+      isOn: true,
+      frequency: 60
     },
     spots,
     leads: {

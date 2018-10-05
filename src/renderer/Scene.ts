@@ -6,11 +6,12 @@ import TextureMaterial from "./materials/TextureMaterial";
 import { vec3, mat4 } from "gl-matrix";
 import { Pointer } from "./Events";
 import _ from "underscore";
+import CursorMaterial from "./materials/CursorMaterial";
 
 export type Color = [number, number, number];
 export type Position = [number, number, number];
 
-const cursorColor: Color = [0, 0.5, 1];
+//const cursorColor: Color = [0, 0.5, 1];
 
 export interface CursorState {
   position: Position;
@@ -20,6 +21,9 @@ export interface CursorState {
   scaleZ: number;
 
   isOn: boolean;
+
+  frequency: number;
+  color: Color;
 
   // //ring1
   // isAtLead0: boolean;
@@ -61,7 +65,9 @@ export default class Scene {
     scaleY: 1,
     scaleZ: 1,
 
-    isOn: true
+    isOn: true,
+    frequency: 60,
+    color: [0, 0.5, 1]
 
     // isAtLead0: false,
     // isAtLead1: false,
@@ -80,6 +86,7 @@ export default class Scene {
   readonly sphere: SphereMesh = new SphereMesh(this);
   readonly renderer: Renderer;
   readonly texture: TextureMaterial = new TextureMaterial(this);
+  readonly crsor: CursorMaterial = new CursorMaterial(this);
 
   constructor(renderer: Renderer) {
     this.renderer = renderer;
@@ -94,12 +101,13 @@ export default class Scene {
     await this.fresnel.load(gl);
     await this.sphere.load(gl);
     await this.texture.load(gl);
+    await this.crsor.load(gl);
 
     this.isReady = true;
   }
 
   render(gl: WebGLRenderingContext, data: SceneData) {
-    const { capsule, isReady, fresnel, sphere, texture } = this;
+    const { capsule, isReady, fresnel, sphere, texture, crsor } = this;
     if (!isReady) return;
 
     this.cursor = data.cursor;
@@ -393,9 +401,10 @@ export default class Scene {
     capsule.render(gl, texture);
 
     fresnel.begin(gl);
+
     //render cursor only, when toggled on
     if (data.cursor.isOn) {
-      fresnel.setColor(gl, cursorColor);
+      fresnel.setColor(gl, data.cursor.color);
       fresnel.setTransform(
         gl,
         data.cursor.position,
