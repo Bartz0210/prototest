@@ -41,6 +41,10 @@ function createScene(): SceneData {
   };
 }
 
+export interface UpdateFrequency extends Action<"updateFrequency"> {
+  frequency: number;
+}
+
 export interface UpdateCursorPosition extends Action<"updateCursorPosition"> {
   x: number;
   y: number;
@@ -144,6 +148,7 @@ export default function scene(
   state: SceneData = createScene(),
   action?:
     | UpdateCursorPosition
+    | UpdateFrequency
     | UpdateCursorRadius
     | UpdateCursorPositionX
     | UpdateCursorPositionY
@@ -179,6 +184,14 @@ export default function scene(
   }
 
   switch (action.type) {
+    case "updateFrequency":
+      return {
+        ...state,
+        cursor: {
+          ...state.cursor,
+          frequency: action.frequency
+        }
+      };
     case "updateCursorPosition":
       return {
         ...state,

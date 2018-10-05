@@ -21,7 +21,8 @@ import scene, {
   ToggleLead4,
   ToggleLead5,
   TransformCursorY,
-  TransformCursorZ
+  TransformCursorZ,
+  UpdateFrequency
 } from "../../store/scene";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { CursorState, LeadState } from "../../renderer/Scene";
@@ -81,6 +82,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
+  updateFrequency(frequency: number): void;
   updateCursorPosition(x: number, y: number, z: number): void;
   updateCursorRadius(radius: number): void;
   updateCursorPositionX(x: number): void;
@@ -159,7 +161,6 @@ class Programm extends React.Component<
           {/*ON OFF!*/}
           <div style={{ margin: "10 0 0 20" }}>
             <ControlItemSwitch
-              
               checked={props.cursor.isOn}
               onChange={props.toggleElectrode}
             />
@@ -313,10 +314,10 @@ class Programm extends React.Component<
           />
           {/*     Control Item: Xposition*/}
           <ControlItem
-            label="XPosition"
-            value={props.cursor.position["0"]}
-            increment={0.2}
-            onChange={props.updateCursorPositionX}
+            label="Frequenz"
+            value={props.cursor.frequency}
+            increment={15.0}
+            onChange={props.updateFrequency}
           />
           {/*     Control Item: Yposition*/}
           <ControlItem
@@ -352,6 +353,9 @@ function updateCursorPosition(
 }
 function updateCursorRadius(radius: number): UpdateCursorRadius {
   return { type: "updateCursorRadius", radius };
+}
+function updateFrequency(frequency: number): UpdateFrequency {
+  return { type: "updateFrequency", frequency };
 }
 
 function updateCursorPositionX(x: number): UpdateCursorPositionX {
@@ -397,6 +401,7 @@ function toggleLead5(isAtLead5: boolean): ToggleLead5 {
 }
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {
+  updateFrequency,
   updateCursorPosition,
   updateCursorRadius,
   updateCursorPositionX,

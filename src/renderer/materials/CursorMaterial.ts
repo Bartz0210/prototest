@@ -47,7 +47,14 @@ export default class CursorMaterial extends Material {
     this.uFrequency = gl.getUniformLocation(program, "uFrequency");
   }
 
-  setColor(gl: WebGLRenderingContext, color: [number, number, number]) {
+  setColor(
+    gl: WebGLRenderingContext,
+    color: [number, number, number],
+    time: number,
+    frequency: number
+  ) {
+    gl.uniform1f(this.uTime, time);
+    gl.uniform1f(this.uFrequency, frequency);
     gl.uniform3fv(this.uColor, color);
   }
 

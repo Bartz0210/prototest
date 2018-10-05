@@ -13,6 +13,8 @@ export type Position = [number, number, number];
 
 //const cursorColor: Color = [0, 0.5, 1];
 
+const start = new Date().getTime();
+
 export interface CursorState {
   position: Position;
   radius: number;
@@ -24,17 +26,6 @@ export interface CursorState {
 
   frequency: number;
   color: Color;
-
-  // //ring1
-  // isAtLead0: boolean;
-  // //ring2
-  // isAtLead1: boolean;
-  // isAtLead2: boolean;
-  // //ring3
-  // isAtLead3: boolean;
-  // isAtLead4: boolean;
-  // //ring4
-  // isAtLead5: boolean;
 }
 
 export interface LeadState {
@@ -68,13 +59,6 @@ export default class Scene {
     isOn: true,
     frequency: 60,
     color: [0, 0.5, 1]
-
-    // isAtLead0: false,
-    // isAtLead1: false,
-    // isAtLead2: false,
-    // isAtLead3: false,
-    // isAtLead4: false,
-    // isAtLead5: false
   };
 
   leads: LeadState = {
@@ -400,21 +384,27 @@ export default class Scene {
     texture.begin(gl);
     capsule.render(gl, texture);
 
-    fresnel.begin(gl);
+    crsor.begin(gl);
 
     //render cursor only, when toggled on
     if (data.cursor.isOn) {
-      fresnel.setColor(gl, data.cursor.color);
-      fresnel.setTransform(
+      crsor.setColor(
+        gl,
+        data.cursor.color,
+        new Date().getTime() - start,
+        data.cursor.frequency
+      );
+      crsor.setTransform(
         gl,
         data.cursor.position,
         data.cursor.radius * data.cursor.scaleX,
         data.cursor.radius * data.cursor.scaleY,
         data.cursor.radius * data.cursor.scaleZ
       );
-      sphere.render(gl, fresnel);
+      sphere.render(gl, crsor);
     }
 
+    fresnel.begin(gl);
     for (const spot of data.spots) {
       fresnel.setColor(gl, spot.color);
       fresnel.setTransform(
