@@ -12,8 +12,8 @@ varying float vRefraction;
 
 void main(void) {
 
-  mediump float frq = uFrequency/60.0;
-  mediump float osc = (sin(uTime/frq))/2.0;
+  mediump float frq = uFrequency/6.0;
+  mediump float osc = (sin(uTime/1000.0*frq));
   mediump float green = osc;
 
   if(green<0.5){
