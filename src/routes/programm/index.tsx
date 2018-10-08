@@ -321,10 +321,10 @@ class Programm extends React.Component<
           />
           {/*     Control Item: Yposition*/}
           <ControlItem
-            label="YPosition"
-            value={props.cursor.position["1"]}
-            increment={0.2}
-            onChange={props.updateCursorPositionY}
+            label="Pulsweite"
+            value={props.cursor.scaleX}
+            increment={0.1}
+            onChange={props.transformCursorX}
           />
         </Controlpanel>
         <Canvas />
