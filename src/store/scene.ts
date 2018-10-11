@@ -1,4 +1,4 @@
-import { AnyAction, Action } from "redux";
+import { Action } from "redux";
 import { SceneData, SpotState } from "../renderer/Scene";
 
 function createScene(): SceneData {

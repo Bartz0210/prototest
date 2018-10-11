@@ -5,8 +5,8 @@ import Controlpanel from "../../components/Controlpanel";
 import ControlItem from "../../components/Controltem";
 import ControlItemCheck from "../../components/ControlItemCheck";
 import ControlItemSwitch from "../../components/ControlItemSwitch";
-import store, { RootState } from "../../store";
-import scene, {
+import { RootState } from "../../store";
+import {
   UpdateCursorRadius,
   UpdateCursorPosition,
   UpdateCursorPositionX,
@@ -28,7 +28,6 @@ import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { CursorState, LeadState } from "../../renderer/Scene";
 import { Sidebar } from "../../components/Sidebar";
 import SidebarItem from "../../components/SidebarItem";
-import { ControlElectrode } from "../../components/ControlElectrode";
 import Icon from "../../components/Icon";
 
 const theme = {
@@ -333,10 +332,11 @@ class Programm extends React.Component<
   }
 }
 
-const mapStateToProps: MapStateToProps<StateProps, OwnProps, RootState> = (
-  state,
-  props
-) => {
+const mapStateToProps: MapStateToProps<
+  StateProps,
+  OwnProps,
+  RootState
+> = state => {
   return {
     cursor: state.scene.cursor,
     leads: state.scene.leads

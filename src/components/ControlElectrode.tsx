@@ -1,19 +1,5 @@
 import * as React from "react";
 import { css } from "emotion";
-import Icon from "./Icon";
-import Toggle from "./Toggle";
-import ControlItemCheck from "./ControlItemCheck";
-import store, { RootState } from "../store";
-import scene, {
-  ToggleLead0,
-  ToggleLead1,
-  ToggleLead2,
-  ToggleLead3,
-  ToggleLead4,
-  ToggleLead5
-} from "../store/scene";
-import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
-import { CursorState } from "../renderer/Scene";
 
 const theme = {
   root: css`
@@ -45,21 +31,6 @@ const theme = {
   `
 };
 
-interface OwnProps {}
-
-interface StateProps {
-  cursor: CursorState;
-}
-
-interface DispatchProps {
-  toggleLead0(isAtLead0: boolean): void;
-  toggleLead1(isAtLead1: boolean): void;
-  toggleLead2(isAtLead2: boolean): void;
-  toggleLead3(isAtLead3: boolean): void;
-  toggleLead4(isAtLead4: boolean): void;
-  toggleLead5(isAtLead5: boolean): void;
-}
-
 export interface Props {
   label?: string;
   icon?: string;
@@ -75,15 +46,7 @@ export interface State {
   value: number;
 }
 
-export function ControlElectrode({
-  label,
-  checked5,
-  checked4,
-  checked3,
-  checked2,
-  checked1,
-  checked0
-}: Props) {
+export function ControlElectrode() {
   return (
     <div className={theme.root}>
       <div className={theme.electr}>

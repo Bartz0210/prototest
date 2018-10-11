@@ -1,8 +1,7 @@
-import Material from './Material';
+import Material from "./Material";
 
-import fragmentSource from './shaders/texture.fragment.glsl';
-import vertexSource from './shaders/texture.vertex.glsl';
-import { mat4 } from 'gl-matrix';
+import fragmentSource from "./shaders/texture.fragment.glsl";
+import vertexSource from "./shaders/texture.vertex.glsl";
 
 export default class TextureMaterial extends Material {
   texture: WebGLTexture | null = null;
@@ -23,14 +22,14 @@ export default class TextureMaterial extends Material {
     this.setShaders(gl, vertexSource, fragmentSource);
     const texture = gl.createTexture();
     if (!texture) {
-      throw new Error('Could not create texture');
+      throw new Error("Could not create texture");
     }
 
     this.texture = texture;
 
     return new Promise(resolve => {
-      const image = document.createElement('img');
-      image.addEventListener('load', () => {
+      const image = document.createElement("img");
+      image.addEventListener("load", () => {
         gl.bindTexture(gl.TEXTURE_2D, texture);
         gl.texImage2D(
           gl.TEXTURE_2D,
@@ -50,7 +49,7 @@ export default class TextureMaterial extends Material {
         resolve();
       });
 
-      image.src = 'texture.png';
+      image.src = "texture.png";
     });
   }
 
@@ -59,6 +58,6 @@ export default class TextureMaterial extends Material {
     program: WebGLProgram
   ) {
     super.initializeAttributes(gl, program);
-    this.uSampler = gl.getUniformLocation(program, 'uSampler');
+    this.uSampler = gl.getUniformLocation(program, "uSampler");
   }
 }

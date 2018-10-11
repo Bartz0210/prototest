@@ -1,6 +1,5 @@
-import * as React from 'react';
-import { css } from 'emotion';
-
+import * as React from "react";
+import { css } from "emotion";
 
 const theme = {
   root: css`
@@ -20,23 +19,13 @@ const theme = {
     border-radius: 4px;
     
     rgba(255, 255, 255, 0.23);
-  `,
-  
- 
-
+  `
 };
 
 export interface Props {
   picture: string;
-  }
+}
 
-export default function WidgetPic({
-    picture
-    
-  }: Props) {
-    return (
-      <div className={theme.root}>
-      
-      </div>
-    );
-  }
+export default function WidgetPic({ picture }: Props) {
+  return <div className={theme.root} />;
+}

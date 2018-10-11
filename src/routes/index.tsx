@@ -9,8 +9,6 @@ import Header from "../components/Header";
 import Overview from "./overview";
 import Programm from "./programm";
 import Reports from "./reports";
-import { Sidebar } from "../components/Sidebar";
-import SidebarItem from "../components/SidebarItem";
 
 injectGlobal`
   body {

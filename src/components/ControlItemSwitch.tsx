@@ -1,6 +1,5 @@
 import * as React from "react";
 import { css } from "emotion";
-import Icon from "./Icon";
 import Switch from "./Switch";
 
 const theme = {
@@ -21,7 +20,6 @@ const theme = {
 };
 
 export interface Props {
- 
   style?: string;
   checked: boolean;
 
@@ -32,12 +30,12 @@ export interface State {
   value: number;
 }
 
-export default function ControlItem({  checked, onChange }: Props) {
+export default function ControlItem({ checked, onChange }: Props) {
   return (
     <div className={theme.root}>
       <Switch className={theme.children} onChange={onChange} isOn={checked} />
       <label className={theme.children} htmlFor="control">
-        {checked? "ON": "OFF"}
+        {checked ? "ON" : "OFF"}
       </label>
     </div>
   );

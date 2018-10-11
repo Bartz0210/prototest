@@ -1,6 +1,5 @@
 import * as React from "react";
 import { css } from "emotion";
-import Icon from "./Icon";
 import IncrementalInput from "./IncrementalInput";
 
 const theme = {
@@ -9,37 +8,29 @@ const theme = {
     display: flex;
     flex-direction: row no-wrap;
     align-items: center;
-    justify-content: space-between;  
+    justify-content: space-between;
     height: 52px;
     width: 337px;
 
     padding: 0 12 0 41;
-    
-   
-   
   `,
   children: css`
-    
-    
     float: left;
 
-
     font-weight: bold;
-    
+
     font-size: 15px;
-    color: #3D3D3D;
+    color: #3d3d3d;
   `,
   inp: css`
-    
-    float: right;  
+    float: right;
   `
-
 };
 
 export interface Props {
   className?: string;
   label: string;
-  
+
   value: number;
   increment: number;
   onChange(value: number): void;
@@ -58,10 +49,7 @@ export default function ControlItem({
 }: Props) {
   return (
     <div className={theme.root}>
-      
-      <p className={theme.children} >
-        {label}
-      </p>
+      <p className={theme.children}>{label}</p>
       <IncrementalInput
         className={theme.inp}
         onChange={onChange}

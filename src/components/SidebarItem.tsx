@@ -1,8 +1,5 @@
 import * as React from "react";
 import { css } from "emotion";
-import Icon from "./Icon";
-import IncrementalInput from "./IncrementalInput";
-import { NavLink } from "react-router-dom";
 
 const theme = {
   root: css`

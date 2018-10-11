@@ -1,6 +1,5 @@
 import * as React from "react";
 import { css } from "emotion";
-import ControlItem from "./ControlItemSwitch";
 
 const theme = {
   root: css`

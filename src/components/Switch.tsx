@@ -1,13 +1,6 @@
 import * as React from "react";
 import { css } from "emotion";
 
-const theme = {
-  root: css`
-    label: switch;
-    border: none;
-  `
-};
-
 export interface Props {
   className?: string;
   isOn: boolean;

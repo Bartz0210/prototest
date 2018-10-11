@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as numeral from "numeral";
 import { css } from "emotion";
 
 const theme = {
