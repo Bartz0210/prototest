@@ -28,6 +28,7 @@ import {
   ToggleLead4,
   ToggleLead5
 } from "../../store/scene";
+//import { State } from "../../components/ControlItemSwitch";
 
 const theme = {
   root: css`
@@ -55,6 +56,10 @@ interface StateProps {
   leads: LeadState;
 }
 
+interface State {
+  dummyOn: boolean;
+}
+
 interface DispatchProps {
   updateFrequency(frequency: number): void;
   updateCursorPosition(x: number, y: number, z: number): void;
@@ -74,7 +79,18 @@ interface DispatchProps {
   toggleLead5(isAtLead5: boolean): void;
 }
 
-class Overview extends React.Component<OwnProps & StateProps & DispatchProps> {
+class Overview extends React.Component<
+  OwnProps & StateProps & DispatchProps,
+  State
+> {
+  state: State = {
+    dummyOn: false
+  };
+
+  handleDummyToggle = () => {
+    this.setState({ dummyOn: !this.state.dummyOn });
+  };
+
   render() {
     const props = this.props;
     return (
@@ -121,7 +137,11 @@ class Overview extends React.Component<OwnProps & StateProps & DispatchProps> {
             lead5={props.leads.leads["5"]}
           />
         </WidgetOnOff>
-        <Widget headline="Rechte Elektrode">
+        <WidgetOnOff
+          headline="Rechte Elektrode"
+          checked={this.state.dummyOn}
+          onChange={this.handleDummyToggle}
+        >
           <WidgetElektrode
             id="1.5"
             birthday="60"
@@ -134,7 +154,7 @@ class Overview extends React.Component<OwnProps & StateProps & DispatchProps> {
             lead4={false}
             lead5={false}
           />
-        </Widget>
+        </WidgetOnOff>
       </div>
     );
   }

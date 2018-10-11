@@ -59,7 +59,14 @@ export default function Widget({
   onChange
 }: Props) {
   return (
-    <div className={theme.root}>
+    <div
+      className={theme.root}
+      style={{
+        background: checked
+          ? "rgba(255, 255, 255, 0.6)"
+          : "rgba(255, 255, 255, 0.2)"
+      }}
+    >
       <div className={theme.container}>
         <h2 className={theme.hl}>{headline}</h2>
         <ControlItem checked={checked} onChange={onChange} />
