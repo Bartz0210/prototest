@@ -64,7 +64,8 @@ export default function Widget({
       style={{
         background: checked
           ? "rgba(255, 255, 255, 0.6)"
-          : "rgba(255, 255, 255, 0.2)"
+          : "rgba(255, 255, 255, 0.2)",
+        transition: "100ms ease-in-out"
       }}
     >
       <div className={theme.container}>
