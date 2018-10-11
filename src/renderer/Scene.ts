@@ -1,5 +1,6 @@
 import SphereMesh from "./meshes/SphereMesh";
 import CapsuleMesh from "./meshes/CapsuleMesh";
+import PlaneMesh from "./meshes/PlaneMesh";
 import FresnelMaterial from "./materials/FresnelMaterial";
 import Renderer, { Ray } from ".";
 import TextureMaterial from "./materials/TextureMaterial";
@@ -7,6 +8,7 @@ import { vec3, mat4 } from "gl-matrix";
 import { Pointer } from "./Events";
 import _ from "underscore";
 import CursorMaterial from "./materials/CursorMaterial";
+import PlaneMaterial from "./materials/PlaneMaterial";
 
 export type Color = [number, number, number];
 export type Position = [number, number, number];
@@ -36,10 +38,15 @@ export interface SpotState extends CursorState {
   color: Color;
 }
 
+// export interface PlaneState {
+//   position: Position;
+// }
+
 export interface SceneData {
   cursor: CursorState;
   spots: Array<SpotState>;
   leads: LeadState;
+  // plane: PlaneState;
 }
 
 export interface Plane {
@@ -71,6 +78,8 @@ export default class Scene {
   readonly renderer: Renderer;
   readonly texture: TextureMaterial = new TextureMaterial(this);
   readonly crsor: CursorMaterial = new CursorMaterial(this);
+  readonly plan: PlaneMesh = new PlaneMesh(this);
+  readonly planMat: PlaneMaterial = new PlaneMaterial(this);
 
   constructor(renderer: Renderer) {
     this.renderer = renderer;
@@ -86,12 +95,23 @@ export default class Scene {
     await this.sphere.load(gl);
     await this.texture.load(gl);
     await this.crsor.load(gl);
+    await this.plan.load(gl);
+    await this.planMat.load(gl);
 
     this.isReady = true;
   }
 
   render(gl: WebGLRenderingContext, data: SceneData) {
-    const { capsule, isReady, fresnel, sphere, texture, crsor } = this;
+    const {
+      capsule,
+      isReady,
+      fresnel,
+      sphere,
+      texture,
+      crsor,
+      plan,
+      planMat
+    } = this;
     if (!isReady) return;
 
     this.cursor = data.cursor;
@@ -383,6 +403,8 @@ export default class Scene {
 
     texture.begin(gl);
     capsule.render(gl, texture);
+    planMat.begin(gl);
+    plan.render(gl, planMat);
 
     crsor.begin(gl);
 
