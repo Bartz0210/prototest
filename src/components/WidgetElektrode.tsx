@@ -122,19 +122,6 @@ export default function WidgetText({
 }: Props) {
   return (
     <div className={theme.root}>
-      {/* <Elektrode className={theme.illu}/>*/}
-
-      {/* <svg
-        className={theme.illu}
-        id="Ebene_1"
-        data-name="Ebene 1"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 33.69 229.18"
-      >
-        <title>Elektroooden-01</title>
-        <path d="M16.74,1.91a14.51,14.51,0,0,0-14.5,14.5v196a14.5,14.5,0,0,0,29,0v-196A14.52,14.52,0,0,0,16.74,1.91Zm13.5,84.5H21.4v28h8.84v28.36H21.4v28h8.84v28h-27v-28h8.83v-28H3.24V114.41h8.83v-28H3.24v-28h27Zm0-56h-27v-14a13.5,13.5,0,0,1,27,0Z" />
-      </svg> */}
-
       <svg
         className={theme.illu}
         id="Ebene_1"
