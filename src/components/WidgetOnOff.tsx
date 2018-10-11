@@ -18,6 +18,8 @@ const theme = {
   container: css`
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
   `,
   hl: css`
     /* Patient */

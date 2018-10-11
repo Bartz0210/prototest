@@ -21,7 +21,7 @@ const theme = {
 
   illu: css`
     width: 35px;
-    fill: #3d3d3d;
+    fill: none;
     margin-left: 30px;
   `,
   txt: css`
@@ -98,18 +98,33 @@ export interface Props {
   id?: string | number;
   birthday?: string | number;
   implantSince?: string | number;
-  modelNo?: string | number;
-  serialNo?: string | number;
-  firmware?: string | number;
   to: string;
+
+  lead5: boolean;
+  lead4: boolean;
+  lead3: boolean;
+  lead2: boolean;
+  lead1: boolean;
+  lead0: boolean;
 }
 
-export default function WidgetText({ id, birthday, implantSince, to }: Props) {
+export default function WidgetText({
+  id,
+  birthday,
+  implantSince,
+  to,
+  lead5,
+  lead4,
+  lead3,
+  lead2,
+  lead1,
+  lead0
+}: Props) {
   return (
     <div className={theme.root}>
       {/* <Elektrode className={theme.illu}/>*/}
 
-      <svg
+      {/* <svg
         className={theme.illu}
         id="Ebene_1"
         data-name="Ebene 1"
@@ -118,6 +133,66 @@ export default function WidgetText({ id, birthday, implantSince, to }: Props) {
       >
         <title>Elektroooden-01</title>
         <path d="M16.74,1.91a14.51,14.51,0,0,0-14.5,14.5v196a14.5,14.5,0,0,0,29,0v-196A14.52,14.52,0,0,0,16.74,1.91Zm13.5,84.5H21.4v28h8.84v28.36H21.4v28h8.84v28h-27v-28h8.83v-28H3.24V114.41h8.83v-28H3.24v-28h27Zm0-56h-27v-14a13.5,13.5,0,0,1,27,0Z" />
+      </svg> */}
+
+      <svg
+        className={theme.illu}
+        id="Ebene_1"
+        data-name="Ebene 1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 33.69 229.18"
+      >
+        <title>elektrode</title>
+        <rect
+          fill="none"
+          stroke="#3d3d3d"
+          strokeWidth="1px"
+          x="2.73"
+          y="2.41"
+          width="28"
+          height="224"
+          rx="14"
+          ry="14"
+        />
+        <rect
+          fill={lead5 ? "#72C0A8" : "#3d3d3d"}
+          x="2.73"
+          y="30.41"
+          width="28"
+          height="28"
+        />
+        <rect
+          fill={lead3 ? "#72C0A8" : "#3d3d3d"}
+          x="2.73"
+          y="86.41"
+          width="9.33"
+          height="28"
+        />
+        <rect
+          fill={lead4 ? "#72C0A8" : "#3d3d3d"}
+          x="21.4"
+          y="86.41"
+          width="9.33"
+          height="28"
+        />
+        <rect
+          fill={lead1 ? "#72C0A8" : "#3d3d3d"}
+          x="2.73"
+          y="142.77"
+          width="9.33"
+          height="28"
+        />
+        <rect
+          fill={lead2 ? "#72C0A8" : "#3d3d3d"}
+          x="21.4"
+          y="142.77"
+          width="9.33"
+          height="28"
+        />
+        <path
+          fill={lead0 ? "#72C0A8" : "#3d3d3d"}
+          d="M2.73,198.77h28a0,0,0,0,1,0,0v14a14,14,0,0,1-14,14h0a14,14,0,0,1-14-14v-14a0,0,0,0,1,0,0Z"
+        />
       </svg>
 
       <div className={theme.txt}>

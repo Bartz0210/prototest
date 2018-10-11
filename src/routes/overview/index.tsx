@@ -113,6 +113,12 @@ class Overview extends React.Component<OwnProps & StateProps & DispatchProps> {
             birthday={this.props.cursor.frequency}
             implantSince="22"
             to="/programm"
+            lead0={props.leads.leads["0"]}
+            lead1={props.leads.leads["1"]}
+            lead2={props.leads.leads["2"]}
+            lead3={props.leads.leads["3"]}
+            lead4={props.leads.leads["4"]}
+            lead5={props.leads.leads["5"]}
           />
         </WidgetOnOff>
         <Widget headline="Rechte Elektrode">
@@ -121,6 +127,12 @@ class Overview extends React.Component<OwnProps & StateProps & DispatchProps> {
             birthday="60"
             implantSince="130"
             to="/programm"
+            lead0={false}
+            lead1={false}
+            lead2={false}
+            lead3={false}
+            lead4={false}
+            lead5={false}
           />
         </Widget>
       </div>
