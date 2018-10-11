@@ -95,25 +95,16 @@ const theme = {
 
 export interface Props {
   name?: string;
-  id?: string;
-  birthday?: string;
-  implantSince?: string;
-  modelNo?: string;
-  serialNo?: string;
-  firmware?: string;
+  id?: string | number;
+  birthday?: string | number;
+  implantSince?: string | number;
+  modelNo?: string | number;
+  serialNo?: string | number;
+  firmware?: string | number;
   to: string;
 }
 
-export default function WidgetText({
-  name,
-  id,
-  birthday,
-  implantSince,
-  modelNo,
-  serialNo,
-  firmware,
-  to
-}: Props) {
+export default function WidgetText({ id, birthday, implantSince, to }: Props) {
   return (
     <div className={theme.root}>
       {/* <Elektrode className={theme.illu}/>*/}

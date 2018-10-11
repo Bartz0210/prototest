@@ -12,14 +12,18 @@ const theme = {
     background: rgba(255, 255, 255, 0.6);
     border-radius: 4px;
 
-    color: #2699fb;
+    color: #3d3d3d;
     text-decoration: none;
+  `,
+  container: css`
+    display: flex;
+    justify-content: space-between;
   `,
   hl: css`
     /* Patient */
 
     position: relative;
-    width: 244px;
+    width: auto;
     z-index: 1;
 
     left: 20px;
@@ -40,13 +44,24 @@ const theme = {
 
 export interface Props {
   headline: string;
+  checked: boolean;
   children?: React.ReactNode;
+
+  onChange(checked: boolean): void;
 }
 
-export default function Widget({ headline, children }: Props) {
+export default function Widget({
+  headline,
+  children,
+  checked,
+  onChange
+}: Props) {
   return (
     <div className={theme.root}>
-      <h2 className={theme.hl}>{headline}</h2>
+      <div className={theme.container}>
+        <h2 className={theme.hl}>{headline}</h2>
+        <ControlItem checked={checked} onChange={onChange} />
+      </div>
       <div>{children}</div>
     </div>
   );
