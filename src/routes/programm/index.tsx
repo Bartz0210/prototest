@@ -369,7 +369,65 @@ class Programm extends React.Component<
                 <ControlItemCheck
                   label="Lead 4"
                   checked={props.leads.leads["4"]}
-                  onChange={props.toggleLead4}
+                  //onChange={props.toggleLead4}
+                  onChange={isAtLead => {
+                    //1234
+                    if (_.isEqual(props.leads.leads, [false, true, true, true, true, false])) {
+                      props.toggleLead123(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, true, true, true, false, false])) {
+                      props.toggleLead1234(isAtLead);
+                    };
+
+                    //345
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, false, true])) {
+                      props.toggleLead345(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, true])) {
+                      props.toggleLead35(isAtLead);
+                    };
+
+                    //124
+                    if (_.isEqual(props.leads.leads, [false, true, true, false, false, false])) {
+                      props.toggleLead124(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, true, true, false, true, false])) {
+                      props.toggleLead12(isAtLead);
+                    };
+
+                    //134                    
+                    if (_.isEqual(props.leads.leads, [false, true, false, true, false, false])) {
+                      props.toggleLead134(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, true, false, true, true, false])) {
+                      props.toggleLead13(isAtLead);
+                    };
+
+                    //34                    
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, false, false])) {
+                      props.toggleLead34(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, false])) {
+                      props.toggleLead3(isAtLead);
+                    };
+
+                    //24                    
+                    if (_.isEqual(props.leads.leads, [false, false, true, false, false, false])) {
+                      props.toggleLead24(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, false, true, false, true, false])) {
+                      props.toggleLead2(isAtLead);
+                    };
+
+                    //45                    
+                    if (_.isEqual(props.leads.leads, [false, false, false, false, false, true])) {
+                      props.toggleLead45(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, false, false, false, true, true])) {
+                      props.toggleLead5(isAtLead);
+                    };
+
+                  }}
                 />
               </div>
             </div>
@@ -382,7 +440,65 @@ class Programm extends React.Component<
                 <ControlItemCheck
                   label="Lead 1"
                   checked={props.leads.leads["1"]}
-                  onChange={props.toggleLead1}
+                  //onChange={props.toggleLead1}
+                  onChange={isAtLead => {
+                    //1234
+                    if (_.isEqual(props.leads.leads, [false, true, true, true, true, false])) {
+                      props.toggleLead234(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [false, false, true, true, true, false])) {
+                      props.toggleLead1234(isAtLead);
+                    }
+
+                    //124
+                    if (_.isEqual(props.leads.leads, [false, false, true, false, true, false])) {
+                      props.toggleLead124(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [false, true, true, false, true, false])) {
+                      props.toggleLead24(isAtLead);
+                    }
+
+                    //134
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, false])) {
+                      props.toggleLead134(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [false, true, false, true, true, false])) {
+                      props.toggleLead34(isAtLead);
+                    }
+
+                    //012
+                    if (_.isEqual(props.leads.leads, [true, false, true, false, false, false])) {
+                      props.toggleLead012(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [true, true, true, false, false, false])) {
+                      props.toggleLead02(isAtLead);
+                    }
+
+                    //01
+                    if (_.isEqual(props.leads.leads, [true, false, false, false, false, false])) {
+                      props.toggleLead01(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [true, true, false, false, false, false])) {
+                      props.toggleLead0(isAtLead);
+                    }
+
+                    //12
+                    if (_.isEqual(props.leads.leads, [false, false, true, false, false, false])) {
+                      props.toggleLead12(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [false, true, true, false, false, false])) {
+                      props.toggleLead2(isAtLead);
+                    }
+
+                    //13
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, false, false])) {
+                      props.toggleLead13(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [false, true, false, true, false, false])) {
+                      props.toggleLead3(isAtLead);
+                    }
+
+                  }}
                 />
               </div>
             </div>
