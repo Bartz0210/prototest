@@ -1,5 +1,6 @@
 import { Action } from "redux";
 import { SceneData, SpotState } from "../renderer/Scene";
+import { fail } from "assert";
 
 function createScene(): SceneData {
   const spots: Array<SpotState> = [];
@@ -99,49 +100,49 @@ export interface ToggleLead0 extends Action<"toggleLead0"> {
   isAtLead0: boolean;
 }
 export interface ToggleLead1234 extends Action<"toggleLead1234"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
 export interface ToggleLead012 extends Action<"toggleLead012"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
 export interface ToggleLead345 extends Action<"toggleLead345"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
 export interface ToggleLead124 extends Action<"toggleLead124"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
 export interface ToggleLead234 extends Action<"toggleLead234"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
 export interface ToggleLead134 extends Action<"toggleLead134"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
 export interface ToggleLead123 extends Action<"toggleLead123"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
 export interface ToggleLead12 extends Action<"toggleLead12"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
 export interface ToggleLead34 extends Action<"toggleLead34"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
 export interface ToggleLead01 extends Action<"toggleLead01"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
 export interface ToggleLead02 extends Action<"toggleLead02"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
 export interface ToggleLead35 extends Action<"toggleLead35"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
 export interface ToggleLead45 extends Action<"toggleLead45"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
 export interface ToggleLead13 extends Action<"toggleLead13"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+  isAtLead: boolean;
 }
-export interface ToggleLead14 extends Action<"toggleLead14"> {
-  //leads: [boolean, boolean, boolean, boolean, boolean, boolean];
+export interface ToggleLead24 extends Action<"toggleLead24"> {
+  isAtLead: boolean;
 }
 
 export default function scene(
@@ -177,7 +178,7 @@ export default function scene(
     | ToggleLead35
     | ToggleLead45
     | ToggleLead13
-    | ToggleLead14
+    | ToggleLead24
 ): SceneData {
   if (!action) {
     return state;
@@ -284,132 +285,138 @@ export default function scene(
     case "toggleLead5":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [0, -3.125, 0]
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [0, -3.125, 0]
+        },
         leads: {
           ...state.leads,
-          leads: [
-            state.leads.leads["0"],
-            state.leads.leads["1"],
-            state.leads.leads["2"],
-            state.leads.leads["3"],
-            state.leads.leads["4"],
-            action.isAtLead5
-          ]
+          // leads: [
+          //   state.leads.leads["0"],
+          //   state.leads.leads["1"],
+          //   state.leads.leads["2"],
+          //   state.leads.leads["3"],
+          //   state.leads.leads["4"],
+          //   action.isAtLead5
+          // ]
+          leads: [false, false, false, false, false, true]
         }
       };
     case "toggleLead4":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.5 + state.cursor.radius * state.cursor.scaleX,
-        //     -0.625,
-        //     state.cursor.position["2"]
-        //   ]
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [
+            0.5 + state.cursor.radius * state.cursor.scaleX,
+            -0.625,
+            state.cursor.position["2"]
+          ]
+        },
         leads: {
           ...state.leads,
-          leads: [
-            state.leads.leads["0"],
-            state.leads.leads["1"],
-            state.leads.leads["2"],
-            state.leads.leads["3"],
-            action.isAtLead4,
-            state.leads.leads["5"]
-          ]
+          // leads: [
+          //   state.leads.leads["0"],
+          //   state.leads.leads["1"],
+          //   state.leads.leads["2"],
+          //   state.leads.leads["3"],
+          //   action.isAtLead4,
+          //   state.leads.leads["5"]
+          // ]
+          leads: [false, false, false, false, true, false]
         }
       };
     case "toggleLead3":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     -0.5 - state.cursor.radius * state.cursor.scaleX,
-        //     -0.625,
-        //     state.cursor.position["2"]
-        //   ]
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [
+            -0.5 - state.cursor.radius * state.cursor.scaleX,
+            -0.625,
+            state.cursor.position["2"]
+          ]
+        },
         leads: {
           ...state.leads,
-          leads: [
-            state.leads.leads["0"],
-            state.leads.leads["1"],
-            state.leads.leads["2"],
-            action.isAtLead3,
-            state.leads.leads["4"],
-            state.leads.leads["5"]
-          ]
+          // leads: [
+          //   state.leads.leads["0"],
+          //   state.leads.leads["1"],
+          //   state.leads.leads["2"],
+          //   action.isAtLead3,
+          //   state.leads.leads["4"],
+          //   state.leads.leads["5"]
+          // ]
+          leads: [false, false, false, true, false, false]
         }
       };
     case "toggleLead2":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.5 + state.cursor.radius * state.cursor.scaleX,
-        //     1.125,
-        //     state.cursor.position["2"]
-        //   ]
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [
+            0.5 + state.cursor.radius * state.cursor.scaleX,
+            1.125,
+            state.cursor.position["2"]
+          ]
+        },
         leads: {
           ...state.leads,
-          leads: [
-            state.leads.leads["0"],
-            state.leads.leads["1"],
-            action.isAtLead2,
-            state.leads.leads["3"],
-            state.leads.leads["4"],
-            state.leads.leads["5"]
-          ]
+          // leads: [
+          //   state.leads.leads["0"],
+          //   state.leads.leads["1"],
+          //   action.isAtLead2,
+          //   state.leads.leads["3"],
+          //   state.leads.leads["4"],
+          //   state.leads.leads["5"]
+          // ]
+          leads: [false, false, true, false, false, false]
         }
       };
     case "toggleLead1":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     -0.5 - state.cursor.radius * state.cursor.scaleX,
-        //     1.125,
-        //     state.cursor.position["2"]
-        //   ]
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [
+            -0.5 - state.cursor.radius * state.cursor.scaleX,
+            1.125,
+            state.cursor.position["2"]
+          ]
+        },
         leads: {
           ...state.leads,
-          leads: [
-            state.leads.leads["0"],
-            action.isAtLead1,
-            state.leads.leads["2"],
-            state.leads.leads["3"],
-            state.leads.leads["4"],
-            state.leads.leads["5"]
-          ]
+          // leads: [
+          //   state.leads.leads["0"],
+          //   action.isAtLead1,
+          //   state.leads.leads["2"],
+          //   state.leads.leads["3"],
+          //   state.leads.leads["4"],
+          //   state.leads.leads["5"]
+          // ]
+          leads: [false, true, false, false, false, false]
         }
       };
 
     case "toggleLead0":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [0, 4.625, 0]
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [0, 4.625, 0]
+        },
         leads: {
           ...state.leads,
-          leads: [
-            action.isAtLead0,
-            state.leads.leads["1"],
-            state.leads.leads["2"],
-            state.leads.leads["3"],
-            state.leads.leads["4"],
-            state.leads.leads["5"]
-          ]
+          // leads: [
+          //   action.isAtLead0,
+          //   state.leads.leads["1"],
+          //   state.leads.leads["2"],
+          //   state.leads.leads["3"],
+          //   state.leads.leads["4"],
+          //   state.leads.leads["5"]
+          // ]
+          leads: [true, false, false, false, false, false]
         }
       };
     //TODO
@@ -417,11 +424,11 @@ export default function scene(
     case "toggleLead1234":
       return {
         ...state,
-        //   cursor: {
-        //     ...state.cursor,
-        //     position: [0, 0.625, state.cursor.position["2"]],
-        //     scaleY: 2
-        //   },
+        cursor: {
+          ...state.cursor,
+          position: [0, 0.625, state.cursor.position["2"]],
+          scaleY: 2
+        },
         leads: {
           ...state.leads,
           leads: [false, true, true, true, true, false]
@@ -431,11 +438,11 @@ export default function scene(
     case "toggleLead012":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [0, 3.125, state.cursor.position["2"]],
-        //   scaleY: 2
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [0, 3.125, state.cursor.position["2"]],
+          scaleY: 2
+        },
         leads: {
           ...state.leads,
           leads: [true, true, true, false, false, false]
@@ -445,11 +452,11 @@ export default function scene(
     case "toggleLead345":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [0, -4.625, state.cursor.position["2"]],
-        //   scaleY: 2
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [0, -4.625, state.cursor.position["2"]],
+          scaleY: 2
+        },
         leads: {
           ...state.leads,
           leads: [false, false, false, true, true, true]
@@ -459,15 +466,15 @@ export default function scene(
     case "toggleLead124":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.25 + state.cursor.radius * state.cursor.scaleX,
-        //     1.25,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [
+            0.25 + state.cursor.radius * state.cursor.scaleX,
+            1.25,
+            state.cursor.position["2"]
+          ],
+          scaleY: 2
+        },
         leads: {
           ...state.leads,
           leads: [false, true, true, false, true, false]
@@ -477,15 +484,15 @@ export default function scene(
     case "toggleLead234":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.25 + state.cursor.radius * state.cursor.scaleX,
-        //     0,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [
+            0.25 + state.cursor.radius * state.cursor.scaleX,
+            0,
+            state.cursor.position["2"]
+          ],
+          scaleY: 2
+        },
         leads: {
           ...state.leads,
           leads: [false, false, true, true, true, false]
@@ -531,11 +538,11 @@ export default function scene(
     case "toggleLead12":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [0, 1.875, state.cursor.position["2"]],
-        //   scaleY: 2
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [0, 1.875, state.cursor.position["2"]],
+          scaleY: 2
+        },
         leads: {
           ...state.leads,
           leads: [false, true, true, false, false, false]
@@ -545,11 +552,11 @@ export default function scene(
     case "toggleLead34":
       return {
         ...state,
-        //   cursor: {
-        //     ...state.cursor,
-        //     position: [0, -1.875, state.cursor.position["2"]],
-        //     scaleY: 2
-        //   },
+        cursor: {
+          ...state.cursor,
+          position: [0, -1.875, state.cursor.position["2"]],
+          scaleY: 2
+        },
         leads: {
           ...state.leads,
           leads: [false, false, false, true, true, false]
@@ -559,15 +566,15 @@ export default function scene(
     case "toggleLead01":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     -0.25 - state.cursor.radius * state.cursor.scaleX,
-        //     3.125,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [
+            -0.25 - state.cursor.radius * state.cursor.scaleX,
+            3.125,
+            state.cursor.position["2"]
+          ],
+          scaleY: 2
+        },
         leads: {
           ...state.leads,
           leads: [true, true, false, false, false, false]
@@ -576,15 +583,15 @@ export default function scene(
     case "toggleLead02":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.25 + state.cursor.radius * state.cursor.scaleX,
-        //     3.125,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [
+            0.25 + state.cursor.radius * state.cursor.scaleX,
+            3.125,
+            state.cursor.position["2"]
+          ],
+          scaleY: 2
+        },
         leads: {
           ...state.leads,
           leads: [true, false, true, false, false, false]
@@ -593,15 +600,15 @@ export default function scene(
     case "toggleLead35":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     -0.25 - state.cursor.radius * state.cursor.scaleX,
-        //     -1.875,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [
+            -0.25 - state.cursor.radius * state.cursor.scaleX,
+            -1.875,
+            state.cursor.position["2"]
+          ],
+          scaleY: 2
+        },
         leads: {
           ...state.leads,
           leads: [false, false, false, true, false, true]
@@ -610,15 +617,15 @@ export default function scene(
     case "toggleLead45":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.25 + state.cursor.radius * state.cursor.scaleX,
-        //     -1.875,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [
+            0.25 + state.cursor.radius * state.cursor.scaleX,
+            -1.875,
+            state.cursor.position["2"]
+          ],
+          scaleY: 2
+        },
         leads: {
           ...state.leads,
           leads: [false, false, false, false, true, true]
@@ -627,35 +634,35 @@ export default function scene(
     case "toggleLead13":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.5 + state.cursor.radius * state.cursor.scaleX,
-        //     0.625,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [
+            0.5 + state.cursor.radius * state.cursor.scaleX,
+            0.625,
+            state.cursor.position["2"]
+          ],
+          scaleY: 2
+        },
         leads: {
           ...state.leads,
           leads: [false, true, false, true, false, false]
         }
       };
-    case "toggleLead14":
+    case "toggleLead24":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     -0.5 - state.cursor.radius * state.cursor.scaleX,
-        //     0.625,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
+        cursor: {
+          ...state.cursor,
+          position: [
+            -0.5 - state.cursor.radius * state.cursor.scaleX,
+            0.625,
+            state.cursor.position["2"]
+          ],
+          scaleY: 2
+        },
         leads: {
           ...state.leads,
-          leads: [false, true, false, false, true, false]
+          leads: [false, false, true, false, true, false]
         }
       };
   }

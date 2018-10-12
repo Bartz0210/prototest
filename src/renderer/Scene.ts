@@ -309,7 +309,7 @@ export default class Scene {
       );
     }
 
-    //1,4
+    //2,4
     if (_.isEqual(leads, [false, true, false, false, true, false])) {
       fresnel.setTransform(
         gl,

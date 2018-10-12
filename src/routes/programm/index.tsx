@@ -22,13 +22,29 @@ import {
   ToggleLead5,
   TransformCursorY,
   TransformCursorZ,
-  UpdateFrequency
+  UpdateFrequency,
+  ToggleLead134,
+  ToggleLead234,
+  ToggleLead34,
+  ToggleLead1234,
+  ToggleLead02,
+  ToggleLead12,
+  ToggleLead24,
+  ToggleLead012,
+  ToggleLead01,
+  ToggleLead124,
+  ToggleLead123,
+  ToggleLead13,
+  ToggleLead345,
+  ToggleLead35,
+  ToggleLead45
 } from "../../store/scene";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { CursorState, LeadState } from "../../renderer/Scene";
 import { Sidebar } from "../../components/Sidebar";
 import SidebarItem from "../../components/SidebarItem";
 import Icon from "../../components/Icon";
+import _ from "underscore";
 
 const theme = {
   root: css`
@@ -73,7 +89,7 @@ const theme = {
   `
 };
 
-interface OwnProps {}
+interface OwnProps { }
 
 interface StateProps {
   cursor: CursorState;
@@ -92,11 +108,26 @@ interface DispatchProps {
   transformCursorZ(scaleZ: number): void;
   toggleElectrode(isOn: boolean): void;
   toggleLead0(isAtLead0: boolean): void;
+  toggleLead01(isAtLead0: boolean): void;
+  toggleLead02(isAtLead: boolean): void;
+  toggleLead012(isAtLead: boolean): void;
   toggleLead1(isAtLead1: boolean): void;
+  toggleLead12(isAtLead: boolean): void;
+  toggleLead13(isAtLead: boolean): void;
+  toggleLead123(isAtLead: boolean): void;
+  toggleLead124(isAtLead: boolean): void;
   toggleLead2(isAtLead2: boolean): void;
+  toggleLead234(isAtLead2: boolean): void;
+  toggleLead24(isAtLead2: boolean): void;
   toggleLead3(isAtLead3: boolean): void;
+  toggleLead34(isAtLead3: boolean): void;
+  toggleLead345(isAtLead3: boolean): void;
+  toggleLead35(isAtLead3: boolean): void;
   toggleLead4(isAtLead4: boolean): void;
+  toggleLead45(isAtLead4: boolean): void;
   toggleLead5(isAtLead5: boolean): void;
+  toggleLead134(isAtLead: boolean): void;
+  toggleLead1234(isAtLead: boolean): void;
 }
 
 interface State {
@@ -106,7 +137,7 @@ interface State {
 class Programm extends React.Component<
   OwnProps & StateProps & DispatchProps,
   State
-> {
+  > {
   state: State = {
     menuVisible: false
   };
@@ -229,7 +260,31 @@ class Programm extends React.Component<
                 <ControlItemCheck
                   label="Lead 5"
                   checked={props.leads.leads["5"]}
-                  onChange={props.toggleLead5}
+                  //onChange={props.toggleLead5}
+                  onChange={isAtLead => {
+                    //345
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, false])) {
+                      props.toggleLead345(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, true])) {
+                      props.toggleLead34(isAtLead);
+                    }
+                    //35
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, false, false])) {
+                      props.toggleLead35(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, false, true])) {
+                      props.toggleLead3(isAtLead);
+                    }
+
+                    //45
+                    if (_.isEqual(props.leads.leads, [false, false, false, false, true, false])) {
+                      props.toggleLead45(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [false, false, false, false, true, true])) {
+                      props.toggleLead4(isAtLead);
+                    }
+                  }}
                 />
               </div>
             </div>
@@ -245,7 +300,65 @@ class Programm extends React.Component<
                 <ControlItemCheck
                   label="Lead 3"
                   checked={props.leads.leads["3"]}
-                  onChange={props.toggleLead3}
+                  //onChange={props.toggleLead3}
+                  onChange={isAtLead => {
+                    //1234
+                    if (_.isEqual(props.leads.leads, [false, true, true, true, true, false])) {
+                      props.toggleLead124(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, true, true, false, true, false])) {
+                      props.toggleLead1234(isAtLead);
+                    };
+
+                    //345
+                    if (_.isEqual(props.leads.leads, [false, false, false, false, true, true])) {
+                      props.toggleLead345(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, true])) {
+                      props.toggleLead45(isAtLead);
+                    };
+
+                    //123
+                    if (_.isEqual(props.leads.leads, [false, true, true, false, false, false])) {
+                      props.toggleLead123(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, true, true, true, false, false])) {
+                      props.toggleLead12(isAtLead);
+                    };
+
+                    //234
+                    if (_.isEqual(props.leads.leads, [false, false, true, true, false, false])) {
+                      props.toggleLead234(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, false, true, true, true, false])) {
+                      props.toggleLead24(isAtLead);
+                    };
+
+                    //13
+                    if (_.isEqual(props.leads.leads, [false, true, false, false, false, false])) {
+                      props.toggleLead13(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, true, false, true, false, false])) {
+                      props.toggleLead1(isAtLead);
+                    };
+
+                    //34
+                    if (_.isEqual(props.leads.leads, [false, false, false, false, true, false])) {
+                      props.toggleLead34(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, false])) {
+                      props.toggleLead4(isAtLead);
+                    };
+
+                    //35
+                    if (_.isEqual(props.leads.leads, [false, false, false, false, false, true])) {
+                      props.toggleLead35(isAtLead);
+                    };
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, false, true])) {
+                      props.toggleLead5(isAtLead);
+                    };
+                  }}
+
                 />
               </div>
             </div>
@@ -280,7 +393,66 @@ class Programm extends React.Component<
                 <ControlItemCheck
                   label="Lead 2"
                   checked={props.leads.leads["2"]}
-                  onChange={props.toggleLead2}
+                  //onChange={props.toggleLead2}
+                  onChange={isAtLead => {
+
+                    //1234
+                    if (_.isEqual(props.leads.leads, [false, true, true, true, true, false])) {
+                      props.toggleLead134(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [false, true, false, true, true, false])) {
+                      props.toggleLead1234(isAtLead)
+                    }
+
+                    //02
+                    if (_.isEqual(props.leads.leads, [true, false, false, false, false, false])) {
+                      props.toggleLead02(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [true, false, true, false, false, false])) {
+                      props.toggleLead0(isAtLead);
+                    }
+
+                    //12
+                    if (_.isEqual(props.leads.leads, [false, true, false, false, false, false])) {
+                      props.toggleLead12(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [false, true, true, false, false, false])) {
+                      props.toggleLead1(isAtLead);
+                    }
+
+                    //24
+                    if (_.isEqual(props.leads.leads, [false, false, false, false, true, false])) {
+                      props.toggleLead24(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [false, false, true, false, true, false])) {
+                      props.toggleLead4(isAtLead);
+                    }
+
+                    //012
+                    if (_.isEqual(props.leads.leads, [true, true, false, false, false, false])) {
+                      props.toggleLead012(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [true, true, false, false, false, false])) {
+                      props.toggleLead01(isAtLead);
+                    }
+
+                    //123
+                    if (_.isEqual(props.leads.leads, [false, true, false, true, false, false])) {
+                      props.toggleLead123(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [false, true, true, true, false, false])) {
+                      props.toggleLead13(isAtLead);
+                    }
+
+                    //234
+                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, false])) {
+                      props.toggleLead234(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [false, false, true, true, true, false])) {
+                      props.toggleLead34(isAtLead);
+                    }
+                    // props.toggleLead2(isAtLead);
+                  }}
                 />
               </div>
             </div>
@@ -293,7 +465,35 @@ class Programm extends React.Component<
                 <ControlItemCheck
                   label="Lead 0"
                   checked={props.leads.leads["0"]}
-                  onChange={props.toggleLead0}
+                  //onChange={props.toggleLead0}
+                  onChange={isAtLead => {
+
+                    //012
+                    if (_.isEqual(props.leads.leads, [false, true, true, false, false, false])) {
+                      props.toggleLead012(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [true, true, true, false, false, false])) {
+                      props.toggleLead12(isAtLead);
+                    }
+
+                    //01
+                    if (_.isEqual(props.leads.leads, [false, true, false, false, false, false])) {
+                      props.toggleLead01(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [true, true, false, false, false, false])) {
+                      props.toggleLead1(isAtLead);
+                    }
+
+                    //02
+                    if (_.isEqual(props.leads.leads, [false, false, true, false, false, false])) {
+                      props.toggleLead02(isAtLead);
+                    }
+                    if (_.isEqual(props.leads.leads, [true, false, true, false, false, false])) {
+                      props.toggleLead2(isAtLead);
+                    }
+
+                  }
+                  }
                 />
               </div>
             </div>
@@ -336,12 +536,12 @@ const mapStateToProps: MapStateToProps<
   StateProps,
   OwnProps,
   RootState
-> = state => {
-  return {
-    cursor: state.scene.cursor,
-    leads: state.scene.leads
+  > = state => {
+    return {
+      cursor: state.scene.cursor,
+      leads: state.scene.leads
+    };
   };
-};
 
 //Action creators
 function updateCursorPosition(
@@ -400,6 +600,55 @@ function toggleLead5(isAtLead5: boolean): ToggleLead5 {
   return { type: "toggleLead5", isAtLead5 };
 }
 
+function toggleLead123(isAtLead: boolean): ToggleLead123 {
+  return { type: "toggleLead123", isAtLead };
+}
+function toggleLead234(isAtLead: boolean): ToggleLead234 {
+  return { type: "toggleLead234", isAtLead };
+}
+function toggleLead34(isAtLead: boolean): ToggleLead34 {
+  return { type: "toggleLead34", isAtLead };
+}
+function toggleLead345(isAtLead: boolean): ToggleLead345 {
+  return { type: "toggleLead345", isAtLead };
+}
+function toggleLead45(isAtLead: boolean): ToggleLead45 {
+  return { type: "toggleLead45", isAtLead };
+}
+
+function toggleLead124(isAtLead: boolean): ToggleLead124 {
+  return { type: "toggleLead124", isAtLead };
+}
+function toggleLead134(isAtLead: boolean): ToggleLead134 {
+  return { type: "toggleLead134", isAtLead };
+}
+function toggleLead1234(isAtLead: boolean): ToggleLead1234 {
+  return { type: "toggleLead1234", isAtLead };
+}
+function toggleLead02(isAtLead: boolean): ToggleLead02 {
+  return { type: "toggleLead02", isAtLead };
+}
+function toggleLead12(isAtLead: boolean): ToggleLead12 {
+  return { type: "toggleLead12", isAtLead };
+}
+
+function toggleLead13(isAtLead: boolean): ToggleLead13 {
+  return { type: "toggleLead13", isAtLead };
+}
+function toggleLead24(isAtLead: boolean): ToggleLead24 {
+  return { type: "toggleLead24", isAtLead };
+}
+function toggleLead012(isAtLead: boolean): ToggleLead012 {
+  return { type: "toggleLead012", isAtLead };
+}
+function toggleLead01(isAtLead: boolean): ToggleLead01 {
+  return { type: "toggleLead01", isAtLead };
+}
+function toggleLead35(isAtLead: boolean): ToggleLead35 {
+  return { type: "toggleLead35", isAtLead };
+}
+
+
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {
   updateFrequency,
   updateCursorPosition,
@@ -412,11 +661,26 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {
   transformCursorZ,
   toggleElectrode,
   toggleLead0,
+  toggleLead01,
+  toggleLead02,
   toggleLead1,
+  toggleLead012,
+  toggleLead12,
+  toggleLead13,
+  toggleLead123,
+  toggleLead124,
   toggleLead2,
+  toggleLead24,
+  toggleLead234,
   toggleLead3,
   toggleLead4,
-  toggleLead5
+  toggleLead45,
+  toggleLead5,
+  toggleLead134,
+  toggleLead34,
+  toggleLead345,
+  toggleLead35,
+  toggleLead1234
 };
 
 export default connect(
