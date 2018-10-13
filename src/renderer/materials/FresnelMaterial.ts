@@ -59,7 +59,7 @@ export default class FresnelMaterial extends Material {
     if (uTransformMatrix) {
       const transform = mat4.create();
       mat4.translate(transform, transform, position);
-      mat4.scale(transform, transform, [scaleX, scaleY, scaleZ]); //<-- Transformationmatrix for spheres
+      mat4.scale(transform, transform, [scaleX, scaleY, scaleZ]); 
       gl.uniformMatrix4fv(uTransformMatrix, false, transform);
     }
   }

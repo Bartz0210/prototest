@@ -2,6 +2,7 @@ import Material from "./Material";
 
 import fragmentSource from "./shaders/texture.fragment.glsl";
 import vertexSource from "./shaders/texture.vertex.glsl";
+import { mat4 } from 'gl-matrix';
 
 export default class TextureMaterial extends Material {
   texture: WebGLTexture | null = null;
@@ -49,7 +50,7 @@ export default class TextureMaterial extends Material {
         resolve();
       });
 
-      image.src = "Test.png";
+      image.src = "scan.jpg";
     });
   }
 
@@ -59,5 +60,23 @@ export default class TextureMaterial extends Material {
   ) {
     super.initializeAttributes(gl, program);
     this.uSampler = gl.getUniformLocation(program, "uSampler");
+  }
+
+  
+  setTransform(
+    gl: WebGLRenderingContext,
+    position: [number, number, number],
+    scaleX: number,
+    scaleY: number,
+    scaleZ: number
+  ) {
+    const { uTransformMatrix } = this;
+
+    if (uTransformMatrix) {
+      const transform = mat4.create();
+      mat4.translate(transform, transform, position);
+      mat4.scale(transform, transform, [scaleX, scaleY, scaleZ]); 
+      gl.uniformMatrix4fv(uTransformMatrix, false, transform);
+    }
   }
 }

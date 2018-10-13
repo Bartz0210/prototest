@@ -119,7 +119,9 @@ export default class Scene {
 
     texture.begin(gl);
     capsule.render(gl, texture);
+   
     planMat.begin(gl);
+    planMat.setTransform(gl, [0.0, 15.0, 0.0],15.0, 1.0, 15.0);
     plan.render(gl, planMat);
 
     crsor.begin(gl);
