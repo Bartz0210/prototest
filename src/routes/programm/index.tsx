@@ -156,7 +156,7 @@ class Programm extends React.Component<
         <Sidebar visible={this.state.menuVisible}>
           <SidebarItem label="Programm" even={false} />
           <SidebarItem label="Programm" even={true}/>
-          <SidebarItem label="Programm" even={false}/>
+          <SidebarItem label="Programm" even={false} active={true}/>
           <SidebarItem label="Programm" even={true}/>
           <SidebarItem label="Programm" even={false}/>
           <SidebarItem label="Programm" even={true}/>
