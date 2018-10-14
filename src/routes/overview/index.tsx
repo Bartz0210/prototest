@@ -125,9 +125,10 @@ class Overview extends React.Component<
           onChange={this.props.toggleElectrode}
         >
           <WidgetElektrode
-            id={this.props.cursor.radius}
+            id={String(Math.round(this.props.cursor.scaleY*100)/100)}
+            //{String(Math.round(value * 100) / 100)}
             birthday={this.props.cursor.frequency}
-            implantSince="22"
+            implantSince={String(Math.round(this.props.cursor.scaleX*100)/100)}
             to="/programm"
             lead0={props.leads.leads["0"]}
             lead1={props.leads.leads["1"]}

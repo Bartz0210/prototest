@@ -49,7 +49,7 @@ export default class TextureMaterial extends Material {
         resolve();
       });
 
-      image.src = "texture.png";
+      image.src = "texture-bright.png";
     });
   }
 

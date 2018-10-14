@@ -38,17 +38,17 @@ export default class Reports extends React.Component<State> {
     return (
       <div className={theme.root}>
         <Sidebar visible={this.state.menuVisible}>
-          <SidebarItem label="Programm" />
-          <SidebarItem label="Programm" />
-          <SidebarItem label="Programm" />
-          <SidebarItem label="Programm" />
-          <SidebarItem label="Programm" />
-          <SidebarItem label="Programm" />
-          <SidebarItem label="Programm" />
-          <SidebarItem label="Programm" />
-          <SidebarItem label="Programm" />
-          <SidebarItem label="Programm" />
-          <SidebarItem label="Programm" />
+          <SidebarItem label="Programm" even={false}/>
+          <SidebarItem label="Programm" even={true}/>
+          <SidebarItem label="Programm" even={false}/>
+          <SidebarItem label="Programm" even={true}/>
+          <SidebarItem label="Programm" even={false}/>
+          <SidebarItem label="Programm" even={true}/>
+          <SidebarItem label="Programm" even={false}/>
+          <SidebarItem label="Programm" even={true}/>
+          <SidebarItem label="Programm" even={false}/>
+          <SidebarItem label="Programm" even={true}/>
+          <SidebarItem label="Programm" even={false}/>
         </Sidebar>
         <button
           style={{

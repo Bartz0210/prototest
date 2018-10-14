@@ -6,36 +6,37 @@ const theme = {
     label: ControlItem;
     display: flex;
     flex-flow: row;
-    align-items: left;
-    justify-content: stretch;
-    height: 36px;
+    align-items: center;
+    justify-content: flex-start;
+    height: 56px;
     width: auto;
-
-    background: #fff;
-    border-bottom: 1px solid #58aa92;
 
     text-decoration: none;
   `,
   item_padding: css`
-    padding: 8 8 8 16;
+    padding: 8 8 8 40;
   `,
 
   item_text: css`
-    font-size: 16px;
-    font-weight: 200;
-    color: #58aa92;
+    font-size: 15px;
+    font-weight: normal;
+    color: #3d3d3d;
   `
 };
 
 export interface Props {
   label: string;
+  even: boolean;
 }
 
-export default function ControlItem({ label }: Props) {
+export default function ControlItem(props: Props) {
   return (
-    <div className={theme.root}>
+    <div className={theme.root}
+      style={{
+        background: props.even? "#fff" : "none"
+      }}>
       <div className={theme.item_padding}>
-        <span className={theme.item_text}>{label}</span>
+        <span className={theme.item_text}>{props.label}</span>
       </div>
     </div>
   );

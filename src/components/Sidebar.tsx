@@ -23,18 +23,18 @@ const theme = {
     display: flex;
     flex-direction: column;
 
-    background: #dadada;
+    background: #f0f0f0;
   `,
 
   menu_header: css`
-    border-bottom: 1px solid #f3f3f3;
+    background: #fff;
   `,
 
   hdl: css`
-    padding: 8 8 8 8;
-    font-size: 16px;
-    font-weight: bold;
-    color: #2699fb;
+    padding: 8 8 8 40;
+    font-size: 15px;
+    font-weight: 600;
+    color: #3d3d3d;
   `
 };
 
@@ -55,7 +55,7 @@ export function Sidebar(props: Props) {
         style={{
           transform: props.visible ? "translateX(0)" : "translateX(-100%)",
           boxShadow: props.visible
-            ? "0px 2px 2px 1px rgba(0, 0, 0, 0.2)"
+            ? "1px 4px 5px rgba(0, 0, 0, 0.16)"
             : "none",
           transition: "300ms ease-in"
         }}

@@ -117,6 +117,8 @@ export default class Scene {
     this.cursor = data.cursor;
     this.leads = data.leads;
 
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+
     texture.begin(gl);
     capsule.render(gl, texture);
    

@@ -187,10 +187,10 @@ export default function WidgetText({
         <span className={theme.val}>{id}</span>
         <br />
         <span className={theme.lbl}>Pulsweite(μs) </span>
-        <span className={theme.val}>{birthday}</span>
+        <span className={theme.val}>{implantSince}</span>
         <br />
         <span className={theme.lbl}>Frequenz (Hz) </span>
-        <span className={theme.val}>{implantSince}</span>
+        <span className={theme.val}>{birthday}</span>
         <br />
         <div className={theme.btn}>
           <NavLink className={theme.nav} type="button" to={to}>
