@@ -26,7 +26,9 @@ import {
   ToggleLead2,
   ToggleLead3,
   ToggleLead4,
-  ToggleLead5
+  ToggleLead5,
+  ToggleLead1234,
+  ToggleLeads
 } from "../../store/scene";
 //import { State } from "../../components/ControlItemSwitch";
 
@@ -77,6 +79,8 @@ interface DispatchProps {
   toggleLead3(isAtLead3: boolean): void;
   toggleLead4(isAtLead4: boolean): void;
   toggleLead5(isAtLead5: boolean): void;
+  toggleLeads(isAtLead: boolean): void;
+  toggleLead1234(isAtLead: boolean): void;
 }
 
 class Overview extends React.Component<
@@ -122,7 +126,14 @@ class Overview extends React.Component<
         <WidgetOnOff
           headline="Linke Elektrode"
           checked={this.props.cursor.isOn}
-          onChange={this.props.toggleElectrode}
+          onChange={isOn => {
+            props.toggleElectrode(isOn);
+            if (props.cursor.isOn) {
+              props.toggleLeads(isOn);
+            } else {
+              props.toggleLead1234(isOn);
+            }
+          }}
         >
           <WidgetElektrode
             id={String(Math.round(this.props.cursor.scaleY * 100) / 100)}
@@ -229,6 +240,12 @@ function toggleLead4(isAtLead4: boolean): ToggleLead4 {
 function toggleLead5(isAtLead5: boolean): ToggleLead5 {
   return { type: "toggleLead5", isAtLead5 };
 }
+function toggleLeads(isAtLead: boolean): ToggleLeads {
+  return { type: "toggleLeads", isAtLead };
+}
+function toggleLead1234(isAtLead: boolean): ToggleLead1234 {
+  return { type: "toggleLead1234", isAtLead };
+}
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {
   updateFrequency,
@@ -246,7 +263,9 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {
   toggleLead2,
   toggleLead3,
   toggleLead4,
-  toggleLead5
+  toggleLead5,
+  toggleLeads,
+  toggleLead1234
 };
 
 export default connect(
