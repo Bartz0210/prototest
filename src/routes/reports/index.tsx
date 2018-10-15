@@ -158,21 +158,21 @@ export default class Reports extends React.Component<State> {
           <div className={theme.placeholder_lower}>
             <ReportElectrode
               headline="Rechte Elektrode"
-              amplitude="3.0"
+              amplitude="1.8"
               pulsweite="1.5"
               frequenz="60"
               pCase={100}
-              pLead0={0}
-              pLead1={-25}
-              pLead2={-25}
-              pLead3={-25}
-              pLead4={-25}
+              pLead0={-33}
+              pLead1={-33}
+              pLead2={-33}
+              pLead3={0}
+              pLead4={0}
               pLead5={0}
-              lead0={false}
+              lead0={true}
               lead1={true}
               lead2={true}
-              lead3={true}
-              lead4={true}
+              lead3={false}
+              lead4={false}
               lead5={false}
             />
           </div>
