@@ -8,7 +8,7 @@ const theme = {
     top: -12;
     left: 0;
     width: 320px;
-    height: 300px;
+    height: 284px;
     background-image: url("./Max_mustermann2.jpg");
     background-size: cover;
     background-repeat: no-repeat;

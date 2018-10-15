@@ -18,7 +18,7 @@ const theme = {
     font-size: 32px;
   `,
   grid: css`
-    margin: 14 17 13 17;
+    margin: 6 17 13 17;
     display: grid;
     grid-template-columns: 320 654;
     grid-template-rows: 63 63 63 63 63 63 63 63;

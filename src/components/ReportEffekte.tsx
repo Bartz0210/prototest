@@ -57,8 +57,7 @@ const theme = {
 
     font-size: 15px;
 
-    color: #000000;
-    opacity: 0.5;
+    color: #3d3d3d;
 
     line-height: 2;
   `,

@@ -6,14 +6,16 @@ const theme = {
     label: Controlpanel;
     left: 0;
     display: grid;
-    grid-gap: 0;
+    grid-gap: 16px;
     align-items: left;
     font-size: 16px;
-   
-    
+
     background: #f0f0f0;
-    width: 390;
-    height: 641;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 390px;
   `
 };
 

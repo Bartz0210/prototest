@@ -33,11 +33,11 @@ import {
 const theme = {
   root: css`
     label: Overview;
-    margin: 14 17 13 17;
+    margin: 10 auto auto 20;
     display: grid;
     grid-template-columns: 320 320 320;
-    grid-template-rows: 300 300;
-    grid-gap: 15px;
+    grid-template-rows: 284 300;
+    grid-gap: 12px;
     align-items: stretch;
     justify-content: stretch;
 
@@ -125,10 +125,12 @@ class Overview extends React.Component<
           onChange={this.props.toggleElectrode}
         >
           <WidgetElektrode
-            id={String(Math.round(this.props.cursor.scaleY*100)/100)}
+            id={String(Math.round(this.props.cursor.scaleY * 100) / 100)}
             //{String(Math.round(value * 100) / 100)}
             birthday={this.props.cursor.frequency}
-            implantSince={String(Math.round(this.props.cursor.scaleX*100)/100)}
+            implantSince={String(
+              Math.round(this.props.cursor.scaleX * 100) / 100
+            )}
             to="/programm"
             lead0={props.leads.leads["0"]}
             lead1={props.leads.leads["1"]}
