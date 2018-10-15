@@ -12,6 +12,9 @@ const theme = {
     margin-right: 24px;
   `,
   buttonlft: css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 40px;
     max-width: 40px;
     height: 40px;
@@ -24,6 +27,9 @@ const theme = {
     font-weight: normal;
   `,
   buttonrght: css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 40px;
     max-width: 40px;
     height: 40px;
