@@ -293,10 +293,6 @@ export default function scene(
     case "toggleLead5":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [0, -3.125, 0]
-        // },
         leads: {
           ...state.leads,
           leads: [false, false, false, false, false, true]
@@ -305,14 +301,6 @@ export default function scene(
     case "toggleLead4":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.5 + state.cursor.radius * state.cursor.scaleX,
-        //     -0.625,
-        //     state.cursor.position["2"]
-        //   ]
-        // },
         leads: {
           ...state.leads,
           leads: [false, false, false, false, true, false]
@@ -321,14 +309,6 @@ export default function scene(
     case "toggleLead3":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     -0.5 - state.cursor.radius * state.cursor.scaleX,
-        //     -0.625,
-        //     state.cursor.position["2"]
-        //   ]
-        // },
         leads: {
           ...state.leads,
           leads: [false, false, false, true, false, false]
@@ -337,14 +317,6 @@ export default function scene(
     case "toggleLead2":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.5 + state.cursor.radius * state.cursor.scaleX,
-        //     1.125,
-        //     state.cursor.position["2"]
-        //   ]
-        // },
         leads: {
           ...state.leads,
           leads: [false, false, true, false, false, false]
@@ -353,14 +325,6 @@ export default function scene(
     case "toggleLead1":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     -0.5 - state.cursor.radius * state.cursor.scaleX,
-        //     1.125,
-        //     state.cursor.position["2"]
-        //   ]
-        // },
         leads: {
           ...state.leads,
           leads: [false, true, false, false, false, false]
@@ -370,25 +334,15 @@ export default function scene(
     case "toggleLead0":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [0, 4.625, 0]
-        // },
         leads: {
           ...state.leads,
           leads: [true, false, false, false, false, false]
         }
       };
-    //TODO
 
     case "toggleLead1234":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [0, 0.625, state.cursor.position["2"]],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [false, true, true, true, true, false]
@@ -398,11 +352,6 @@ export default function scene(
     case "toggleLead012":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [0, 3.125, state.cursor.position["2"]],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [true, true, true, false, false, false]
@@ -412,11 +361,6 @@ export default function scene(
     case "toggleLead345":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [0, -4.625, state.cursor.position["2"]],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [false, false, false, true, true, true]
@@ -426,15 +370,6 @@ export default function scene(
     case "toggleLead124":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.25 + state.cursor.radius * state.cursor.scaleX,
-        //     1.25,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [false, true, true, false, true, false]
@@ -444,15 +379,6 @@ export default function scene(
     case "toggleLead234":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.25 + state.cursor.radius * state.cursor.scaleX,
-        //     0,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [false, false, true, true, true, false]
@@ -462,15 +388,6 @@ export default function scene(
     case "toggleLead134":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     -0.25 - state.cursor.radius * state.cursor.scaleX,
-        //     0,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [false, true, false, true, true, false]
@@ -480,15 +397,6 @@ export default function scene(
     case "toggleLead123":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     -0.25 - state.cursor.radius * state.cursor.scaleX,
-        //     1.25,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [false, true, true, true, false, false]
@@ -498,11 +406,6 @@ export default function scene(
     case "toggleLead12":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [0, 1.875, state.cursor.position["2"]],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [false, true, true, false, false, false]
@@ -512,11 +415,6 @@ export default function scene(
     case "toggleLead34":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [0, -1.875, state.cursor.position["2"]],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [false, false, false, true, true, false]
@@ -526,15 +424,6 @@ export default function scene(
     case "toggleLead01":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     -0.25 - state.cursor.radius * state.cursor.scaleX,
-        //     3.125,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [true, true, false, false, false, false]
@@ -543,15 +432,6 @@ export default function scene(
     case "toggleLead02":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.25 + state.cursor.radius * state.cursor.scaleX,
-        //     3.125,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [true, false, true, false, false, false]
@@ -560,15 +440,6 @@ export default function scene(
     case "toggleLead35":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     -0.25 - state.cursor.radius * state.cursor.scaleX,
-        //     -1.875,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [false, false, false, true, false, true]
@@ -577,15 +448,6 @@ export default function scene(
     case "toggleLead45":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.25 + state.cursor.radius * state.cursor.scaleX,
-        //     -1.875,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [false, false, false, false, true, true]
@@ -594,15 +456,6 @@ export default function scene(
     case "toggleLead13":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     0.5 + state.cursor.radius * state.cursor.scaleX,
-        //     0.625,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [false, true, false, true, false, false]
@@ -611,15 +464,6 @@ export default function scene(
     case "toggleLead24":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     -0.5 - state.cursor.radius * state.cursor.scaleX,
-        //     0.625,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [false, false, true, false, true, false]
@@ -628,15 +472,6 @@ export default function scene(
     case "toggleLeads":
       return {
         ...state,
-        // cursor: {
-        //   ...state.cursor,
-        //   position: [
-        //     -0.5 - state.cursor.radius * state.cursor.scaleX,
-        //     0.625,
-        //     state.cursor.position["2"]
-        //   ],
-        //   scaleY: 2
-        // },
         leads: {
           ...state.leads,
           leads: [false, false, false, false, false, false]

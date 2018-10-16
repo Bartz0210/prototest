@@ -38,7 +38,7 @@ import {
   ToggleLead345,
   ToggleLead35,
   ToggleLeads,
-  ToggleLead45
+  ToggleLead45  
 } from "../../store/scene";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { CursorState, LeadState } from "../../renderer/Scene";
