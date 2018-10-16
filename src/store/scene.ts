@@ -19,7 +19,7 @@ function createScene(): SceneData {
         -5 + Math.random() * 10,
         Math.cos(angle) * distance
       ],
-      radius: 2 + Math.random() * 3,
+      radius: 2 + Math.random() * 2.0,
       scaleX: 1,
       scaleY: 1,
       scaleZ: 1,
