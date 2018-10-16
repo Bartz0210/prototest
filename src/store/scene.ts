@@ -4,12 +4,16 @@ import { fail } from "assert";
 
 function createScene(): SceneData {
   const spots: Array<SpotState> = [];
+  const red = [1.0, 0.0, 0.0];
+  const orange = [1.0, 0.64706, 0.0];
+  const green = [0.0, 1.0, 0.0];
+  const colors = [red, orange, green];
   for (let index = 0; index < 3; index++) {
     const distance = 2 + Math.random() * 5;
     const angle = Math.random() * Math.PI * 2;
 
     spots.push({
-      color: [Math.random(), Math.random(), Math.random()],
+      color: [colors[index][0], colors[index][1], colors[index][2]],
       position: [
         Math.sin(angle) * distance,
         -5 + Math.random() * 10,
