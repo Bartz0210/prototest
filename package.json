@@ -7,7 +7,7 @@
     "build": "webpack --mode=production",
     "watch": "webpack-dev-server --host 0.0.0.0 --mode=development"
   },
-  "author": "",
+  "author": "Tim Zeidler",
   "license": "ISC",
   "devDependencies": {
     "@types/gl-matrix": "^2.4.1",
