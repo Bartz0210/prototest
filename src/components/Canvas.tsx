@@ -1,21 +1,22 @@
-import * as React from 'react';
-import { css, cx } from 'emotion';
-import { connect } from 'react-redux';
+import * as React from "react";
+import { css, cx } from "emotion";
+import { connect } from "react-redux";
 
-import { RootState } from '../store';
-import { SceneData } from '../renderer/Scene';
+import { RootState } from "../store";
+import { SceneData } from "../renderer/Scene";
 import Renderer, {
   CursorPositionCallback,
-  CursorRadiusCallback,
-} from '../renderer';
+  CursorRadiusCallback
+} from "../renderer";
 
 const theme = {
   root: css`
     label: Canvas;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    flex: 2 auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 390px;
   `,
   canvas: css`
     position: absolute;
@@ -23,7 +24,7 @@ const theme = {
     left: 0;
     width: 100%;
     height: 100%;
-  `,
+  `
 };
 
 export type Props = {
@@ -61,7 +62,7 @@ export class Canvas extends React.Component<Props> {
       this.renderer = new Renderer({
         canvas,
         onCursorPosition,
-        onCursorRadius,
+        onCursorRadius
       });
     }
   };
@@ -104,20 +105,20 @@ export class Canvas extends React.Component<Props> {
 
 export default connect(
   (state: RootState) => ({
-    scene: state.scene,
+    scene: state.scene
   }),
   dispatch => ({
     onCursorPosition: (x: number, y: number, z: number) =>
       dispatch({
-        type: 'updateCursorPosition',
+        type: "updateCursorPosition",
         x,
         y,
-        z,
+        z
       }),
     onCursorRadius: (radius: number) =>
       dispatch({
-        type: 'updateCursorRadius',
-        radius,
-      }),
+        type: "updateCursorRadius",
+        radius
+      })
   })
 )(Canvas);
