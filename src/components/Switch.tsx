@@ -35,6 +35,8 @@ export default function Switch({ className, isOn, onChange }: Props) {
         <input
           className={className}
           style={{
+            position: "relative",
+            left: -15,
             opacity: 0,
             height: 30,
             width: 30

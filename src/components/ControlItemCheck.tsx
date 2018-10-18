@@ -8,14 +8,14 @@ const theme = {
     display: flex;
     flex-flow: row;
     align-items: center;
-    justify-content: stretch;
+    justify-content: space-around ;
     height: 36px;
     width: auto;
 
     text-decoration: none;
   `,
   children: css`
-    margin: auto 0 auto 16;
+   margin-left: 16px;
   `
 };
 
