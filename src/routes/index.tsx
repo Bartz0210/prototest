@@ -48,19 +48,19 @@ export default function Application() {
     <>
       <Header>
         <Route path="" exact render={() => "Übersicht"} />
-        <Route path="/reports" render={() => "Reports"} />
         <Route path="/programm" render={() => "Programmierung"} />
+        <Route path="/reports" render={() => "Reports"} />
       </Header>
 
       <div className={theme.root}>
         <Route component={Overview} path="" exact />
-        <Route component={Reports} path="/reports" />
         <Route component={Programm} path="/programm" />
+        <Route component={Reports} path="/reports" />
       </div>
       <Footer>
         <FooterItem caption="Übersicht" exact icon="view_module" to="" />
-        <FooterItem caption="Reports" icon="notes" to="/reports" />
         <FooterItem caption="Programmierung" icon="tune" to="/programm" />
+        <FooterItem caption="Reports" icon="notes" to="/reports" />
       </Footer>
     </>
   );
