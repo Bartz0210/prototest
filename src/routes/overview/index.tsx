@@ -118,6 +118,7 @@ class Overview extends React.Component<
             id="- Tremor"
             birthday="- Rigor"
             implantSince="- Akinese"
+            to="/reports"
           />
         </Widget>
         <Widget headline="Lokalisation">
