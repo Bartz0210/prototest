@@ -1,5 +1,6 @@
 import * as React from "react";
 import { css } from "emotion";
+import EffektZeile from './EffektZeile';
 
 const theme = {
   root: css`
@@ -36,35 +37,15 @@ const theme = {
     position: relative;
     width: 280;
     top: 32;
-    left: 20;
+    left: 30;
+    display: flex;
+    flex-direction: column;
+    height: 346px;
+    justify-content: space-evenly;
   `,
 
-  val: css`
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 2;
-    font-size: 15px;
+  
 
-    float: right;
-
-    color: #3d3d3d;
-  `,
-
-  lbl: css`
-    font-style: normal;
-    font-weight: 600;
-
-    font-size: 15px;
-
-    color: #3d3d3d;
-
-    line-height: 2;
-  `,
-
-  cont: css`
-    vertical-align: top;
-  `
 };
 
 export interface Props {
@@ -80,34 +61,19 @@ export default function ReportEffekte(props: Props) {
       <div className={theme.root}>
         <span className={theme.patient}>{props.headline}</span>
         <br />
+       
+
+
         <div className={theme.txt}>
-          <span className={theme.lbl}>Steifheit </span>
-          <span className={theme.val}>3</span>
-          <br />
-          <span className={theme.lbl}>Tremor </span>
-          <span className={theme.val}>4</span>
-          <br />
-          <span className={theme.lbl}>Bradykinese</span>
-          <span className={theme.val}>3</span>
-          <br />
-          <span className={theme.lbl}>Gang </span>
-          <span className={theme.val}>3</span>
-          <br />
-          <span className={theme.lbl}>Haltung </span>
-          <span className={theme.val}>5</span>
-          <br />
-          <span className={theme.lbl}>Dystonie </span>
-          <span className={theme.val}>4</span>
-          <br />
-          <span className={theme.lbl}>Gleichgewicht </span>
-          <span className={theme.val}>4</span>
-          <br />
-          <span className={theme.lbl}>Stillstand </span>
-          <span className={theme.val}>4</span>
-          <br />
-          <span className={theme.lbl}>Armschwingen </span>
-          <span className={theme.val}>4</span>
-          <br />
+        <EffektZeile name="Steifheit" value={2} />
+        <EffektZeile name="Tremor" value={3} />
+        <EffektZeile name="Bradykinese" value={4} />
+        <EffektZeile name="Gang" value={5} />
+        <EffektZeile name="Haltung" value={3} />
+        <EffektZeile name="Dystonie" value={1} />
+        <EffektZeile name="Gleichgewicht" value={2} />
+        <EffektZeile name="Stillstand" value={4} />
+        <EffektZeile name="Armschwingen" value={5} />
         </div>
       </div>
     </div>
