@@ -1,17 +1,17 @@
-import Renderer from '.';
+import Renderer from ".";
 
 const mouseIdentifier = -1;
 
 export const enum ListenMode {
   None,
   Mouse,
-  Touch,
+  Touch
 }
 
 export const enum ActionMode {
   None,
   Drag,
-  Zoom,
+  Zoom
 }
 
 export interface Pointer {
@@ -36,16 +36,16 @@ export default class Events {
     this.element = element;
     this.renderer = renderer;
 
-    element.addEventListener('mousedown', this.handleMouseDown);
-    element.addEventListener('touchstart', this.handleTouchStart);
-    element.addEventListener('wheel', this.handleWheel);
+    element.addEventListener("mousedown", this.handleMouseDown);
+    element.addEventListener("touchstart", this.handleTouchStart);
+    element.addEventListener("wheel", this.handleWheel);
   }
 
   dispose() {
     const { element } = this;
-    element.removeEventListener('mousedown', this.handleMouseDown);
-    element.removeEventListener('touchstart', this.handleTouchStart);
-    element.removeEventListener('wheel', this.handleWheel);
+    element.removeEventListener("mousedown", this.handleMouseDown);
+    element.removeEventListener("touchstart", this.handleTouchStart);
+    element.removeEventListener("wheel", this.handleWheel);
 
     this.setListenMode(ListenMode.None);
   }
@@ -66,7 +66,7 @@ export default class Events {
       initialX: x,
       initialY: y,
       lastX: x,
-      lastY: y,
+      lastY: y
     };
 
     this.pointers.push(pointer);
@@ -180,26 +180,26 @@ export default class Events {
 
     switch (this.listenMode) {
       case ListenMode.Mouse:
-        document.removeEventListener('mousemove', this.handleMouseMove);
-        document.removeEventListener('mouseup', this.handleMouseUp);
+        document.removeEventListener("mousemove", this.handleMouseMove);
+        document.removeEventListener("mouseup", this.handleMouseUp);
         break;
       case ListenMode.Touch:
-        document.removeEventListener('touchmove', this.handleTouchMove);
-        document.removeEventListener('touchcancel', this.handleTouchEnd);
-        document.removeEventListener('touchend', this.handleTouchEnd);
+        document.removeEventListener("touchmove", this.handleTouchMove);
+        document.removeEventListener("touchcancel", this.handleTouchEnd);
+        document.removeEventListener("touchend", this.handleTouchEnd);
         break;
     }
 
     this.listenMode = mode;
     switch (mode) {
       case ListenMode.Mouse:
-        document.addEventListener('mousemove', this.handleMouseMove);
-        document.addEventListener('mouseup', this.handleMouseUp);
+        document.addEventListener("mousemove", this.handleMouseMove);
+        document.addEventListener("mouseup", this.handleMouseUp);
         break;
       case ListenMode.Touch:
-        document.addEventListener('touchmove', this.handleTouchMove);
-        document.addEventListener('touchcancel', this.handleTouchEnd);
-        document.addEventListener('touchend', this.handleTouchEnd);
+        document.addEventListener("touchmove", this.handleTouchMove);
+        document.addEventListener("touchcancel", this.handleTouchEnd);
+        document.addEventListener("touchend", this.handleTouchEnd);
         break;
     }
 

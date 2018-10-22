@@ -159,71 +159,62 @@ class Programm extends React.Component<
           onClick={this.handleMenuToggle}
         >
           <SidebarItem
-            label="Programm"
+            label="Programm 1 - Dystonie"
             even={false}
             menuVisible={this.state.menuVisible}
-            onClick={this.handleMenuToggle}
+            onClick={isAtLead => {
+              this.handleMenuToggle();
+              props.toggleLead123(isAtLead);
+              props.updateCursorPosition(
+                -0.25 - props.cursor.radius * props.cursor.scaleX,
+                1.25,
+                props.cursor.position[2]
+              );
+              props.transformCursorY(2);
+              props.updateCursorRadius(2.4);
+            }}
           />
           <SidebarItem
-            label="Programm"
+            label="Programm 2 - Tremor"
             even={true}
             menuVisible={this.state.menuVisible}
-            onClick={this.handleMenuToggle}
+            onClick={isAtLead => {
+              this.handleMenuToggle();
+              props.toggleLead012(isAtLead);
+              props.updateCursorPosition(0, 3.125, props.cursor.position[2]);
+              props.transformCursorY(2);
+              props.transformCursorX(3);
+              props.updateFrequency(150);
+            }}
+            // onClick={this.handleMenuToggle}
           />
           <SidebarItem
-            label="Programm"
+            label="Programm 3 - Bradykinese"
             even={false}
-            active={true}
             menuVisible={this.state.menuVisible}
-            onClick={this.handleMenuToggle}
+            onClick={isAtLead => {
+              this.handleMenuToggle();
+              props.toggleLead34(isAtLead);
+              props.updateCursorPosition(0, -1.875, props.cursor.position[2]);
+              props.transformCursorY(1);
+              props.updateCursorRadius(1.8);
+              props.updateFrequency(180);
+            }}
+            // onClick={this.handleMenuToggle}
           />
           <SidebarItem
-            label="Programm"
+            label="Programm 4 - Feinmotorik"
             even={true}
             menuVisible={this.state.menuVisible}
-            onClick={this.handleMenuToggle}
-          />
-          <SidebarItem
-            label="Programm"
-            even={false}
-            menuVisible={this.state.menuVisible}
-            onClick={this.handleMenuToggle}
-          />
-          <SidebarItem
-            label="Programm"
-            even={true}
-            menuVisible={this.state.menuVisible}
-            onClick={this.handleMenuToggle}
-          />
-          <SidebarItem
-            label="Programm"
-            even={false}
-            menuVisible={this.state.menuVisible}
-            onClick={this.handleMenuToggle}
-          />
-          <SidebarItem
-            label="Programm"
-            even={true}
-            menuVisible={this.state.menuVisible}
-            onClick={this.handleMenuToggle}
-          />
-          <SidebarItem
-            label="Programm"
-            even={false}
-            menuVisible={this.state.menuVisible}
-            onClick={this.handleMenuToggle}
-          />
-          <SidebarItem
-            label="Programm"
-            even={true}
-            menuVisible={this.state.menuVisible}
-            onClick={this.handleMenuToggle}
-          />
-          <SidebarItem
-            label="Programm"
-            even={false}
-            menuVisible={this.state.menuVisible}
-            onClick={this.handleMenuToggle}
+            onClick={isAtLead => {
+              this.handleMenuToggle();
+              props.toggleLead5(isAtLead);
+              props.updateCursorPosition(0, -3.125, 0);
+              props.transformCursorY(1);
+              props.transformCursorX(2.6);
+              props.updateFrequency(105);
+            }}
+            // onClick={this.handleMenuToggle}
           />
         </Sidebar>
         <button

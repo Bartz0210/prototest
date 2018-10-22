@@ -9,6 +9,7 @@ import { Pointer } from "./Events";
 import _ from "underscore";
 import CursorMaterial from "./materials/CursorMaterial";
 import PlaneMaterial from "./materials/PlaneMaterial";
+import { connect } from "react-redux";
 
 export type Color = [number, number, number];
 export type Position = [number, number, number];
@@ -121,9 +122,9 @@ export default class Scene {
 
     texture.begin(gl);
     capsule.render(gl, texture);
-   
+
     planMat.begin(gl);
-    planMat.setTransform(gl, [0.0, 15.0, 0.0],15.0, 1.0, 15.0);
+    planMat.setTransform(gl, [0.0, 15.0, 0.0], 15.0, 1.0, 15.0);
     plan.render(gl, planMat);
 
     crsor.begin(gl);
@@ -231,7 +232,10 @@ export default class Scene {
   }
 
   handleScale(scale: number) {
-    this.renderer.onCursorRadius(this.cursor.radius * scale);
+    const radi = this.cursor.radius * scale;
+    this.cursor.radius = radi;
+    console.log(this.cursor.radius);
+    this.renderer.onCursorRadius(radi);
   }
 
   hitTest(x: number, y: number) {
