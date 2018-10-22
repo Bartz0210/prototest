@@ -14,26 +14,26 @@ const theme = {
     text-decoration: none;
   `,
   item_padding: css`
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: flex-start;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-start;
     padding: 8 8 8 40;
   `,
   active: css`
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: flex-start;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-start;
     width: 300px;
     height: 40px;
     padding: 8 8 8 40;
-    background: #58AA92;
+    background: #58aa92;
   `,
   item_text_active: css`
-  font-size: 15px;
-  font-weight: 600;
-  color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
   `,
 
   item_text: css`
@@ -47,16 +47,26 @@ export interface Props {
   label: string;
   even: boolean;
   active?: boolean;
+
+  menuVisible: boolean;
+  onClick(menuVisible: boolean): void;
 }
 
 export default function ControlItem(props: Props) {
   return (
-    <div className={theme.root}
+    <div
+      className={theme.root}
       style={{
-        background: props.even? "#fff" : "none",
-      }}>
-      <div className={props.active? theme.active : theme.item_padding }>
-        <span className={props.active? theme.item_text_active: theme.item_text}>{props.label}</span>
+        background: props.even ? "#fff" : "none"
+      }}
+      onClick={() => props.onClick(props.menuVisible)}
+    >
+      <div className={props.active ? theme.active : theme.item_padding}>
+        <span
+          className={props.active ? theme.item_text_active : theme.item_text}
+        >
+          {props.label}
+        </span>
       </div>
     </div>
   );

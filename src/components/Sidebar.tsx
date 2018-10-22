@@ -40,7 +40,10 @@ const theme = {
 
 export interface Props {
   /* Menu is visible */
+  title: string;
   visible: boolean;
+  onClick(visible: boolean): void;
+
   children?: React.ReactNode;
 }
 
@@ -54,14 +57,13 @@ export function Sidebar(props: Props) {
         className={theme.menu}
         style={{
           transform: props.visible ? "translateX(0)" : "translateX(-100%)",
-          boxShadow: props.visible
-            ? "1px 4px 5px rgba(0, 0, 0, 0.16)"
-            : "none",
+          boxShadow: props.visible ? "1px 4px 5px rgba(0, 0, 0, 0.16)" : "none",
           transition: "300ms ease-in"
         }}
+        // onClick={() => props.onClick(props.visible)}
       >
         <div className={theme.menu_header}>
-          <h2 className={theme.hdl}>Programme</h2>
+          <h2 className={theme.hdl}>{props.title}</h2>
         </div>
         {props.children}
       </div>

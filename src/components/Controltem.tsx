@@ -41,7 +41,6 @@ export interface State {
 }
 
 export default function ControlItem({
-  className,
   label,
   value,
   increment,

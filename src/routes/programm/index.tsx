@@ -38,7 +38,7 @@ import {
   ToggleLead345,
   ToggleLead35,
   ToggleLeads,
-  ToggleLead45  
+  ToggleLead45
 } from "../../store/scene";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { CursorState, LeadState } from "../../renderer/Scene";
@@ -90,7 +90,7 @@ const theme = {
   `
 };
 
-interface OwnProps { }
+interface OwnProps {}
 
 interface StateProps {
   cursor: CursorState;
@@ -139,7 +139,7 @@ interface State {
 class Programm extends React.Component<
   OwnProps & StateProps & DispatchProps,
   State
-  > {
+> {
   state: State = {
     menuVisible: false
   };
@@ -153,18 +153,78 @@ class Programm extends React.Component<
 
     return (
       <div className={theme.root}>
-        <Sidebar visible={this.state.menuVisible}>
-          <SidebarItem label="Programm" even={false} />
-          <SidebarItem label="Programm" even={true}/>
-          <SidebarItem label="Programm" even={false} active={true}/>
-          <SidebarItem label="Programm" even={true}/>
-          <SidebarItem label="Programm" even={false}/>
-          <SidebarItem label="Programm" even={true}/>
-          <SidebarItem label="Programm" even={false}/>
-          <SidebarItem label="Programm" even={true}/>
-          <SidebarItem label="Programm" even={false}/>
-          <SidebarItem label="Programm" even={true}/>
-          <SidebarItem label="Programm" even={false}/>
+        <Sidebar
+          title="Programme"
+          visible={this.state.menuVisible}
+          onClick={this.handleMenuToggle}
+        >
+          <SidebarItem
+            label="Programm"
+            even={false}
+            menuVisible={this.state.menuVisible}
+            onClick={this.handleMenuToggle}
+          />
+          <SidebarItem
+            label="Programm"
+            even={true}
+            menuVisible={this.state.menuVisible}
+            onClick={this.handleMenuToggle}
+          />
+          <SidebarItem
+            label="Programm"
+            even={false}
+            active={true}
+            menuVisible={this.state.menuVisible}
+            onClick={this.handleMenuToggle}
+          />
+          <SidebarItem
+            label="Programm"
+            even={true}
+            menuVisible={this.state.menuVisible}
+            onClick={this.handleMenuToggle}
+          />
+          <SidebarItem
+            label="Programm"
+            even={false}
+            menuVisible={this.state.menuVisible}
+            onClick={this.handleMenuToggle}
+          />
+          <SidebarItem
+            label="Programm"
+            even={true}
+            menuVisible={this.state.menuVisible}
+            onClick={this.handleMenuToggle}
+          />
+          <SidebarItem
+            label="Programm"
+            even={false}
+            menuVisible={this.state.menuVisible}
+            onClick={this.handleMenuToggle}
+          />
+          <SidebarItem
+            label="Programm"
+            even={true}
+            menuVisible={this.state.menuVisible}
+            onClick={this.handleMenuToggle}
+          />
+          <SidebarItem
+            label="Programm"
+            even={false}
+            menuVisible={this.state.menuVisible}
+            onClick={this.handleMenuToggle}
+          />
+          <SidebarItem
+            label="Programm"
+            even={true}
+            menuVisible={this.state.menuVisible}
+            onClick={this.handleMenuToggle}
+          />
+          <SidebarItem
+            label="Programm"
+            even={false}
+            menuVisible={this.state.menuVisible}
+            onClick={this.handleMenuToggle}
+          />
         </Sidebar>
         <button
           style={{
@@ -196,13 +256,13 @@ class Programm extends React.Component<
               checked={props.cursor.isOn}
               onChange={checked => {
                 props.toggleElectrode(checked);
-                if(checked){
+                if (checked) {
                   props.toggleLead1234(checked);
                   props.updateCursorPosition(0, 1.25, props.cursor.position[2]);
                   props.transformCursorY(2);
-                }else{
-                props.toggleLeads(checked);}
-                
+                } else {
+                  props.toggleLeads(checked);
+                }
               }}
             />
           </div>
@@ -274,54 +334,147 @@ class Programm extends React.Component<
                   //onChange={props.toggleLead5}
                   onChange={isAtLead => {
                     //345
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead345(isAtLead);
-                      props.updateCursorPosition(0, -4.625, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0,
+                        -4.625,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, true])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        true,
+                        true
+                      ])
+                    ) {
                       props.toggleLead34(isAtLead);
-                      props.updateCursorPosition(0, -1.875, props.cursor.position[2]);
-                      props.transformCursorY(1)
+                      props.updateCursorPosition(
+                        0,
+                        -1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(1);
                     }
                     //35
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead35(isAtLead);
-                      props.updateCursorPosition(-0.25 - props.cursor.radius * props.cursor.scaleX, -1.875, props.cursor.position[2]);
-                      props.transformCursorY(2)
+                      props.updateCursorPosition(
+                        -0.25 - props.cursor.radius * props.cursor.scaleX,
+                        -1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, false, true])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+                        true
+                      ])
+                    ) {
                       props.toggleLead3(isAtLead);
-                      props.updateCursorPosition(-0.5 - props.cursor.radius * props.cursor.scaleX, -0.625, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        -0.5 - props.cursor.radius * props.cursor.scaleX,
+                        -0.625,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
                     }
 
                     //45
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead45(isAtLead);
-                      props.updateCursorPosition(0.25 + props.cursor.radius * props.cursor.scaleX, -1.875, props.cursor.position[2]);
-                      props.transformCursorY(2)
+                      props.updateCursorPosition(
+                        0.25 + props.cursor.radius * props.cursor.scaleX,
+                        -1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, true, true])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        true,
+                        true
+                      ])
+                    ) {
                       props.toggleLead4(isAtLead);
-                      props.updateCursorPosition(0.5 + props.cursor.radius * props.cursor.scaleX,
-                        -0.625, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0.5 + props.cursor.radius * props.cursor.scaleX,
+                        -0.625,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
                     }
 
                     //none
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, false, true])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        true
+                      ])
+                    ) {
                       props.toggleLeads(isAtLead);
-                      props.toggleElectrode(isAtLead);                       
+                      props.toggleElectrode(isAtLead);
                     }
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, false, false])) {
-                      props.toggleLead5(isAtLead);                      
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
+                      props.toggleLead5(isAtLead);
                       props.updateCursorPosition(0, -3.125, 0);
                       props.transformCursorY(1);
-                      props.toggleElectrode(isAtLead);                   
+                      props.toggleElectrode(isAtLead);
                     }
-
-
                   }}
                 />
               </div>
@@ -341,104 +494,301 @@ class Programm extends React.Component<
                   //onChange={props.toggleLead3}
                   onChange={isAtLead => {
                     //1234
-                    if (_.isEqual(props.leads.leads, [false, true, true, true, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead124(isAtLead);
-                      props.updateCursorPosition(0.25+props.cursor.radius*props.cursor.scaleX, 1.25, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0.25 + props.cursor.radius * props.cursor.scaleX,
+                        1.25,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
-                    };
-                    if (_.isEqual(props.leads.leads, [false, true, true, false, true, false])) {
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        false,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead1234(isAtLead);
-                      props.updateCursorPosition(0, 0.625, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0,
+                        0.625,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
-                    };
+                    }
 
                     //345
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, true, true])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        true,
+                        true
+                      ])
+                    ) {
                       props.toggleLead345(isAtLead);
-                      props.updateCursorPosition(0, -4.625, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0,
+                        -4.625,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
-                    };
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, true])) {
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        true,
+                        true
+                      ])
+                    ) {
                       props.toggleLead45(isAtLead);
-                      props.updateCursorPosition(0.25 + props.cursor.radius * props.cursor.scaleX, -1.875, props.cursor.position[2]);
-                      props.transformCursorY(2)
-                    };
+                      props.updateCursorPosition(
+                        0.25 + props.cursor.radius * props.cursor.scaleX,
+                        -1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
+                    }
 
                     //123
-                    if (_.isEqual(props.leads.leads, [false, true, true, false, false, false])) {
-                      props.toggleLead123(isAtLead);props.updateCursorPosition(-0.25 - props.cursor.radius * props.cursor.scaleX,
-                        1.25, props.cursor.position[2]);
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
+                      props.toggleLead123(isAtLead);
+                      props.updateCursorPosition(
+                        -0.25 - props.cursor.radius * props.cursor.scaleX,
+                        1.25,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
-                    };
-                    if (_.isEqual(props.leads.leads, [false, true, true, true, false, false])) {
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        true,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead12(isAtLead);
-                      props.updateCursorPosition(0, 1.875, props.cursor.position[2]);
-                      props.transformCursorY(1)
-                    };
+                      props.updateCursorPosition(
+                        0,
+                        1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(1);
+                    }
 
                     //234
-                    if (_.isEqual(props.leads.leads, [false, false, true, true, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        true,
+                        true,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead234(isAtLead);
-                      props.updateCursorPosition(0.25 + props.cursor.radius * props.cursor.scaleX,
-                        0, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0.25 + props.cursor.radius * props.cursor.scaleX,
+                        0,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
-                    };
-                    if (_.isEqual(props.leads.leads, [false, false, true, true, true, false])) {
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        true,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead24(isAtLead);
-                      props.updateCursorPosition(-0.5 - props.cursor.radius * props.cursor.scaleX, 0.625, props.cursor.position[2]);
-                      props.transformCursorY(2)                
-                    };
+                      props.updateCursorPosition(
+                        -0.5 - props.cursor.radius * props.cursor.scaleX,
+                        0.625,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
+                    }
 
                     //13
-                    if (_.isEqual(props.leads.leads, [false, true, false, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead13(isAtLead);
-                      props.updateCursorPosition(0.5 + props.cursor.radius * props.cursor.scaleX, 0.625, props.cursor.position[2]);
-                      props.transformCursorY(2)
-                    };
-                    if (_.isEqual(props.leads.leads, [false, true, false, true, false, false])) {
+                      props.updateCursorPosition(
+                        0.5 + props.cursor.radius * props.cursor.scaleX,
+                        0.625,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        false,
+                        true,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead1(isAtLead);
-                      props.updateCursorPosition(-0.5 - props.cursor.radius * props.cursor.scaleX, 1.125, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        -0.5 - props.cursor.radius * props.cursor.scaleX,
+                        1.125,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
-                    };
+                    }
 
                     //34
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead34(isAtLead);
-                      props.updateCursorPosition(0, -1.875, props.cursor.position[2]);
-                      props.transformCursorY(1)
-                    };
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, false])) {
-                      props.toggleLead4(isAtLead);
-                      props.updateCursorPosition(0.5 + props.cursor.radius * props.cursor.scaleX,
-                        -0.625, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0,
+                        -1.875,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
-                    };
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
+                      props.toggleLead4(isAtLead);
+                      props.updateCursorPosition(
+                        0.5 + props.cursor.radius * props.cursor.scaleX,
+                        -0.625,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(1);
+                    }
 
                     //35
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, false, true])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        true
+                      ])
+                    ) {
                       props.toggleLead35(isAtLead);
-                      props.updateCursorPosition(-0.25 - props.cursor.radius * props.cursor.scaleX, -1.875, props.cursor.position[2]);
-                      props.transformCursorY(2)
-                    };
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, false, true])) {
-                      props.toggleLead5(isAtLead);                      
+                      props.updateCursorPosition(
+                        -0.25 - props.cursor.radius * props.cursor.scaleX,
+                        -1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+                        true
+                      ])
+                    ) {
+                      props.toggleLead5(isAtLead);
                       props.updateCursorPosition(0, -3.125, 0);
                       props.transformCursorY(1);
-                    };
+                    }
 
                     //none
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLeads(isAtLead);
-                      props.toggleElectrode(isAtLead);                       
+                      props.toggleElectrode(isAtLead);
                     }
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead3(isAtLead);
-                      props.updateCursorPosition(-0.5 - props.cursor.radius * props.cursor.scaleX, -0.625, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        -0.5 - props.cursor.radius * props.cursor.scaleX,
+                        -0.625,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
-                      props.toggleElectrode(isAtLead);                   
+                      props.toggleElectrode(isAtLead);
                     }
                   }}
-
                 />
               </div>
             </div>
@@ -452,103 +802,299 @@ class Programm extends React.Component<
                   //onChange={props.toggleLead4}
                   onChange={isAtLead => {
                     //1234
-                    if (_.isEqual(props.leads.leads, [false, true, true, true, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead123(isAtLead);
-                      props.updateCursorPosition(-0.25 - props.cursor.radius * props.cursor.scaleX,
-                        1.25, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        -0.25 - props.cursor.radius * props.cursor.scaleX,
+                        1.25,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
-                    };
-                    if (_.isEqual(props.leads.leads, [false, true, true, true, false, false])) {
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        true,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead1234(isAtLead);
-                      props.updateCursorPosition(0, 0.625, props.cursor.position[2]);
-                      props.transformCursorY(2)
-                    };
+                      props.updateCursorPosition(
+                        0,
+                        0.625,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
+                    }
 
                     //345
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, false, true])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+                        true
+                      ])
+                    ) {
                       props.toggleLead345(isAtLead);
-                      props.updateCursorPosition(0, -4.625, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0,
+                        -4.625,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
-                    };
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, true])) {
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        true,
+                        true
+                      ])
+                    ) {
                       props.toggleLead35(isAtLead);
-                      props.updateCursorPosition(-0.25 - props.cursor.radius * props.cursor.scaleX, -1.875, props.cursor.position[2]);
-                      props.transformCursorY(2)
-                    };
+                      props.updateCursorPosition(
+                        -0.25 - props.cursor.radius * props.cursor.scaleX,
+                        -1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
+                    }
 
                     //124
-                    if (_.isEqual(props.leads.leads, [false, true, true, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead124(isAtLead);
-                      props.updateCursorPosition(0.25+props.cursor.radius*props.cursor.scaleX, 1.25, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0.25 + props.cursor.radius * props.cursor.scaleX,
+                        1.25,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
-                    };
-                    if (_.isEqual(props.leads.leads, [false, true, true, false, true, false])) {
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        false,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead12(isAtLead);
-                      props.updateCursorPosition(0, 1.875, props.cursor.position[2]);
-                      props.transformCursorY(1)
-                    };
+                      props.updateCursorPosition(
+                        0,
+                        1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(1);
+                    }
 
-                    //134                    
-                    if (_.isEqual(props.leads.leads, [false, true, false, true, false, false])) {
+                    //134
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        false,
+                        true,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead134(isAtLead);
-                      props.updateCursorPosition(-0.25 - props.cursor.radius * props.cursor.scaleX,
-                        0, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        -0.25 - props.cursor.radius * props.cursor.scaleX,
+                        0,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
-                    };
-                    if (_.isEqual(props.leads.leads, [false, true, false, true, true, false])) {
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        false,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead13(isAtLead);
-                      props.updateCursorPosition(0.5 + props.cursor.radius * props.cursor.scaleX, 0.625, props.cursor.position[2]);
-                      props.transformCursorY(2)
-                    };
+                      props.updateCursorPosition(
+                        0.5 + props.cursor.radius * props.cursor.scaleX,
+                        0.625,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
+                    }
 
-                    //34                    
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, false, false])) {
+                    //34
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead34(isAtLead);
-                      props.updateCursorPosition(0, -1.875, props.cursor.position[2]);
-                      props.transformCursorY(1)
-                    };
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, false])) {
+                      props.updateCursorPosition(
+                        0,
+                        -1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(1);
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead3(isAtLead);
-                      props.updateCursorPosition(-0.5 - props.cursor.radius * props.cursor.scaleX, -0.625, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        -0.5 - props.cursor.radius * props.cursor.scaleX,
+                        -0.625,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
-                    };
+                    }
 
-                    //24                    
-                    if (_.isEqual(props.leads.leads, [false, false, true, false, false, false])) {
+                    //24
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead24(isAtLead);
-                      props.updateCursorPosition(-0.5 - props.cursor.radius * props.cursor.scaleX, 0.625, props.cursor.position[2]);
-                      props.transformCursorY(2)
-                    };
-                    if (_.isEqual(props.leads.leads, [false, false, true, false, true, false])) {
+                      props.updateCursorPosition(
+                        -0.5 - props.cursor.radius * props.cursor.scaleX,
+                        0.625,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        true,
+                        false,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead2(isAtLead);
-                      props.updateCursorPosition(0.5 + props.cursor.radius * props.cursor.scaleX, 1.125, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0.5 + props.cursor.radius * props.cursor.scaleX,
+                        1.125,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
-                    };
+                    }
 
-                    //45                    
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, false, true])) {
+                    //45
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        true
+                      ])
+                    ) {
                       props.toggleLead45(isAtLead);
-                      props.updateCursorPosition(0.25 + props.cursor.radius * props.cursor.scaleX, -1.875, props.cursor.position[2]);
-                      props.transformCursorY(2)
-                    };
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, true, true])) {
-                      props.toggleLead5(isAtLead);                      
+                      props.updateCursorPosition(
+                        0.25 + props.cursor.radius * props.cursor.scaleX,
+                        -1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        true,
+                        true
+                      ])
+                    ) {
+                      props.toggleLead5(isAtLead);
                       props.updateCursorPosition(0, -3.125, 0);
                       props.transformCursorY(1);
-                    };
-                    //none
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, true, false])) {
-                    props.toggleLeads(isAtLead);
-                    props.toggleElectrode(isAtLead);                       
                     }
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, false, false])) {
-                    props.toggleLead4(isAtLead);
-                    props.updateCursorPosition(0.5 + props.cursor.radius * props.cursor.scaleX,
-                      -0.625, props.cursor.position[2]);
-                    props.transformCursorY(1);
-                    props.toggleElectrode(isAtLead);
-                  }
-
+                    //none
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        true,
+                        false
+                      ])
+                    ) {
+                      props.toggleLeads(isAtLead);
+                      props.toggleElectrode(isAtLead);
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
+                      props.toggleLead4(isAtLead);
+                      props.updateCursorPosition(
+                        0.5 + props.cursor.radius * props.cursor.scaleX,
+                        -0.625,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(1);
+                      props.toggleElectrode(isAtLead);
+                    }
                   }}
                 />
               </div>
@@ -565,106 +1111,301 @@ class Programm extends React.Component<
                   //onChange={props.toggleLead1}
                   onChange={isAtLead => {
                     //1234
-                    if (_.isEqual(props.leads.leads, [false, true, true, true, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead234(isAtLead);
-                      props.updateCursorPosition(0.25 + props.cursor.radius * props.cursor.scaleX,
-                        0, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0.25 + props.cursor.radius * props.cursor.scaleX,
+                        0,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
-                      
                     }
-                    if (_.isEqual(props.leads.leads, [false, false, true, true, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        true,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead1234(isAtLead);
-                      props.updateCursorPosition(0, 0.625, props.cursor.position[2]);
-                      props.transformCursorY(2)
+                      props.updateCursorPosition(
+                        0,
+                        0.625,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
                     }
 
                     //124
-                    if (_.isEqual(props.leads.leads, [false, false, true, false, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        true,
+                        false,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead124(isAtLead);
-                      props.updateCursorPosition(0.25+props.cursor.radius*props.cursor.scaleX, 1.25, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0.25 + props.cursor.radius * props.cursor.scaleX,
+                        1.25,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [false, true, true, false, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        false,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead24(isAtLead);
-                      props.updateCursorPosition(-0.5 - props.cursor.radius * props.cursor.scaleX, 0.625, props.cursor.position[2]);
-                      props.transformCursorY(2)
-                    
+                      props.updateCursorPosition(
+                        -0.5 - props.cursor.radius * props.cursor.scaleX,
+                        0.625,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
                     }
 
                     //134
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead134(isAtLead);
-                      props.updateCursorPosition(-0.25 - props.cursor.radius * props.cursor.scaleX,
-                        0, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        -0.25 - props.cursor.radius * props.cursor.scaleX,
+                        0,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [false, true, false, true, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        false,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead34(isAtLead);
-                      props.updateCursorPosition(0, -1.875, props.cursor.position[2]);
-                      props.transformCursorY(1)
+                      props.updateCursorPosition(
+                        0,
+                        -1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(1);
                     }
 
                     //012
-                    if (_.isEqual(props.leads.leads, [true, false, true, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        true,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead012(isAtLead);
-                      props.updateCursorPosition(0,3.125, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0,
+                        3.125,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [true, true, true, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        true,
+                        true,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead02(isAtLead);
-                      props.updateCursorPosition(0.25 + props.cursor.radius * props.cursor.scaleX, 3.125, props.cursor.position[2]);
-                      props.transformCursorY(2)
+                      props.updateCursorPosition(
+                        0.25 + props.cursor.radius * props.cursor.scaleX,
+                        3.125,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
                     }
 
                     //01
-                    if (_.isEqual(props.leads.leads, [true, false, false, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead01(isAtLead);
-                      props.updateCursorPosition(-0.25 - props.cursor.radius * props.cursor.scaleX, 3.125, props.cursor.position[2]);
-                      props.transformCursorY(2)
+                      props.updateCursorPosition(
+                        -0.25 - props.cursor.radius * props.cursor.scaleX,
+                        3.125,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [true, true, false, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        true,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead0(isAtLead);
                       props.updateCursorPosition(0, 4.625, 0);
                       props.transformCursorY(1);
                     }
 
                     //12
-                    if (_.isEqual(props.leads.leads, [false, false, true, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead12(isAtLead);
-                      props.updateCursorPosition(0, 1.875, props.cursor.position[2]);
-                      props.transformCursorY(1)
+                      props.updateCursorPosition(
+                        0,
+                        1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(1);
                     }
-                    if (_.isEqual(props.leads.leads, [false, true, true, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead2(isAtLead);
-                      props.updateCursorPosition(0.5 + props.cursor.radius * props.cursor.scaleX, 1.125, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0.5 + props.cursor.radius * props.cursor.scaleX,
+                        1.125,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
                     }
 
                     //13
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead13(isAtLead);
-                      props.updateCursorPosition(0.5 + props.cursor.radius * props.cursor.scaleX, 0.625, props.cursor.position[2]);
-                      props.transformCursorY(2)
+                      props.updateCursorPosition(
+                        0.5 + props.cursor.radius * props.cursor.scaleX,
+                        0.625,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [false, true, false, true, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        false,
+                        true,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead3(isAtLead);
-                      props.updateCursorPosition(-0.5 - props.cursor.radius * props.cursor.scaleX, -0.625, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        -0.5 - props.cursor.radius * props.cursor.scaleX,
+                        -0.625,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
                     }
 
                     //none
 
-                    if (_.isEqual(props.leads.leads, [false, true, false, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLeads(isAtLead);
-                      props.toggleElectrode(isAtLead);                       
-                      }
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, false, false])) {
-                      props.toggleLead1 (isAtLead);
-                      props.updateCursorPosition(-0.5 - props.cursor.radius * props.cursor.scaleX, 1.125, props.cursor.position[2]);
+                      props.toggleElectrode(isAtLead);
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
+                      props.toggleLead1(isAtLead);
+                      props.updateCursorPosition(
+                        -0.5 - props.cursor.radius * props.cursor.scaleX,
+                        1.125,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
                       props.toggleElectrode(isAtLead);
                     }
-
                   }}
                 />
               </div>
@@ -678,102 +1419,293 @@ class Programm extends React.Component<
                   checked={props.leads.leads["2"]}
                   //onChange={props.toggleLead2}
                   onChange={isAtLead => {
-
                     //1234
-                    if (_.isEqual(props.leads.leads, [false, true, true, true, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead134(isAtLead);
-                      props.updateCursorPosition(-0.25 - props.cursor.radius * props.cursor.scaleX,
-                        0, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        -0.25 - props.cursor.radius * props.cursor.scaleX,
+                        0,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [false, true, false, true, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        false,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead1234(isAtLead);
-                      props.updateCursorPosition(0, 0.625, props.cursor.position[2]);
-                      props.transformCursorY(2)
+                      props.updateCursorPosition(
+                        0,
+                        0.625,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
                     }
 
                     //02
-                    if (_.isEqual(props.leads.leads, [true, false, false, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead02(isAtLead);
-                      props.updateCursorPosition(0.25 + props.cursor.radius * props.cursor.scaleX, 3.125, props.cursor.position[2]);
-                      props.transformCursorY(2)
+                      props.updateCursorPosition(
+                        0.25 + props.cursor.radius * props.cursor.scaleX,
+                        3.125,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [true, false, true, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        true,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead0(isAtLead);
                       props.updateCursorPosition(0, 4.625, 0);
                       props.transformCursorY(1);
                     }
 
                     //12
-                    if (_.isEqual(props.leads.leads, [false, true, false, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead12(isAtLead);
-                      props.updateCursorPosition(0, 1.875, props.cursor.position[2]);
-                      props.transformCursorY(1)
+                      props.updateCursorPosition(
+                        0,
+                        1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(1);
                     }
-                    if (_.isEqual(props.leads.leads, [false, true, true, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead1(isAtLead);
-                      props.updateCursorPosition(-0.5 - props.cursor.radius * props.cursor.scaleX, 1.125, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        -0.5 - props.cursor.radius * props.cursor.scaleX,
+                        1.125,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
                     }
 
                     //24
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead24(isAtLead);
-                      props.updateCursorPosition(-0.5 - props.cursor.radius * props.cursor.scaleX, 0.625, props.cursor.position[2]);
-                      props.transformCursorY(2)
+                      props.updateCursorPosition(
+                        -0.5 - props.cursor.radius * props.cursor.scaleX,
+                        0.625,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [false, false, true, false, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        true,
+                        false,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead4(isAtLead);
-                      props.updateCursorPosition(0.5 + props.cursor.radius * props.cursor.scaleX,
-                        -0.625, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0.5 + props.cursor.radius * props.cursor.scaleX,
+                        -0.625,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
                     }
 
                     //012
-                    if (_.isEqual(props.leads.leads, [true, true, false, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        true,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead012(isAtLead);
-                      props.updateCursorPosition(0,3.125, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0,
+                        3.125,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [true, true, false, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        true,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead01(isAtLead);
-                      props.updateCursorPosition(-0.25 - props.cursor.radius * props.cursor.scaleX, 3.125, props.cursor.position[2]);
-                      props.transformCursorY(2)
+                      props.updateCursorPosition(
+                        -0.25 - props.cursor.radius * props.cursor.scaleX,
+                        3.125,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
                     }
 
                     //123
-                    if (_.isEqual(props.leads.leads, [false, true, false, true, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        false,
+                        true,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead123(isAtLead);
-                      props.updateCursorPosition(-0.25 - props.cursor.radius * props.cursor.scaleX,
-                        1.25, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        -0.25 - props.cursor.radius * props.cursor.scaleX,
+                        1.25,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [false, true, true, true, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        true,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead13(isAtLead);
                     }
 
                     //234
-                    if (_.isEqual(props.leads.leads, [false, false, false, true, true, false])) {
-                      props.toggleLead234(isAtLead);                      
-                      props.updateCursorPosition(0.25 + props.cursor.radius * props.cursor.scaleX,
-                        0, props.cursor.position[2]);
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
+                      props.toggleLead234(isAtLead);
+                      props.updateCursorPosition(
+                        0.25 + props.cursor.radius * props.cursor.scaleX,
+                        0,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [false, false, true, true, true, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        true,
+                        true,
+                        true,
+                        false
+                      ])
+                    ) {
                       props.toggleLead34(isAtLead);
-                      props.updateCursorPosition(0, -1.875, props.cursor.position[2]);
-                      props.transformCursorY(1)
+                      props.updateCursorPosition(
+                        0,
+                        -1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(1);
                     }
 
                     //none
 
-                    if (_.isEqual(props.leads.leads, [false, false, true, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLeads(isAtLead);
-                      props.toggleElectrode(isAtLead);                       
-                      }
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, false, false])) {
+                      props.toggleElectrode(isAtLead);
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead2(isAtLead);
-                      props.updateCursorPosition(0.5 + props.cursor.radius * props.cursor.scaleX, 1.125, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0.5 + props.cursor.radius * props.cursor.scaleX,
+                        1.125,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
                       props.toggleElectrode(isAtLead);
                     }
@@ -793,58 +1725,151 @@ class Programm extends React.Component<
                   checked={props.leads.leads["0"]}
                   //onChange={props.toggleLead0}
                   onChange={isAtLead => {
-
                     //012
-                    if (_.isEqual(props.leads.leads, [false, true, true, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead012(isAtLead);
-                      props.updateCursorPosition(0,3.125, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0,
+                        3.125,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [true, true, true, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        true,
+                        true,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead12(isAtLead);
-                      props.updateCursorPosition(0, 1.875, props.cursor.position[2]);
-                      props.transformCursorY(1)
+                      props.updateCursorPosition(
+                        0,
+                        1.875,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(1);
                     }
 
                     //01
-                    if (_.isEqual(props.leads.leads, [false, true, false, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead01(isAtLead);
-                      props.updateCursorPosition(-0.25 - props.cursor.radius * props.cursor.scaleX, 3.125, props.cursor.position[2]);
-                      props.transformCursorY(2)
+                      props.updateCursorPosition(
+                        -0.25 - props.cursor.radius * props.cursor.scaleX,
+                        3.125,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [true, true, false, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        true,
+                        true,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead1(isAtLead);
-                      props.updateCursorPosition(-0.5 - props.cursor.radius * props.cursor.scaleX, 1.125, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        -0.5 - props.cursor.radius * props.cursor.scaleX,
+                        1.125,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
                     }
 
                     //02
-                    if (_.isEqual(props.leads.leads, [false, false, true, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead02(isAtLead);
-                      props.updateCursorPosition(0.25 + props.cursor.radius * props.cursor.scaleX, 3.125, props.cursor.position[2]);
-                      props.transformCursorY(2)
+                      props.updateCursorPosition(
+                        0.25 + props.cursor.radius * props.cursor.scaleX,
+                        3.125,
+                        props.cursor.position[2]
+                      );
+                      props.transformCursorY(2);
                     }
-                    if (_.isEqual(props.leads.leads, [true, false, true, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        true,
+                        false,
+                        true,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead2(isAtLead);
-                      props.updateCursorPosition(0.5 + props.cursor.radius * props.cursor.scaleX, 1.125, props.cursor.position[2]);
+                      props.updateCursorPosition(
+                        0.5 + props.cursor.radius * props.cursor.scaleX,
+                        1.125,
+                        props.cursor.position[2]
+                      );
                       props.transformCursorY(1);
                     }
 
                     //none
 
-                    if (_.isEqual(props.leads.leads, [true, false, false, false, false, false])) {
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLeads(isAtLead);
-                      props.toggleElectrode(isAtLead);                       
-                      }
-                    if (_.isEqual(props.leads.leads, [false, false, false, false, false, false])) {
+                      props.toggleElectrode(isAtLead);
+                    }
+                    if (
+                      _.isEqual(props.leads.leads, [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                      ])
+                    ) {
                       props.toggleLead0(isAtLead);
                       props.updateCursorPosition(0, 4.625, 0);
                       props.transformCursorY(1);
                       props.toggleElectrode(isAtLead);
                     }
-
-                  }
-                  }
+                  }}
                 />
               </div>
             </div>
@@ -865,7 +1890,7 @@ class Programm extends React.Component<
               props.transformCursorY(value);
               props.transformCursorZ(value);
             }}
-            />
+          />
           {/*     Control Item: Xposition*/}
           <ControlItem
             label="Frequenz"
@@ -891,12 +1916,12 @@ const mapStateToProps: MapStateToProps<
   StateProps,
   OwnProps,
   RootState
-  > = state => {
-    return {
-      cursor: state.scene.cursor,
-      leads: state.scene.leads
-    };
+> = state => {
+  return {
+    cursor: state.scene.cursor,
+    leads: state.scene.leads
   };
+};
 
 //Action creators
 function updateCursorPosition(
@@ -1005,7 +2030,6 @@ function toggleLead35(isAtLead: boolean): ToggleLead35 {
 function toggleLeads(isAtLead: boolean): ToggleLeads {
   return { type: "toggleLeads", isAtLead };
 }
-
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {
   updateFrequency,
