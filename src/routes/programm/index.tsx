@@ -87,6 +87,9 @@ const theme = {
 
   empty: css`
     background: none;
+  `,
+  flexb: css`
+    display: flex;
   `
 };
 
@@ -1896,6 +1899,14 @@ class Programm extends React.Component<
             increment={0.1}
             onChange={props.transformCursorX}
           />
+          <div className={theme.flexb}>
+            <button onClick={() => console.log("Do somenthing")}>
+              alskdfdsajl
+            </button>
+            <button onClick={() => console.log("Do something else!")}>
+              alskdfdsajl
+            </button>
+          </div>
         </Controlpanel>
         <Canvas />
       </div>
