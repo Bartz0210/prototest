@@ -9,8 +9,6 @@ import { Pointer } from "./Events";
 import _ from "underscore";
 import CursorMaterial from "./materials/CursorMaterial";
 import PlaneMaterial from "./materials/PlaneMaterial";
-import { connect } from "react-redux";
-import produce from "immer";
 
 export type Color = [number, number, number];
 export type Position = [number, number, number];
@@ -148,6 +146,94 @@ export default class Scene {
       sphere.render(gl, crsor);
     }
 
+    //toggle 0 by cursor
+    if (
+      data.cursor.position[1] + data.cursor.radius * data.cursor.scaleY >=
+      4.625
+    ) {
+      data.leads.leads[0] = true;
+    }
+    if (
+      data.cursor.position[1] + data.cursor.radius * data.cursor.scaleY <
+      4.625
+    ) {
+      data.leads.leads[0] = false;
+    }
+
+    //toggle 1 2 by cursor
+    if (
+      data.cursor.position[1] + data.cursor.radius * data.cursor.scaleY >=
+      1.125
+    ) {
+      data.leads.leads[1] = true;
+      data.leads.leads[2] = true;
+    }
+    if (
+      data.cursor.position[1] - data.cursor.radius * data.cursor.scaleY <=
+      1.125
+    ) {
+      data.leads.leads[1] = true;
+      data.leads.leads[2] = true;
+    }
+    if (
+      data.cursor.position[1] + data.cursor.radius * data.cursor.scaleY <
+      1.125
+    ) {
+      data.leads.leads[1] = false;
+      data.leads.leads[2] = false;
+    }
+    if (
+      data.cursor.position[1] - data.cursor.radius * data.cursor.scaleY >
+      1.125
+    ) {
+      data.leads.leads[1] = false;
+      data.leads.leads[2] = false;
+    }
+
+    //toggle 3 4 by cursor
+    if (
+      data.cursor.position[1] + data.cursor.radius * data.cursor.scaleY >=
+      -1.875
+    ) {
+      data.leads.leads[3] = true;
+      data.leads.leads[4] = true;
+    }
+    if (
+      data.cursor.position[1] - data.cursor.radius * data.cursor.scaleY <=
+      -1.875
+    ) {
+      data.leads.leads[3] = true;
+      data.leads.leads[4] = true;
+    }
+    if (
+      data.cursor.position[1] + data.cursor.radius * data.cursor.scaleY <
+      -1.875
+    ) {
+      data.leads.leads[3] = false;
+      data.leads.leads[4] = false;
+    }
+    if (
+      data.cursor.position[1] - data.cursor.radius * data.cursor.scaleY >
+      -1.875
+    ) {
+      data.leads.leads[3] = false;
+      data.leads.leads[4] = false;
+    }
+
+    //toggle 5 by cursor
+    if (
+      data.cursor.position[1] - data.cursor.radius * data.cursor.scaleY <=
+      -3.125
+    ) {
+      data.leads.leads[5] = true;
+    }
+    if (
+      data.cursor.position[1] - data.cursor.radius * data.cursor.scaleY >
+      -3.125
+    ) {
+      data.leads.leads[5] = false;
+    }
+
     fresnel.begin(gl);
     for (const spot of data.spots) {
       fresnel.setColor(gl, spot.color);
@@ -268,28 +354,6 @@ export default class Scene {
 
     return null;
   }
-
-  // intersectsSphere(ray: Ray, cursor: CursorState): vec3 | null {
-  //   const tmp = vec3.create();
-  //   vec3.subtract(tmp, cursor.position, ray.origin);
-
-  //   const length = vec3.dot(ray.direction, tmp);
-  //   if (length < 0) {
-  //     return null;
-  //   }
-
-  //   vec3.scaleAndAdd(tmp, ray.origin, ray.direction, length);
-  //   const dSq = vec3.squaredDistance(cursor.position, tmp);
-  //   const rSq = cursor.radius * cursor.radius;
-  //   if (dSq > rSq) {
-  //     return null;
-  //   }
-
-  //   const result = vec3.create();
-  //   vec3.scale(result, ray.direction, length - Math.sqrt(rSq - dSq));
-  //   vec3.add(result, result, ray.origin);
-  //   return result;
-  // }
 
   intersectsSphere(ray: Ray, cursor: CursorState): vec3 | null {
     const transform = mat4.create();
