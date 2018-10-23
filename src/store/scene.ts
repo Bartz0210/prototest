@@ -152,6 +152,7 @@ export interface ToggleLead24 extends Action<"toggleLead24"> {
 export interface ToggleLeads extends Action<"toggleLeads"> {
   isAtLead: boolean;
 }
+export interface ToggleLeadReset extends Action<"toggleLeadReset"> {}
 
 export default function scene(
   state: SceneData = createScene(),
@@ -188,6 +189,7 @@ export default function scene(
     | ToggleLead13
     | ToggleLead24
     | ToggleLeads
+    | ToggleLeadReset
 ): SceneData {
   if (!action) {
     return state;
@@ -475,6 +477,14 @@ export default function scene(
         leads: {
           ...state.leads,
           leads: [false, false, false, false, false, false]
+        }
+      };
+    case "toggleLeadReset":
+      return {
+        ...state,
+        leads: {
+          ...state.leads,
+          leads: [false, true, true, true, true, false]
         }
       };
   }

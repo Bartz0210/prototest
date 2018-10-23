@@ -18,7 +18,7 @@ const theme = {
     width: 40px;
     max-width: 40px;
     height: 40px;
-    background: linear-gradient(to bottom, #72c0a8, #5b9986);
+    background: linear-gradient(to bottom, #94cfbd, #72c0a8);
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     border: none;
@@ -33,7 +33,7 @@ const theme = {
     width: 40px;
     max-width: 40px;
     height: 40px;
-    background: linear-gradient(to bottom, #72c0a8, #5b9986);
+    background: linear-gradient(to bottom, #94cfbd, #72c0a8);
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     border: none;

@@ -6,7 +6,7 @@ const theme = {
     label: Controlpanel;
     left: 0;
     display: grid;
-    grid-gap: 16px;
+    grid-gap: 12px;
     align-items: left;
     font-size: 16px;
 

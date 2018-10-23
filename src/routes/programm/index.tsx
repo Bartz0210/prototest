@@ -38,7 +38,8 @@ import {
   ToggleLead345,
   ToggleLead35,
   ToggleLeads,
-  ToggleLead45
+  ToggleLead45,
+  ToggleLeadReset
 } from "../../store/scene";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { CursorState, LeadState } from "../../renderer/Scene";
@@ -46,6 +47,7 @@ import { Sidebar } from "../../components/Sidebar";
 import SidebarItem from "../../components/SidebarItem";
 import Icon from "../../components/Icon";
 import _ from "underscore";
+import { ToastContainer, toast } from "react-toastify";
 
 const theme = {
   root: css`
@@ -88,8 +90,33 @@ const theme = {
   empty: css`
     background: none;
   `,
+  btn: css`
+    background: linear-gradient(to bottom, #94cfbd, #72c0a8);
+    border-radius: 4px;
+    height: 40px;
+    width: 160px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+
+    font-size: 15px;
+    text-align: center;
+    color: #ffffff;
+    outline: 0;
+    border: none;
+    text-decoration: none;
+  `,
   flexb: css`
     display: flex;
+    width: 337px;
+    padding: 0 12 0 41;
+    justify-content: space-between;
+    margin-top: 8px;
   `
 };
 
@@ -132,6 +159,7 @@ interface DispatchProps {
   toggleLead5(isAtLead5: boolean): void;
   toggleLead134(isAtLead: boolean): void;
   toggleLead1234(isAtLead: boolean): void;
+  toggleLeadReset(): void;
   toggleLeads(isAtLead: boolean): void;
 }
 
@@ -1900,11 +1928,28 @@ class Programm extends React.Component<
             onChange={props.transformCursorX}
           />
           <div className={theme.flexb}>
-            <button onClick={() => console.log("Do somenthing")}>
-              alskdfdsajl
+            <button
+              className={theme.btn}
+              onClick={() =>
+                alert("Die Einstellungen wurden erfolgreich übernommen!")
+              }
+            >
+              Anwenden
             </button>
-            <button onClick={() => console.log("Do something else!")}>
-              alskdfdsajl
+            <button
+              className={theme.btn}
+              onClick={() => {
+                props.toggleLeadReset();
+                props.updateCursorPosition(0, 0.625, props.cursor.position[2]);
+                props.transformCursorY(2);
+                props.updateCursorRadius(2);
+                props.updateFrequency(60),
+                  alert(
+                    "Der Vorgang wurde erfolgreich abgebrochen! Die Einstellungen werden zurückgesetzt."
+                  );
+              }}
+            >
+              Zurücksetzen
             </button>
           </div>
         </Controlpanel>
@@ -2032,6 +2077,9 @@ function toggleLead35(isAtLead: boolean): ToggleLead35 {
 function toggleLeads(isAtLead: boolean): ToggleLeads {
   return { type: "toggleLeads", isAtLead };
 }
+function toggleLeadReset(): ToggleLeadReset {
+  return { type: "toggleLeadReset" };
+}
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {
   updateFrequency,
@@ -2065,7 +2113,8 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {
   toggleLead345,
   toggleLead35,
   toggleLeads,
-  toggleLead1234
+  toggleLead1234,
+  toggleLeadReset
 };
 
 export default connect(
