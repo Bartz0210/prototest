@@ -32,9 +32,9 @@ function createScene(): SceneData {
   return {
     cursor: {
       position: [0, 0, 0],
-      radius: 2,
+      radius: 1.6,
       scaleX: 2,
-      scaleY: 2,
+      scaleY: 1.4,
       scaleZ: 1,
       color: [0, 0.5, 1.0],
       isOn: true,
