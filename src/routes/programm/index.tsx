@@ -151,6 +151,8 @@ class Programm extends React.Component<
   render() {
     const props = this.props;
 
+    //console.log("render", JSON.stringify(props.cursor, null, 2));
+
     return (
       <div className={theme.root}>
         <Sidebar
@@ -1874,12 +1876,10 @@ class Programm extends React.Component<
           {/*     Control Item: Radius*/}
           <ControlItem
             label="Amplitude"
-            value={props.cursor.scaleY}
+            value={props.cursor.radius}
             increment={0.2}
             onChange={value => {
-              props.transformCursorX(value);
-              props.transformCursorY(value);
-              props.transformCursorZ(value);
+              props.updateCursorRadius(value);
             }}
           />
           {/*     Control Item: Xposition*/}

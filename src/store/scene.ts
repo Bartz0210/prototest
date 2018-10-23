@@ -1,6 +1,7 @@
 import { Action } from "redux";
 import { SceneData, SpotState } from "../renderer/Scene";
 import { fail } from "assert";
+import { produce } from "immer";
 
 function createScene(): SceneData {
   const spots: Array<SpotState> = [];
@@ -196,47 +197,44 @@ export default function scene(
     case "updateFrequency":
       return {
         ...state,
-        cursor: {
-          ...state.cursor,
-          frequency: action.frequency
-        }
+        cursor: produce(state.cursor, draft => {
+          draft.frequency = action.frequency;
+        })
       };
     case "updateCursorPosition":
       return {
         ...state,
-        cursor: {
-          ...state.cursor,
-          position: [action.x, action.y, action.z]
-        }
+        cursor: produce(state.cursor, draft => {
+          draft.position = [action.x, action.y, action.z];
+        })
       };
 
     case "updateCursorPositionX":
       return {
         ...state,
-        cursor: {
-          ...state.cursor,
-          position: [
+        cursor: produce(state.cursor, draft => {
+          draft.position = [
             action.x,
             state.cursor.position[1],
             state.cursor.position[2]
-          ]
-        }
+          ];
+        })
       };
 
     case "updateCursorPositionY":
       return {
         ...state,
-        cursor: {
-          ...state.cursor,
-          position: [
+        cursor: produce(state.cursor, draft => {
+          draft.position = [
             state.cursor.position[0],
             action.y,
             state.cursor.position[2]
-          ]
-        }
+          ];
+        })
       };
 
     case "updateCursorPositionZ":
+      // TODO: DO STUFF
       return {
         ...state,
         cursor: {
@@ -250,13 +248,15 @@ export default function scene(
       };
 
     case "updateCursorRadius":
+      //console.log("updateCursorRadius", action.radius);
+
       return {
         ...state,
-        cursor: {
-          ...state.cursor,
-          radius: action.radius
-        }
+        cursor: produce(state.cursor, draft => {
+          draft.radius = action.radius;
+        })
       };
+
     case "transformCursorX":
       return {
         ...state,

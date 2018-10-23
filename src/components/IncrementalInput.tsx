@@ -68,6 +68,8 @@ export default function IncrementalInput({
   increment,
   onChange
 }: Props) {
+  // console.log("IncrementalInput value", value);
+
   return (
     <div className={theme.root}>
       <button

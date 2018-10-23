@@ -10,6 +10,7 @@ import _ from "underscore";
 import CursorMaterial from "./materials/CursorMaterial";
 import PlaneMaterial from "./materials/PlaneMaterial";
 import { connect } from "react-redux";
+import produce from "immer";
 
 export type Color = [number, number, number];
 export type Position = [number, number, number];
@@ -233,8 +234,8 @@ export default class Scene {
 
   handleScale(scale: number) {
     const radi = this.cursor.radius * scale;
-    this.cursor.radius = radi;
-    console.log(this.cursor.radius);
+    // this.cursor.radius = radi;
+
     this.renderer.onCursorRadius(radi);
   }
 
