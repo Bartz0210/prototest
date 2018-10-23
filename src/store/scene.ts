@@ -2,6 +2,7 @@ import { Action } from "redux";
 import { SceneData, SpotState } from "../renderer/Scene";
 import { fail } from "assert";
 import { produce } from "immer";
+import { stat } from "fs";
 
 function createScene(): SceneData {
   const spots: Array<SpotState> = [];
@@ -239,14 +240,13 @@ export default function scene(
       // TODO: DO STUFF
       return {
         ...state,
-        cursor: {
-          ...state.cursor,
-          position: [
+        cursor: produce(state.cursor, draft => {
+          draft.position = [
             state.cursor.position[0],
             state.cursor.position[1],
             action.z
-          ]
-        }
+          ];
+        })
       };
 
     case "updateCursorRadius":
@@ -262,230 +262,317 @@ export default function scene(
     case "transformCursorX":
       return {
         ...state,
-        cursor: {
-          ...state.cursor,
-          scaleX: action.scaleX
-        }
+        cursor: produce(state.cursor, draft => {
+          draft.scaleX = action.scaleX;
+        })
+
+        // cursor: {
+        //   ...state.cursor,
+        //   scaleX: action.scaleX
+        // }
       };
     case "transformCursorY":
       return {
         ...state,
-        cursor: {
-          ...state.cursor,
-          scaleY: action.scaleY
-        }
+        cursor: produce(state.cursor, draft => {
+          draft.scaleY = action.scaleY;
+        })
       };
     case "transformCursorZ":
       return {
         ...state,
-        cursor: {
-          ...state.cursor,
-          scaleZ: action.scaleZ
-        }
+        cursor: produce(state.cursor, draft => {
+          draft.scaleZ = action.scaleZ;
+        })
       };
 
     case "toggleElectrode":
       return {
         ...state,
-        cursor: {
-          ...state.cursor,
-          isOn: action.isOn
-        }
+        cursor: produce(state.cursor, draft => {
+          draft.isOn = action.isOn;
+        })
+        // cursor: {
+        //   ...state.cursor,
+        //   isOn: action.isOn
+        // }
       };
     case "toggleLead5":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, false, false, false, false, true]
-        }
+        leads: produce(state.leads, () => {
+          [false, false, false, false, false, true];
+        })
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, false, false, false, false, true]
+        // }
       };
     case "toggleLead4":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, false, false, false, true, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, false, false, false, true, false];
+        })
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, false, false, false, true, false]
+        // }
       };
     case "toggleLead3":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, false, false, true, false, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, false, false, true, false, false];
+        })
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, false, false, true, false, false]
+        // }
       };
     case "toggleLead2":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, false, true, false, false, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, false, true, false, false, false];
+        })
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, false, true, false, false, false]
+        // }
       };
     case "toggleLead1":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, true, false, false, false, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, true, false, false, false, false];
+        })
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, true, false, false, false, false]
+        // }
       };
 
     case "toggleLead0":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [true, false, false, false, false, false]
-        }
+        leads: produce(state.leads, () => {
+          [true, false, false, false, false, false];
+        })
+        // leads: {
+        //   ...state.leads,
+        //   leads: [true, false, false, false, false, false]
+        // }
       };
 
     case "toggleLead1234":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, true, true, true, true, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, true, true, true, true, false];
+        })
       };
 
     case "toggleLead012":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [true, true, true, false, false, false]
-        }
+        leads: produce(state.leads, () => {
+          [true, true, true, false, false, false];
+        })
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [true, true, true, false, false, false]
+        // }
       };
 
     case "toggleLead345":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, false, false, true, true, true]
-        }
+        leads: produce(state.leads, () => {
+          [false, false, false, true, true, true];
+        })
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, false, false, true, true, true]
+        // }
       };
 
     case "toggleLead124":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, true, true, false, true, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, true, true, false, true, false];
+        })
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, true, true, false, true, false]
+        // }
       };
 
     case "toggleLead234":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, false, true, true, true, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, false, true, true, true, false];
+        })
+
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, false, true, true, true, false]
+        // }
       };
 
     case "toggleLead134":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, true, false, true, true, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, true, false, true, true, false];
+        })
+
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, true, false, true, true, false]
+        // }
       };
 
     case "toggleLead123":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, true, true, true, false, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, true, true, true, false, false];
+        })
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, true, true, true, false, false]
+        // }
       };
 
     case "toggleLead12":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, true, true, false, false, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, true, true, false, false, false];
+        })
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, true, true, false, false, false]
+        // }
       };
 
     case "toggleLead34":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, false, false, true, true, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, false, false, true, true, false];
+        })
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, false, false, true, true, false]
+        // }
       };
 
     case "toggleLead01":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [true, true, false, false, false, false]
-        }
+        leads: produce(state.leads, () => {
+          [true, true, false, false, false, false];
+        })
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [true, true, false, false, false, false]
+        // }
       };
     case "toggleLead02":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [true, false, true, false, false, false]
-        }
+        leads: produce(state.leads, () => {
+          [true, false, true, false, false, false];
+        })
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [true, false, true, false, false, false]
+        // }
       };
     case "toggleLead35":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, false, false, true, false, true]
-        }
+        leads: produce(state.leads, () => {
+          [false, false, false, true, false, true];
+        })
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, false, false, true, false, true]
+        // }
       };
     case "toggleLead45":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, false, false, false, true, true]
-        }
+        leads: produce(state.leads, () => {
+          [false, false, false, false, true, true];
+        })
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, false, false, false, true, true]
+        // }
       };
     case "toggleLead13":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, true, false, true, false, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, true, false, true, false, false];
+        })
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, true, false, true, false, false]
+        // }
       };
     case "toggleLead24":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, false, true, false, true, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, false, true, false, true, false];
+        })
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, false, true, false, true, false]
+        // }
       };
     case "toggleLeads":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, false, false, false, false, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, false, false, false, false, false];
+        })
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, false, false, false, false, false]
+        // }
       };
     case "toggleLeadReset":
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          leads: [false, true, true, true, true, false]
-        }
+        leads: produce(state.leads, () => {
+          [false, true, true, true, true, false];
+        })
+        // ...state,
+        // leads: {
+        //   ...state.leads,
+        //   leads: [false, true, true, true, true, false]
+        // }
       };
   }
   return state;
