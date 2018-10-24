@@ -126,10 +126,9 @@ export default class Scene {
     planMat.setTransform(gl, [0.0, 15.0, 0.0], 15.0, 1.0, 15.0);
     plan.render(gl, planMat);
 
-    crsor.begin(gl);
-
     //render cursor only, when toggled on
     if (data.cursor.isOn) {
+      crsor.begin(gl);
       crsor.setColor(
         gl,
         data.cursor.color,

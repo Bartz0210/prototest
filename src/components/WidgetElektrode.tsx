@@ -183,10 +183,10 @@ export default function WidgetText({
       </svg>
 
       <div className={theme.txt}>
-        <span className={theme.lbl}>Total Amplitude </span>
+        <span className={theme.lbl}>Amplitude (mA)</span>
         <span className={theme.val}>{id}</span>
         <br />
-        <span className={theme.lbl}>Pulsweite(μs) </span>
+        <span className={theme.lbl}>Pulsweite (μs) </span>
         <span className={theme.val}>{implantSince}</span>
         <br />
         <span className={theme.lbl}>Frequenz (Hz) </span>

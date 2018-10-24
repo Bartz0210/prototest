@@ -1906,26 +1906,26 @@ class Programm extends React.Component<
           </div>
           {/*     Control Item: Radius*/}
           <ControlItem
-            label="Amplitude"
+            label="Amplitude (mA)"
             value={props.cursor.radius}
             increment={0.2}
             onChange={value => {
               props.updateCursorRadius(value);
             }}
           />
-          {/*     Control Item: Xposition*/}
-          <ControlItem
-            label="Frequenz"
-            value={props.cursor.frequency}
-            increment={15.0}
-            onChange={props.updateFrequency}
-          />
           {/*     Control Item: Yposition*/}
           <ControlItem
-            label="Pulsweite"
+            label="Pulsweite (μs)"
             value={props.cursor.scaleX}
             increment={0.1}
             onChange={props.transformCursorX}
+          />
+          {/*     Control Item: Xposition*/}
+          <ControlItem
+            label="Frequenz (Hz)"
+            value={props.cursor.frequency}
+            increment={15.0}
+            onChange={props.updateFrequency}
           />
           <div className={theme.flexb}>
             <button
@@ -1942,7 +1942,7 @@ class Programm extends React.Component<
                 props.toggleLeadReset();
                 props.updateCursorPosition(0, 0.625, props.cursor.position[2]);
                 props.transformCursorY(2);
-                props.updateCursorRadius(2);
+                props.updateCursorRadius(1.4);
                 props.updateFrequency(60),
                   alert(
                     "Der Vorgang wurde erfolgreich abgebrochen! Die Einstellungen werden zurückgesetzt."

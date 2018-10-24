@@ -184,10 +184,10 @@ export default function ReportElectrode({
         </svg>
 
         <div className={theme.txt}>
-          <span className={theme.lbl}>Total Amplitude </span>
+          <span className={theme.lbl}>Amplitude (mA) </span>
           <span className={theme.val}>{amplitude}</span>
           <br />
-          <span className={theme.lbl}>Pulsweite(μs) </span>
+          <span className={theme.lbl}>Pulsweite (μs) </span>
           <span className={theme.val}>{pulsweite}</span>
           <br />
           <span className={theme.lbl}>Frequenz (Hz) </span>
