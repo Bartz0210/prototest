@@ -1,8 +1,5 @@
 import { Action } from "redux";
 import { SceneData, SpotState } from "../renderer/Scene";
-import { fail } from "assert";
-import { produce } from "immer";
-import { stat } from "fs";
 
 function createScene(): SceneData {
   const spots: Array<SpotState> = [];

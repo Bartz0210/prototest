@@ -1,4 +1,4 @@
-import Mesh from './Mesh';
+import Mesh from "./Mesh";
 
 export default class CapsuleMesh extends Mesh {
   readonly radius: number = 0.5;
